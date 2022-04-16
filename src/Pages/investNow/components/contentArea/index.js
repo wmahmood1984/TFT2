@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React from "react";
+import React, { useEffect } from "react";
 import AirDrop from "../airDrop";
 import BuyTFT from "../buyTFT";
 import BuyAtDiscount from "../buyTFT/components/buyAtDiscount";
@@ -7,6 +7,9 @@ import Dashboard from "../dashboard";
 import FairInvestment from "../fairInvestment";
 import LoanVault from "../loanVault";
 import OneFor10X from "../oneFor10X";
+import { useSelector, useDispatch } from "react-redux";
+import { Price } from "../../../../state/ui";
+import Loader from "../../../../Components/loader";
 import "./contentArea.css";
 
 const ContentArea = ({
@@ -21,6 +24,15 @@ const ContentArea = ({
   handleBuyAtDiscountClick,
   handleBuyAtMarketClick,
 }) => {
+  const dispatch = useDispatch();
+  const toggle = useSelector((state) => {
+    return state.adoptReducer.toggle;
+  });
+
+  useEffect(() => {
+    dispatch(Price({ BNB: 0, BUSD: 0, USDT: 0 }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toggle]);
   return (
     <div className="contentArea-wrapper">
       {dashboard ? (
@@ -44,6 +56,7 @@ const ContentArea = ({
       {loanVault ? <LoanVault /> : null}
       {oneFor10X ? <OneFor10X /> : null}
       {airDrop ? <AirDrop /> : null}
+      {toggle ? <Loader /> : null}
     </div>
   );
 };

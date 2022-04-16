@@ -111,7 +111,10 @@ const Header = ({
 
                 <div className="pt-2 pb-0 py-md-0 social-media-main-container">
                   <div className="row mx-0 align-items-center">
-                    <ul className="social-media-container d-flex flex-wrap list-unstyled mb-0">
+                    <ul
+                      className="social-media-container d-flex flex-wrap list-unstyled mb-0"
+                      style={{ marginRight: "5px" }}
+                    >
                       <li>
                         <a
                           href="https://twitter.com/thefairtrust?s=21"
@@ -149,14 +152,41 @@ const Header = ({
                         </a>
                       </li>
                     </ul>
-
+                    {buyTft ? (
+                      <div className="connect-button-in-topNav">
+                        <span>Connect Wallet</span>
+                      </div>
+                    ) : null}
                     <Link
                       to="/Invest"
-                      className="form-inline my-2 my-lg-0 common-btn orange-btn invest-now-btn"
+                      className={
+                        buyTft
+                          ? ""
+                          : "form-inline my-2 my-lg-0 common-btn orange-btn invest-now-btn"
+                      }
+                      style={
+                        buyTft
+                          ? {
+                              border: "1px solid #ccc",
+                              borderRadius: "30px",
+                              width: "140px",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              marginRight: "10px",
+                              height: "30px",
+                              cursor: "pointer",
+                              background: "#D55E2D",
+                              color: "#fff",
+                              position: "relative",
+                              marginBottom: "2px",
+                            }
+                          : null
+                      }
                       onClick={() => setBuyTFTToggle((prev) => !prev)}
                     >
                       {/* Launch App */}
-                      {buyTft ? "Buy TFT" : "Launch App"}
+                      {buyTft ? <span>Buy TFT</span> : "Launch App"}
                     </Link>
                     {buyTft ? (
                       <ul

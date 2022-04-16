@@ -1,5 +1,4 @@
 import React from "react";
-import footerLogo from "../../../../Assets/footer_logo.png";
 import "./sideBar.css";
 import { tokenAddress } from "../../../../config";
 
@@ -84,19 +83,17 @@ const SideBar = ({
     setAirDrop(true);
   };
 
-  const setTokn = async ()=>{
-
-    const tokenSymbol = 'TFT';
+  const setTokn = async () => {
+    const tokenSymbol = "TFT";
     const tokenDecimals = 8;
-    const Picture = "https://i.ibb.co/3Bkpg9T/Token.jpg"
-  
-    
+    const Picture = "https://i.ibb.co/3Bkpg9T/Token.jpg";
+
     try {
       // wasAdded is a boolean. Like any RPC method, an error may be thrown.
       const wasAdded = await window.ethereum.request({
-        method: 'wallet_watchAsset',
+        method: "wallet_watchAsset",
         params: {
-          type: 'ERC20', // Initially only supports ERC20, but eventually more!
+          type: "ERC20", // Initially only supports ERC20, but eventually more!
           options: {
             address: tokenAddress, // The address that the token is at.
             symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
@@ -105,16 +102,16 @@ const SideBar = ({
           },
         },
       });
-    
+
       if (wasAdded) {
-        console.log('Thanks for your interest!');
+        console.log("Thanks for your interest!");
       } else {
-        console.log('Your loss!');
+        console.log("Your loss!");
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
     <div className="sidebar-main-wrapper">
@@ -174,7 +171,15 @@ const SideBar = ({
               >
                 Buy At Market
               </li>
-              <li><button onClick={()=>{setTokn()}}>Add TFT to Wallet</button></li>
+              <li
+                onClick={() => {
+                  setTokn();
+                }}
+              >
+                {/* <button> */}
+                Add TFT to Wallet
+                {/* </button> */}
+              </li>
             </ul>
           </li>
           <li

@@ -2,5 +2,23 @@
 .contentArea-wrapper {
   width: 100%;
   height: calc(100vh - 40px);
+  padding-top: 10px;
   overflow-y: scroll;
+  /* ff 3.6+ */
+  background:-moz-linear-gradient(159deg, rgba(213, 94, 45, 1) 0%, rgba(236, 236, 236, 1) 36%, rgba(47, 93, 140, 1) 100%); 
+
+  /* safari 5.1+,chrome 10+ */
+  background:-webkit-linear-gradient(159deg, rgba(213, 94, 45, 1) 0%, rgba(236, 236, 236, 1) 36%, rgba(47, 93, 140, 1) 100%);
+
+  /* opera 11.10+ */
+  background:-o-linear-gradient(159deg, rgba(213, 94, 45, 1) 0%, rgba(236, 236, 236, 1) 36%, rgba(47, 93, 140, 1) 100%);
+
+  /* ie 6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2F5D8C', endColorstr='#D55E2D', GradientType=1 );
+
+  /* ie 10+ */
+  background:-ms-linear-gradient(159deg, rgba(213, 94, 45, 1) 0%, rgba(236, 236, 236, 1) 36%, rgba(47, 93, 140, 1) 100%);
+
+  /* global 94%+ browsers support */
+  background:linear-gradient(159deg, rgba(213, 94, 45, 1) 0%, rgba(236, 236, 236, 1) 36%, rgba(47, 93, 140, 1) 100%);
 }

@@ -14,3 +14,24 @@
     text-align: left;
     cursor: pointer;  
 }
+/* connect-button-in-topNav */
+.connect-button-in-topNav{
+    border: 1px solid #ccc;
+    border-radius: 30px;    
+    width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    margin-right: 10px;
+    height: 30px;
+    cursor: pointer;
+    background: #2F5D8C;
+    color: #fff;
+    position: relative;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.social-media-container{
+    justify-content: end !important;
+}

@@ -12,10 +12,9 @@ const LoanTerm = ({
   stakeFunction,
   allowance,
   disable,
-  dollar
+  dollar,
 }) => {
-
-  console.log("disable",disable)
+  console.log("disable", disable);
   return (
     <div className="loanTerm-main-wrapper">
       <div className="term-title-wrapper">
@@ -45,6 +44,7 @@ const LoanTerm = ({
           value={value}
           OnChange={setValue}
           belowLabel={`TFT Available ${TFTAvailable}`}
+          rightButtonText="Max"
         />
       </div>
       <div className="receiveBusd-wrapper">
@@ -55,10 +55,11 @@ const LoanTerm = ({
       </div>
       <div className="depositApprove-btn-wrapper">
         <button
-        disabled={disable} 
-        onClick={stakeFunction}
-        className="deposit-Approve-btn">
-          <span>{allowance ?  "Stake" : "Approve"}</span>
+          disabled={disable}
+          onClick={stakeFunction}
+          className="deposit-Approve-btn"
+        >
+          <span>{allowance ? "Stake" : "Approve"}</span>
         </button>
       </div>
     </div>

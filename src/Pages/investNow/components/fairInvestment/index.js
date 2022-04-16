@@ -1,105 +1,116 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import CustomInput from "../../../../Components/customInput";
 import InvesNowContentBox from "../../../../Components/invesNowContentBox";
 import Investment from "./components/investment";
 import "./fairInvestment.css";
-import { useSelector,useDispatch } from 'react-redux'
-import { Stakinga, TFTApprove, Price, UnStakinga,claimA, bulkclaimA } from '../../../../state/ui';
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  Stakinga,
+  TFTApprove,
+  Price,
+  UnStakinga,
+  claimA,
+  bulkclaimA,
+} from "../../../../state/ui";
 
 const FairInvestment = () => {
-  const dispatch = useDispatch()
-  const TFTDollarValue = useSelector((state)=>{
-    return  state.adoptReducer.TFTDollarValue; 
-   
-   });
+  const dispatch = useDispatch();
+  const TFTDollarValue = useSelector((state) => {
+    return state.adoptReducer.TFTDollarValue;
+  });
 
-   const [ TFT,setTFT] = useState();
+  const [TFT, setTFT] = useState();
 
-   const toggle = useSelector((state)=>{
-       return  state.adoptReducer.toggle; 
-      
-      });
+  const toggle = useSelector((state) => {
+    return state.adoptReducer.toggle;
+  });
 
-   useEffect(()=>{
+  useEffect(() => {
+    dispatch(Price({ BNB: 0, BUSD: 0, USDT: 0 }));
+  }, [toggle]);
 
+  const _balance = useSelector((state) => {
+    return state.adoptReducer.balance;
+  });
 
-       dispatch(Price({BNB:0,BUSD:0,USDT:0}))
-   
-     },[toggle])
+  const _TFTAllowance = useSelector((state) => {
+    return state.adoptReducer.TFTAllowance;
+  });
 
-     const _balance = useSelector((state)=>{
-      return  state.adoptReducer.balance; 
-     
-     });
+  const _indStakingInf = useSelector((state) => {
+    return state.adoptReducer.indStakingInf;
+  });
+  const initialValue = 0;
+  const initialValue2 = 0;
+  var filteredInfo =
+    _indStakingInf && _indStakingInf.filter((item) => item.quantity > 0);
+  var amountsArray =
+    _indStakingInf && _indStakingInf.map((item) => item.quantity);
+  var dailyamountsArray =
+    _indStakingInf && _indStakingInf.map((item) => item.daily);
+  var idsArray = _indStakingInf && filteredInfo.map((item) => item.stakingId);
+  var totalQuantity =
+    _indStakingInf &&
+    amountsArray.reduce(
+      (previousValue, currentValue) =>
+        Number(previousValue) + Number(currentValue),
+      initialValue
+    ) / 100000000;
 
-   const _TFTAllowance = useSelector((state)=>{
-       return  state.adoptReducer.TFTAllowance; 
-      
-      });
-   
-   const _indStakingInf = useSelector((state)=>{
-       return  state.adoptReducer.indStakingInf; 
-      
-      });
-      const initialValue = 0;
-      const initialValue2 = 0;
-   var filteredInfo = _indStakingInf && _indStakingInf.filter(item=>item.quantity>0)
-   var amountsArray = _indStakingInf && _indStakingInf.map(item=>item.quantity)
-   var dailyamountsArray = _indStakingInf && _indStakingInf.map(item=>item.daily)
-   var idsArray = _indStakingInf && filteredInfo.map(item=>item.stakingId)
-   var totalQuantity = _indStakingInf && amountsArray.reduce(
-    (previousValue, currentValue) => Number(previousValue) + Number(currentValue) , initialValue
-  )/100000000;
+  var dailyAmount =
+    _indStakingInf &&
+    dailyamountsArray.reduce(
+      (previousValue, currentValue) =>
+        Number(previousValue) + Number(currentValue),
+      initialValue2
+    ) / 100000000;
 
-  var dailyAmount = _indStakingInf && dailyamountsArray.reduce(
-    (previousValue, currentValue) => Number(previousValue) + Number(currentValue), initialValue2
-  )/100000000;
+  const _indRewardInf = useSelector((state) => {
+    return state.adoptReducer.indRewardInf;
+  });
 
+  console.log("reward", amountsArray);
 
-
-   const _indRewardInf = useSelector((state)=>{
-       return  state.adoptReducer.indRewardInf; 
-      
-      });
-
-    console.log("reward", amountsArray)  
- 
-        
-   function Stake() {
-       if( Number(_TFTAllowance)/100000000 >= TFT){
-           dispatch(Stakinga({_qty:TFT}))
-           setTFT(0)
-       }else{
-           dispatch(TFTApprove({quantity :  TFT}))
-       }
-   }
-
-   function Unstake(id){
-       dispatch(UnStakinga({id}))
-   }
-
-  function handleClaim(id){
-    dispatch(claimA({id}))
+  function Stake() {
+    if (Number(_TFTAllowance) / 100000000 >= TFT) {
+      dispatch(Stakinga({ _qty: TFT }));
+      setTFT(0);
+    } else {
+      dispatch(TFTApprove({ quantity: TFT }));
+    }
   }
 
-  function bulkClaim(){
-    dispatch(bulkclaimA({id :  idsArray}))
+  function Unstake(id) {
+    dispatch(UnStakinga({ id }));
   }
 
-   console.log("list",idsArray)
+  function handleClaim(id) {
+    dispatch(claimA({ id }));
+  }
 
-   window.ethereum.on("accountsChanged",(e,r)=>{window.location.reload()})
-   window.ethereum.on("chainChanged",(e,r)=>{window.location.reload()})
-   
-   var currentTime = new Date().getTime() / 1000
+  function bulkClaim() {
+    dispatch(bulkclaimA({ id: idsArray }));
+  }
 
+  console.log("list", idsArray);
+
+  window.ethereum.on("accountsChanged", (e, r) => {
+    window.location.reload();
+  });
+  window.ethereum.on("chainChanged", (e, r) => {
+    window.location.reload();
+  });
+
+  var currentTime = new Date().getTime() / 1000;
 
   return (
     <>
       <InvesNowContentBox>
         <h5 className="df jcsb">
-          <span>TFT Price: ${(TFTDollarValue/1000000000000000000).toFixed(4)}</span> <span>TFT Stake Holders:30%</span>
+          <span>
+            TFT Price: ${(TFTDollarValue / 1000000000000000000).toFixed(4)}
+          </span>{" "}
+          <span>TFT Stake Holders:30%</span>
         </h5>
         <div className="investNow-btn-wrapper">
           <h4 className="investNow-heading mt30">INVEST NOW</h4>
@@ -110,48 +121,82 @@ const FairInvestment = () => {
             enterLable={`Enter TFT`}
             placeholder={`TFT AMOUNT`}
             value={TFT}
-            OnChange ={setTFT}
-            belowLabel={`TFT Available :  ${(_balance/100000000).toFixed(4)}`}
+            OnChange={setTFT}
+            belowLabel={`TFT Available :  ${(_balance / 100000000).toFixed(4)}`}
+            rightButtonText="Max"
           />
         </div>
-        <div className="invest-approve-btn-wrapper">
-          <button className="invest-approve-btn"
-          onClick={Stake}
-          >
-            <span>{Number(_TFTAllowance/100000000) >= TFT ?  "Stake" : "Approve"}</span>
-          </button>
+        <br />
+        <div className="m0 df jcsb aic mb5">
+          <span>Daily Returns (0.16%): 6 TFT</span>
+          {/* <div className="customOrangeBtn">CLAIM ALL</div> */}
         </div>
-        <div className="p0 tal m0" style={{ marginTop: "20px" }}>
-          <span>Total TFT Invested: {totalQuantity} TFT</span>
+        <div className="m0 df jcsb aic mb5">
+          <span>Monthly Bonus (5%): 2 TFT</span>
+          {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;12</div> */}
         </div>
         <div className="m0 df jcsb aic">
-          <span>Total Daily Returns To Claim: {dailyAmount} TFT</span>
-          <button 
-          onClick={()=>{bulkClaim()}}
-          className="customOrangeBtn">CLAIM ALL</button>
+          <span>Quarterly Dividend (10%):160 BUSD</span>
+          {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;05</div> */}
         </div>
+        <br />
+        <div className="invest-approve-btn-wrapper">
+          <button className="invest-approve-btn" onClick={Stake}>
+            <span>
+              {Number(_TFTAllowance / 100000000) >= TFT ? "Stake" : "Approve"}
+            </span>
+          </button>
+        </div>
+        {/* <div className="p0 tal m0" style={{ marginTop: "20px" }}>
+          <span>Total TFT Invested: {totalQuantity} TFT</span>
+        </div> */}
+        {/* <div className="m0 df jcsb aic">
+          <span>Total Daily Returns To Claim: {dailyAmount} TFT</span>
+          <button
+            onClick={() => {
+              bulkClaim();
+            }}
+            className="customOrangeBtn"
+          >
+            CLAIM ALL
+          </button>
+        </div> */}
       </InvesNowContentBox>
 
-      {_indStakingInf &&  filteredInfo.map((val, key) => {
-        console.log("daily",val.monthly)
-        return(
-          <InvesNowContentBox key={key}>
-          <Investment index={key}
-          invested = {val.quantity/100000000}
-          price={(TFTDollarValue/1000000000000000000).toFixed(4)}
-          monthly={(Number(val.monthly)/100000000).toFixed(0)}
-          quarterly={(Number(val.quarterly)/100000000).toFixed(0)}
-          daily={(Number(val.daily)/100000000).toFixed(0)}
-          dailyTime={((Number(val.timeOfInvestment)+(60*60*24)-currentTime)/(60*60*24)).toFixed(0)}
-          monthlyTime={((Number(val.timeOfInvestment)+(60*60*24*30)-currentTime)/(60*60*24)).toFixed(0)}
-          quarterlyTime={((Number(val.timeOfInvestment)+(60*60*24*90)-currentTime)/(60*60*24)).toFixed(0)}
-          claim = {handleClaim}
-          withdraw = {Unstake}
-          />
-          </InvesNowContentBox>
-        )
-        
-      })}
+      {_indStakingInf &&
+        filteredInfo.map((val, key) => {
+          console.log("daily", val.monthly);
+          return (
+            <InvesNowContentBox key={key}>
+              <Investment
+                index={key}
+                invested={val.quantity / 100000000}
+                price={(TFTDollarValue / 1000000000000000000).toFixed(4)}
+                monthly={(Number(val.monthly) / 100000000).toFixed(0)}
+                quarterly={(Number(val.quarterly) / 100000000).toFixed(0)}
+                daily={(Number(val.daily) / 100000000).toFixed(0)}
+                dailyTime={(
+                  (Number(val.timeOfInvestment) + 60 * 60 * 24 - currentTime) /
+                  (60 * 60 * 24)
+                ).toFixed(0)}
+                monthlyTime={(
+                  (Number(val.timeOfInvestment) +
+                    60 * 60 * 24 * 30 -
+                    currentTime) /
+                  (60 * 60 * 24)
+                ).toFixed(0)}
+                quarterlyTime={(
+                  (Number(val.timeOfInvestment) +
+                    60 * 60 * 24 * 90 -
+                    currentTime) /
+                  (60 * 60 * 24)
+                ).toFixed(0)}
+                claim={handleClaim}
+                withdraw={Unstake}
+              />
+            </InvesNowContentBox>
+          );
+        })}
       {/* <InvesNowContentBox>
         <Investment index={1} />
       </InvesNowContentBox>

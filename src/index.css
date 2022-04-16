@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;  
 }
 
 code {
@@ -70,6 +71,11 @@ ul {
 
 .orange-color{
   color: #D55E2D;
+}
+
+button{
+  outline: none;
+  border: none;
 }
 
 /*  Red Orange = #D55E2D */
