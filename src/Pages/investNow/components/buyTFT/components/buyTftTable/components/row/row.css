@@ -1,0 +1,16 @@
+/* buy-tft-table-row */
+.buy-tft-table-row {
+}
+/* bnbIcon */
+.bnbIcon {
+  width: 50px;
+}
+/* table-buyNow-btn */
+.table-buyNow-btn {
+  background: #d45e2c;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 30px;
+  cursor: pointer;
+}

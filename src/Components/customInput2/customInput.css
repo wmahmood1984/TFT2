@@ -1,0 +1,18 @@
+/* max-btn */
+.max-btn {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background: #d55e2d;
+  color: #fff;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+/* sr-only */
+.input-group-text {
+  width: 130px;
+  text-align: left;
+  background: #2f5d8c;
+  color: #fff;
+}

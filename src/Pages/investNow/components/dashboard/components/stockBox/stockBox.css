@@ -1,0 +1,22 @@
+/* stockBox-wrapper */
+.stockBox-wrapper {
+  border: 1px solid #ccc;
+  width: 250px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: #ececec;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  /* padding: 10px; */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* stockBox-text */
+/* stockBox-value */
+.stockBox-value {
+  margin: 0;
+}

@@ -1,0 +1,16 @@
+/* investNow-heading */
+.investNow-heading{
+    color: #D55E2D;
+    text-decoration: underline;
+}
+/* invest-approve-btn */
+.invest-approve-btn{
+    background: #D55E2D;
+    color: #fff;    
+    padding: 7px 0;
+    width: 150px;
+    display: inline-block;
+}
+.invest-approve-btn span{
+    font-size: 18px;
+}

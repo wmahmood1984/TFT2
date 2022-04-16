@@ -1,0 +1,31 @@
+/* buy-tft-wrapper */
+.buy-tft-wrapper {
+  border: 1px solid #ccc;
+  background: #ececec;
+  width: 70%;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding-bottom: 50px;
+}
+.buy-tft-heading {
+  margin: auto;
+  margin-top: 50px;
+  text-align: left;
+  width: 80%;
+  padding-left: 30px;
+}
+/* buy-tft-table */
+.buy-tft-table {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+/* bnbIcon */
+.bnbIcon {
+  width: 30px;
+}

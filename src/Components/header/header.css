@@ -1,0 +1,16 @@
+/* buyTft-dropdown */
+.buyTft-dropdown{    
+    width: 110px;    
+    position: absolute;
+    right: 0px;
+    top: 42px;    
+    margin: 0;
+    padding: 0;
+}
+.buyTft-dropdown li{
+    font-size: 12px;    
+    margin: 0;
+    padding: 0;    
+    text-align: left;
+    cursor: pointer;  
+}

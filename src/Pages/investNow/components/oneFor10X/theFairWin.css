@@ -1,0 +1,98 @@
+/* theFairWin-main-wrapper */
+/* .theFairWin-main-wrapper{
+
+} */
+/* buyTickets-table */
+.buyTickets-table{
+    border: 1px solid #ccc;    
+    border-radius: 10px;
+    padding: 0;
+    width: 50%;    
+    margin: auto;
+    border-bottom-left-radius: 10px;    
+    border-bottom-right-radius: 10px; 
+}
+.buyTickets-table td{
+    padding: 0 10px;
+}
+.buyTickets-table tr{
+    margin-bottom: 10px;
+}
+.tbl-top-p{
+    display: flex;
+    justify-content: space-evenly;
+    /* padding: 0 10px; */
+    /* font-size: 14px; */
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin: auto;
+    border-top-left-radius: 10px;    
+    border-top-right-radius: 10px;    
+    border-bottom: none;
+}
+.tbl-bottom-p{
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 50%;
+    margin: auto;
+    border-top: none;
+    text-align: left;
+    padding-left: 20px;    
+}
+.buyTickets-table input{
+    width: 70px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+.buyTickets-table .top-small-tds{
+    font-size: 14px;
+}
+/* tbl-row-border */
+.tbl-row1-border{
+    border-bottom: 1px solid #ccc;           
+}
+/* buyTickets-wrapper */
+.buyTickets-wrapper{
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+}
+.td2-border-right{
+    border-right: 1px solid #ccc;
+}
+/* your-current-play-wrapper */
+.theFairWin-section-wrapper{
+    border-bottom: 1px solid #ccc;
+    padding: 20px;    
+}
+/* checkNow-btn-wrapper */
+.checkNow-btn-wrapper{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;        
+}
+.checkNow-btn{
+    border: none;
+    outline: none;
+    background: #D55E2D;
+    color: #fff;        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 120px;
+}
+/* history-buttons-wrapper */
+.history-buttons-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.history-buttons-wrapper .history-button{
+    border: 1px solid #ccc;
+    padding: 5px 10px;    
+    cursor: pointer;
+}

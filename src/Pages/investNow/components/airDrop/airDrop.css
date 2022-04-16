@@ -1,0 +1,35 @@
+/* airDrop-title */
+.airDrop-title{
+    margin-top: 100px;    
+}
+/* airDrop-below-text */
+.airDrop-below-text{
+    margin-bottom: 30px;
+}
+/* airdrops-box */
+.airdrops-box{
+    width: 50%;
+    margin: auto;    
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.airdrops-box table{
+    width: 100%;
+    margin: auto;   
+    /* border-collapse: collapse;      */
+    border-collapse:separate;
+    border-spacing:0 20px;
+}
+/* claim-button */
+.claim-button{
+    background: #D55E2D;
+    color: #fff;
+    width: 80%;
+    margin: auto;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}

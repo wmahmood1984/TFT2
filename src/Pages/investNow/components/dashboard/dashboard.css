@@ -1,0 +1,55 @@
+/* dashboard-wrapper */
+.dashboard-wrapper {
+  text-align: left;
+}
+/* dashboard-top-text */
+.dashboard-top-text {
+  margin: 50px;
+  font-size: 18px;
+}
+/* button-wrapper */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.button-wrapper .tft-btn {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: #d45e2c;
+  color: #fff;
+}
+
+.button-wrapper .tft-btn-right {
+  margin-left: 20px;
+}
+/* dashboard-pricing-wrapper */
+.dashboard-pricing-wrapper {
+  padding: 0;
+  margin: auto;
+  width: 50%;
+  margin-top: 50px;
+}
+.dashboard-pricing-wrapper li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+/* stockBoxWrapper */
+.stockBoxWrapper {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+/* stockBoxWrapper-row */
+.stockBoxWrapper-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.stock-middle {
+  margin-left: 20px;
+  margin-right: 20px;
+}

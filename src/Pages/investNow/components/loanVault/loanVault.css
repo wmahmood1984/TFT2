@@ -1,0 +1,18 @@
+/* loanVault-main-wrapper */
+.loanVault-main-wrapper{
+    width: 85%;
+    margin: auto;    
+    margin-top: 50px;
+    /* border: 1px solid #000; */
+}
+/* loanTerm-wrapper */
+.loanTerm-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+/* loanInvestment-wrapper */
+.loanInvestment-wrapper{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}

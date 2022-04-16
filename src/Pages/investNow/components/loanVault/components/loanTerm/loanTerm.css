@@ -1,0 +1,75 @@
+/* loanTerm-main-wrapper */
+.loanTerm-main-wrapper{
+    border: 1px solid #ccc;
+    width: 400px;    
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+/* term-title-wrapper */
+.term-title-wrapper{        
+    border-bottom: 1px solid #ccc;
+    background: #ECECEC;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* interest-box-wrapper */
+.interest-box-wrapper{
+    display: flex;
+    justify-content: center;    
+    margin: auto;
+    margin-top: 30px;    
+}
+/* inerest-box */
+.inerest-box{
+    border: 1px solid #ccc;
+    background: #ECECEC;
+    width: 40%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;           
+}
+.inerest-box p{
+margin-bottom: 0;
+}
+
+.interest-box-wrapper .right{
+    margin-left: 20px;
+}
+/* interest-input-wrapper */
+.interest-input-wrapper{
+    padding-top: 20px;
+    width: calc(80% + 20px);
+    margin: auto;
+}
+/* receiveBusd-wrapper */
+.receiveBusd-wrapper{
+    padding-top: 10px;
+    text-align: left;
+    width: calc(80% + 20px);
+    margin: auto;
+}
+/* depositApprove-btn-wrapper */
+.depositApprove-btn-wrapper{
+    padding-top: 10px;    
+    width: calc(80% + 20px);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.depositApprove-btn-wrapper .deposit-Approve-btn{
+    background: #D55E2D;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+}

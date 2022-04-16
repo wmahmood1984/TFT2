@@ -1,0 +1,59 @@
+/* linearTimer-main-wrapper */
+.linearTimer-main-wrapper{
+    border: 1px solid #ccc;
+    background: #ECECEC;
+    border-radius: 10px;
+    /* height: 60px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+
+}
+/* uper-text-wrapper */
+.uper-text-wrapper{
+    display: flex;    
+}
+.uper-text-wrapper .start{
+    width: 10%;
+    font-size: 12px;
+}
+.uper-text-wrapper .middle-timer-text{
+    width: 80%;
+    font-size: 12px;
+}
+.uper-text-wrapper .end{
+    width: 10%;
+    font-size: 12px;
+}
+/* timer-Line-wrapper */
+.timer-Line-wrapper{
+    margin-top: 10px;    
+}
+.timer-Line-wrapper .line{
+    height: 5px;
+    background: #2F5D8C;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    position: relative;
+}
+/* movingCircle */
+.movingCircle{
+    background: #2F5D8C;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: -8px;
+}
+.movingCircle i{
+    font-size: 16px;
+    font-weight: 800;
+    display: inline-block;
+    margin-top: -1px;
+}
