@@ -89,6 +89,7 @@ export const Price = createAsyncThunk("Price", async ({ BNB, BUSD,USDT }) => {
         .call();
       const BNBBalance = await web3.eth.getBalance(address)
       const balance = await tokenContract.methods.balanceOf(address).call();
+      const supply = await tokenContract.methods.totalSupply().call()
       const BUSDbalance = await BUSDContract.methods.balanceOf(address).call();
       const USDTbalance = await USDTContract.methods.balanceOf(address).call();
       const discount = await LoanContract.methods.Discount().call();
