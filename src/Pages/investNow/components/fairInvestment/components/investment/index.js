@@ -16,11 +16,20 @@ const Investment = ({ index, invested, price, monthly,quarterly,daily, dailyTime
       </div>
       <div className="m0 df jcsb aic mb5">
         <span>Monthly Bonus (5%): {monthly} TFT</span>
-        <div className="appOrangeColor">DAYS LEFT:&nbsp;{monthlyTime}</div>
+        {monthlyTime>0 ? 
+        <div className="appOrangeColor">DAYS LEFT:&nbsp;{monthlyTime}</div>:
+        <button  
+        onClick={()=>{claim(index)}}
+        className="customOrangeBtn">CLAIM ALL</button>}
+
       </div>
       <div className="m0 df jcsb aic">
         <span>Quarterly Dividend (10%):{quarterly} BUSD</span>
-        <div className="appOrangeColor">DAYS LEFT:&nbsp;{quarterlyTime}</div>
+        {quarterlyTime>0 ? 
+        <div className="appOrangeColor">DAYS LEFT:&nbsp;{quarterlyTime}</div>:
+        <button  
+        onClick={()=>{claim(index)}}
+        className="customOrangeBtn">CLAIM ALL</button>}
       </div>
       <div className="mt20">
         <button 

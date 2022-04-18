@@ -316,4 +316,4 @@ async function MCASClaim(schemeNo){
   );
 }
 
-export default Admin;
+export default AdminA;

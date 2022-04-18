@@ -10,6 +10,7 @@ import InvestNow from "./Pages/investNow";
 export default function App() {
   return (
     <div className="App">
+ 
       <Routes>
         <Route path="/" element={<Main></Main>}></Route>
         <Route path="/:referrer" element={<Main></Main>}></Route>

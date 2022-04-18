@@ -13,7 +13,8 @@ const LoanInvestment = ({
   withdraw,
   index,
   allowance,
-  disable
+  disable,
+  time
 }) => {
   console.log("allowance in vault",allowance)
   return (
@@ -23,7 +24,7 @@ const LoanInvestment = ({
         <h5>{headingText}</h5>
       </div>
       <div className="linearTimer-wrapper">
-        <LinearTimer />
+        <LinearTimer time={time}/>
       </div>
       <div className="tftDeposited-wrapper">
         <p>
@@ -41,7 +42,7 @@ const LoanInvestment = ({
         disabled={disable}
         onClick={()=>{withdraw(index,dollar)}}
         className="deposit-Approve-btn">
-          <span>{allowance? "REPAY": "APPROVE"}</span>
+          <span>{allowance? "CONFIRM": "REPAY"}</span>
         </button>
       </div>
     </div>

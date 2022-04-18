@@ -3,7 +3,7 @@ import CustomInput2 from "../../../../Components/customInput2";
 import HistoryTable from "./components/historyTable";
 import "./theFairWin.css";
 import { useSelector,useDispatch } from 'react-redux'
-import {LotteryApprove, BuyLotterya , Price} from "../../../../state/ui/index.js"
+import {LotteryApprove, BuyLotterya , Price, Lottery} from "../../../../state/ui/index.js"
 
 const OneFor10X = () => {
   const [allHistory, setAllHistory] = useState(true);
@@ -35,8 +35,8 @@ const OneFor10X = () => {
 
   const dispatch = useDispatch()
 
-  const [ TFT,setTFT] = useState();
-  const [ gameNumber,setgameNumber] = useState();
+  const [ Ltoggle,setLtoggle] = useState(false);
+
 
   const [ winStatus,setwinStatus] = useState();
 
@@ -48,16 +48,30 @@ const OneFor10X = () => {
      const _TFTAllowance = useSelector((state)=>{
       console.log("allowance", state.adoptReducer.LotteryAllowance)
       return  Number(state.adoptReducer.LotteryAllowance); 
-       
+
+      
        });
+
+         
+  const gameCounter = useSelector((state)=>{
+
+    return  state.adoptReducer.gameCounter; 
+   
+   });
 
      useEffect(()=>{
 
+      var interval = setInterval(() => {
+        dispatch(Lottery({}))  
+        setLtoggle(!Ltoggle)      
+      }, 5000);
 
-      dispatch(Price({BNB:0,BUSD:0,USDT:0}))
+
       setwinStatus()
+
+      return ()=>{clearInterval(interval)}
   
-    },[toggle,_TFTAllowance])
+    },[toggle,_TFTAllowance,gameCounter,Ltoggle])
 
 
 
@@ -83,16 +97,11 @@ const OneFor10X = () => {
      });
 
      
-  
-  const gameCounter = useSelector((state)=>{
 
-      return  state.adoptReducer.gameCounter; 
-     
-     });
 
 
      const gameDetails = useSelector((state)=>{
-
+      
       return  state.adoptReducer.gameDetails; 
      
      });
@@ -105,7 +114,7 @@ const OneFor10X = () => {
 
      
   
-     console.log("details ", filteredInfo)
+
  
      
 
@@ -197,6 +206,9 @@ const OneFor10X = () => {
       if(Number(v.number)==9){_nine.push(v)}
     })
 
+var NewTime = gameDetails && Number(gameDetails[gameDetails.length-1].time)+(60*60*4)
+
+console.log("time",NewTime)
 
 function Status(){
   var winnNumber = []
@@ -212,7 +224,7 @@ function Status(){
   if(winnNumber.length==0){
     setwinStatus(`Sorry, better luck next time`)
   }else{
-    setwinStatus(`Congratulations, your winning numbers are ${winnNumber.toString()}`)
+    setwinStatus(`Congratulations, your winning numbers is ${[...new Set(winnNumber)].toString()}. For more details plz check your history tab below.`)
   }
 
 }
@@ -222,7 +234,7 @@ function Status(){
   window.ethereum.on("accountsChanged",(e,r)=>{window.location.reload()})
   window.ethereum.on("chainChanged",(e,r)=>{window.location.reload()})
   
-console.log("details ",_lottCurrDetails)
+
 
   return (
     <div className="theFairWin-main-wrapper">
@@ -233,8 +245,14 @@ console.log("details ",_lottCurrDetails)
         <p>Cost per Ticket: 0.1 TFT</p>
         <p className="tbl-top-p">
           <span>Draw Number: {gameCounter}</span>
-          <span>Date: DD-MM-yy</span>
-          <span>Time: hh:mm:ss</span>
+          <span>Date: 
+            {new Date(NewTime*1000).getDate()}-
+            {new Date(NewTime*1000).getMonth()+1}-
+            {new Date(NewTime*1000).getFullYear()}</span>
+          <span>Time: 
+            {new Date(NewTime*1000).getHours()}:
+            {new Date(NewTime*1000).getMinutes()}:
+            {new Date(NewTime*1000).getSeconds()}</span>
         </p>
         <table className="buyTickets-table">
           <tr className="tbl-row1-border">
@@ -335,16 +353,16 @@ console.log("details ",_lottCurrDetails)
         <h5>Draw # {gameCounter}</h5>
         {
             <div>
-              {_zero.length>0? <p>#0 x {_zero.length} Tickets =&gt; {_zero.length*0.9} TFT Positive Win</p> : null}
-              {_one.length>0? <p>#1 x {_one.length} Tickets =&gt; {_one.length*0.9} TFT Positive Win</p> : null}
-              {_two.length>0? <p>#0 x {_two.length} Tickets =&gt; {_two.length*0.9} TFT Positive Win</p> : null}
-              {_three.length>0? <p>#0 x {_three.length} Tickets =&gt; {_three.length*0.9} TFT Positive Win</p> : null}
-              {_four.length>0? <p>#0 x {_four.length} Tickets =&gt; {_four.length*0.9} TFT Positive Win</p> : null}
-              {_five.length>0? <p>#0 x {_five.length} Tickets =&gt; {_five.length*0.9} TFT Positive Win</p> : null}
-              {_six.length>0? <p>#0 x {_six.length} Tickets =&gt; {_six.length*0.9} TFT Positive Win</p> : null}
-              {_seven.length>0? <p>#0 x {_seven.length} Tickets =&gt; {_seven.length*0.9} TFT Positive Win</p> : null}
-              {_eight.length>0? <p>#0 x {_eight.length} Tickets =&gt; {_eight.length*0.9} TFT Positive Win</p> : null}
-              {_nine.length>0? <p>#0 x {_nine.length} Tickets =&gt; {_nine.length*0.9} TFT Positive Win</p> : null}
+              {_zero.length>0? <p>#0 x {_zero.length} Tickets =&gt; {_zero.length*0.9} TFT Possible Win</p> : null}
+              {_one.length>0? <p>#1 x {_one.length} Tickets =&gt; {_one.length*0.9} TFT Possible Win</p> : null}
+              {_two.length>0? <p>#2 x {_two.length} Tickets =&gt; {_two.length*0.9} TFT Possible Win</p> : null}
+              {_three.length>0? <p>#3 x {_three.length} Tickets =&gt; {_three.length*0.9} TFT Possible Win</p> : null}
+              {_four.length>0? <p>#4 x {_four.length} Tickets =&gt; {_four.length*0.9} TFT Possible Win</p> : null}
+              {_five.length>0? <p>#5 x {_five.length} Tickets =&gt; {_five.length*0.9} TFT Possible Win</p> : null}
+              {_six.length>0? <p>#6 x {_six.length} Tickets =&gt; {_six.length*0.9} TFT Possible Win</p> : null}
+              {_seven.length>0? <p>#7 x {_seven.length} Tickets =&gt; {_seven.length*0.9} TFT Possible Win</p> : null}
+              {_eight.length>0? <p>#8 x {_eight.length} Tickets =&gt; {_eight.length*0.9} TFT Possible Win</p> : null}
+              {_nine.length>0? <p>#9 x {_nine.length} Tickets =&gt; {_nine.length*0.9} TFT Possible Win</p> : null}
               
             </div>
  
@@ -352,19 +370,22 @@ console.log("details ",_lottCurrDetails)
           
         }
         {/* 
-        <p>#8 x 4 Tickets =&gt; 0.36 TFT Positive Win</p>
-        <p>#3 x 2 Tickets =&gt; 0.18 TFT Positive Win</p> */}
+        <p>#8 x 4 Tickets =&gt; 0.36 TFT Possible Win</p>
+        <p>#3 x 2 Tickets =&gt; 0.18 TFT Possible Win</p> */}
  
       </div>
       <div className="theFairWin-section-wrapper">
         <h5>Are You A Winner</h5>
         <div className="checkNow-btn-wrapper">
+         {winStatus ? 
+          <p>{winStatus}</p>:
           <button 
           onClick={Status}
           className="checkNow-btn">
             <span>CHECK NOW</span>
           </button>
-          <p>{winStatus}</p>
+          } 
+
         </div>
       </div>
       <div className="theFairWin-section-wrapper">

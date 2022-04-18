@@ -1,16 +1,33 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import pic from "../../Assets/Capture.png";
 import { Link, useParams } from "react-router-dom";
 import "./header.css";
-
+import { useSelector, useDispatch } from "react-redux";
+import { Price } from "../../state/ui";
+import { chainId, tokenAddress } from "../../config";
+import Web3 from "web3";
 const Header = ({
   buyTft,
   handleBuyAtDiscountClick,
   handleBuyAtMarketClick,
 }) => {
+  const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     dispatch(Price({BNB:0,BUSD:0,USDT:0}));
+// }, []);
+
+  const address = useSelector((state) => {
+   return state.adoptReducer.address
+  });
+
+  const network = useSelector((state) => {
+    return state.adoptReducer.networkId
+   });
+
   const [success, setCopySuccess] = useState();
   const [collapsible, setCollapsible] = useState(false);
   const [buyTFTToggle, setBuyTFTToggle] = useState(false);
@@ -33,6 +50,78 @@ const Header = ({
     handleBuyAtMarketClick();
     setBuyTFTToggle(false);
   };
+
+  async function connect(){
+    const web3 = new Web3(Web3.givenProvider)
+    if (window.ethereum.networkVersion !== chainId) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: web3.utils.toHex(chainId) }],
+        });
+      } catch (err) {
+          // This error code indicates that the chain has not been added to MetaMask.
+        if (err.code === 4902) {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainName: 'BSC Testnet',
+                chainId: web3.utils.toHex(chainId),
+                nativeCurrency: { name: 'BSCTest', decimals: 18, symbol: 'TBNB' },
+                rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+              },
+            ],
+          });
+        }
+      }
+    }
+    dispatch(Price({BNB:0,BUSD:0,USDT:0}));
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+ 
+  } catch (error) {
+    if (error.code === 4001) {
+      // User rejected request
+    }
+
+   
+  }
+
+  }
+
+
+
+  const setTokn = async () => {
+    const tokenSymbol = "TFT";
+    const tokenDecimals = 8;
+    const Picture = "https://i.ibb.co/3Bkpg9T/Token.jpg";
+
+    try {
+      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20", // Initially only supports ERC20, but eventually more!
+          options: {
+            address: tokenAddress, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            image: Picture, // A string url of the token logo
+          },
+        },
+      });
+
+      if (wasAdded) {
+        console.log("Thanks for your interest!");
+      } else {
+        console.log("Your loss!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <header className="sticky-top">
       <div className="container-fluid">
@@ -153,9 +242,11 @@ const Header = ({
                       </li>
                     </ul>
                     {buyTft ? (
-                      <div className="connect-button-in-topNav">
-                        <span>Connect Wallet</span>
-                      </div>
+                      <button 
+                      onClick={connect}
+                      className="connect-button-in-topNav">
+                        <span>{address ?  `${address.slice(0,5)}...${address.slice(-4)}`  : "Connect Wallet"}</span>
+                      </button>
                     ) : null}
                     <Link
                       to="/Invest"
@@ -199,7 +290,12 @@ const Header = ({
                         <li onClick={() => buyAtMarketClick()}>
                           Buy At Market
                         </li>
-                        <li onClick={() => setBuyTFTToggle(false)}>
+                        <li onClick={() => 
+                        {
+                          setTokn()
+                
+                          setBuyTFTToggle(false)
+                        }}>
                           Add TFT To Wallet
                         </li>
                       </ul>

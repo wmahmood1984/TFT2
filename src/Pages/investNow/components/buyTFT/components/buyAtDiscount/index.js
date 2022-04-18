@@ -8,6 +8,7 @@ import { BUSDAddress, USDTAddress } from "../../../../../../config";
 import {
   BUSDApprove,
   Buy,
+  BuyTFTComp,
   DiscChange,
   initWeb3,
   Price,
@@ -28,13 +29,6 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.price;
   });
 
-  const _address = useSelector((state) => {
-    return state.adoptReducer.address;
-  });
-
-  const _Admin = useSelector((state) => {
-    return state.adoptReducer.Admin;
-  });
 
   const _balance = useSelector((state) => {
     return state.adoptReducer.balance;
@@ -48,15 +42,11 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.USDTbalance;
   });
 
-  const _BUSDTFT = useSelector((state) => {
-    return state.adoptReducer.BUSDTFT;
-  });
-
   const _BUSDAllowance = useSelector((state) => {
     return state.adoptReducer.BUSDAllowance;
   });
 
-  console.log("allowance", _BUSDAllowance);
+
 
   const _USDTAllowance = useSelector((state) => {
     return state.adoptReducer.USDTAllowance;
@@ -71,7 +61,7 @@ const BuyAtDiscount = () => {
   });
 
   const TFTDollarValue = useSelector((state) => {
-    return state.adoptReducer.TFTDollarValue;
+    return state.adoptReducer.price;
   });
 
   const USDtoTFT1 = useSelector((state) => {
@@ -82,23 +72,34 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.USDTtoTFT1;
   });
 
+  const BNBtoTFT = useSelector((state)=>{
+    return state.adoptReducer.BNBtoTFT
+  })
+
   window.ethereum.on("accountsChanged", (e, r) => {
     window.location.reload();
   });
   window.ethereum.on("chainChanged", (e, r) => {
     window.location.reload();
   });
+
+
   useEffect(() => {
-    dispatch(Price({ BNB, BUSD, USDT }));
+    var lBNB = BNB ? BNB : 0
+    var lBUSD = BUSD ? BUSD : 0
+    var lUSDT = USDT ? USDT : 0
+    dispatch(BuyTFTComp({ BNB : lBNB , BUSD : lBUSD, USDT : lUSDT }));
   }, [BNB, BUSD, toggle, USDT]);
 
-  console.log("allowance ", _BUSDAllowance);
+  console.log("BUSD allowance ", _USDTAllowance);
+
+
   async function Invest() {
     if (BNB > 0) {
       dispatch(Buy({ quantity: 0, value: BNB, usdCon: BUSDAddress }));
       setBNB(0);
     } else if (BUSD > 0) {
-      if (_BUSDAllowance >= BUSD) {
+      if (_BUSDAllowance/100000000000000000 >= BUSD) {
         console.log("Investment busd called");
         dispatch(Buy({ quantity: BUSD, value: BNB, usdCon: BUSDAddress }));
         setBUSD(0);
@@ -106,7 +107,7 @@ const BuyAtDiscount = () => {
         dispatch(BUSDApprove({ quantity: BUSD }));
       }
     } else {
-      if (_USDTAllowance >= USDT) {
+      if (_USDTAllowance/1000000000000000000 >= USDT) {
         console.log("Investment USDT Called");
         dispatch(Buy({ quantity: USDT, value: BNB, usdCon: USDTAddress }));
         setUSDT(0);
@@ -142,8 +143,7 @@ const BuyAtDiscount = () => {
           value={BNB}
           balance={(BNBBalance / 1000000000000000000).toFixed(2)}
           TFTValue={(
-            ((Number(_price) / 100000000) * (100 + Number(_discount))) /
-            100
+            BNBtoTFT/100000000
           ).toFixed(2)}
           BuyFunction={Invest}
           discount={_discount}

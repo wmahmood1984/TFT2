@@ -29,10 +29,10 @@ const ContentArea = ({
     return state.adoptReducer.toggle;
   });
 
-  useEffect(() => {
-    dispatch(Price({ BNB: 0, BUSD: 0, USDT: 0 }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toggle]);
+  // useEffect(() => {
+  //   dispatch(Price({ BNB: 0, BUSD: 0, USDT: 0, TFT }));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [toggle]);
   return (
     <div className="contentArea-wrapper">
       {dashboard ? (

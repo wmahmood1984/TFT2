@@ -13,8 +13,10 @@ const LoanTerm = ({
   allowance,
   disable,
   dollar,
+  setValue2,
+  EOT
 }) => {
-  console.log("disable", disable);
+
   return (
     <div className="loanTerm-main-wrapper">
       <div className="term-title-wrapper">
@@ -42,7 +44,9 @@ const LoanTerm = ({
           enterLable={`Deposit TFT`}
           placeholder={`TFT AMOUNT`}
           value={value}
-          OnChange={setValue}
+          OnChange={(e)=>{
+
+            setValue(e);setValue2(e)}}
           belowLabel={`TFT Available ${TFTAvailable}`}
           rightButtonText="Max"
         />
@@ -50,7 +54,7 @@ const LoanTerm = ({
       <div className="receiveBusd-wrapper">
         <p>
           Receive BUSD: ${dollar} <br />
-          End Of Term Interest Earned: 3 TFT
+          End Of Term Interest Earned: {EOT} TFT
         </p>
       </div>
       <div className="depositApprove-btn-wrapper">

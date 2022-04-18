@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sideBar.css";
 import { tokenAddress } from "../../../../config";
-
+import { useSelector, useDispatch } from "react-redux";
 const SideBar = ({
   dashboard,
   buyTft,
@@ -82,7 +82,7 @@ const SideBar = ({
     setOneFor10X(false);
     setAirDrop(true);
   };
-
+  const dispatch = useDispatch();
   const setTokn = async () => {
     const tokenSymbol = "TFT";
     const tokenDecimals = 8;
@@ -112,6 +112,12 @@ const SideBar = ({
       console.log(error);
     }
   };
+
+  const _price = useSelector((state) => {
+    return state.adoptReducer.price;
+  });
+
+  console.log("price",_price)
 
   return (
     <div className="sidebar-main-wrapper">
@@ -249,7 +255,7 @@ const SideBar = ({
           <li>
             <i className="ri-price-tag-2-line"></i> TFT Price
             <br />
-            <span style={{ fontSize: "14px", marginLeft: "35px" }}>$25.50</span>
+            <span style={{ fontSize: "14px", marginLeft: "35px" }}>${(_price/1000000000000000000).toFixed(4)}</span>
           </li>
         </ul>
       </div>

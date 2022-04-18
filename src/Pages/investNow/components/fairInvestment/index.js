@@ -11,6 +11,7 @@ import {
   UnStakinga,
   claimA,
   bulkclaimA,
+  stakingComp,
 } from "../../../../state/ui";
 
 const FairInvestment = () => {
@@ -26,7 +27,7 @@ const FairInvestment = () => {
   });
 
   useEffect(() => {
-    dispatch(Price({ BNB: 0, BUSD: 0, USDT: 0 }));
+    dispatch(stakingComp({ }));
   }, [toggle]);
 
   const _balance = useSelector((state) => {
@@ -57,19 +58,24 @@ const FairInvestment = () => {
       initialValue
     ) / 100000000;
 
-  var dailyAmount =
-    _indStakingInf &&
-    dailyamountsArray.reduce(
-      (previousValue, currentValue) =>
-        Number(previousValue) + Number(currentValue),
-      initialValue2
-    ) / 100000000;
 
-  const _indRewardInf = useSelector((state) => {
-    return state.adoptReducer.indRewardInf;
+
+  const dailyStaking = useSelector((state) => {
+    return Number(state.adoptReducer.dailyStaking);
   });
 
-  console.log("reward", amountsArray);
+  const monthStaking = useSelector((state) => {
+    return Number(state.adoptReducer.monthStaking);
+  });
+
+  const quarterlySTaking = useSelector((state) => {
+    return Number(state.adoptReducer.quarterlySTaking);
+  });
+
+
+
+
+  console.log("reward", filteredInfo);
 
   function Stake() {
     if (Number(_TFTAllowance) / 100000000 >= TFT) {
@@ -128,15 +134,15 @@ const FairInvestment = () => {
         </div>
         <br />
         <div className="m0 df jcsb aic mb5">
-          <span>Daily Returns (0.16%): 6 TFT</span>
+          <span>Daily Returns ({`${dailyStaking/100}`}%): {TFT==undefined? 0 : TFT*dailyStaking/100} TFT</span>
           {/* <div className="customOrangeBtn">CLAIM ALL</div> */}
         </div>
         <div className="m0 df jcsb aic mb5">
-          <span>Monthly Bonus (5%): 2 TFT</span>
+        <span>Monthly Bonus ({`${monthStaking}`}%): {TFT==undefined? 0 : TFT*monthStaking} TFT</span>
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;12</div> */}
         </div>
         <div className="m0 df jcsb aic">
-          <span>Quarterly Dividend (10%):160 BUSD</span>
+        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : TFT*quarterlySTaking} TFT</span>
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;05</div> */}
         </div>
         <br />
@@ -169,11 +175,11 @@ const FairInvestment = () => {
           return (
             <InvesNowContentBox key={key}>
               <Investment
-                index={key}
+                index={val.stakingId}
                 invested={val.quantity / 100000000}
                 price={(TFTDollarValue / 1000000000000000000).toFixed(4)}
                 monthly={(Number(val.monthly) / 100000000).toFixed(0)}
-                quarterly={(Number(val.quarterly) / 100000000).toFixed(0)}
+                quarterly={(Number(val.quarterly) / 1000000000000000000).toFixed(0)}
                 daily={(Number(val.daily) / 100000000).toFixed(0)}
                 dailyTime={(
                   (Number(val.timeOfInvestment) + 60 * 60 * 24 - currentTime) /
