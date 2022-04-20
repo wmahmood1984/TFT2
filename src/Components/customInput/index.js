@@ -10,7 +10,8 @@ const CustomInput = ({
   rightButtonText,
   OnChange,
   balance,
-  rightFunction
+  rightFunction,
+  disable
 }) => {
   const [maxClicked,setMaxClicked] = useState(false)
   return (
@@ -30,14 +31,15 @@ const CustomInput = ({
           type="value"
           className="form-control"
           id="inlineFormInputGroupUsername"
+          disabled={disable}
           //   placeholder="BUSD AMOUNT"
           placeholder={placeholder}
-          onChange={(e)=>{setMaxClicked(false); OnChange(e.target.value)}}
-          value={maxClicked? balance :  value}
+          onChange={(e)=>{ OnChange(e.target.value)}}
+          value={value}
         />
         <button className="max-btn" onClick=
         
-        {()=>{setMaxClicked(true)}}>
+        {()=>{OnChange(balance)}}>
           
           <span>{rightButtonText}</span>
         </button>

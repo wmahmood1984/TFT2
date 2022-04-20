@@ -17,7 +17,7 @@ import {
 const FairInvestment = () => {
   const dispatch = useDispatch();
   const TFTDollarValue = useSelector((state) => {
-    return state.adoptReducer.TFTDollarValue;
+    return state.adoptReducer.price;
   });
 
   const [TFT, setTFT] = useState();
@@ -32,6 +32,15 @@ const FairInvestment = () => {
 
   const _balance = useSelector((state) => {
     return state.adoptReducer.balance;
+  });
+
+  const _circulatingSupply = useSelector((state) => {
+    return state.adoptReducer.circulatingSupply;
+  });
+
+
+  const tftStaked = useSelector((state) => {
+    return state.adoptReducer.tftStaked;
   });
 
   const _TFTAllowance = useSelector((state) => {
@@ -98,7 +107,7 @@ const FairInvestment = () => {
     dispatch(bulkclaimA({ id: idsArray }));
   }
 
-  console.log("list", idsArray);
+  console.log("list", );
 
   window.ethereum.on("accountsChanged", (e, r) => {
     window.location.reload();
@@ -109,6 +118,8 @@ const FairInvestment = () => {
 
   var currentTime = new Date().getTime() / 1000;
 
+  console.log("price", TFTDollarValue)
+
   return (
     <>
       <InvesNowContentBox>
@@ -116,7 +127,7 @@ const FairInvestment = () => {
           <span>
             TFT Price: ${(TFTDollarValue / 1000000000000000000).toFixed(4)}
           </span>{" "}
-          <span>TFT Stake Holders:30%</span>
+          <span>TFT Stake Holders:{((Number(tftStaked)/Number(_circulatingSupply)*100)).toFixed(8)}%</span>
         </h5>
         <div className="investNow-btn-wrapper">
           <h4 className="investNow-heading mt30">INVEST NOW</h4>
@@ -128,8 +139,12 @@ const FairInvestment = () => {
             placeholder={`TFT AMOUNT`}
             value={TFT}
             OnChange={setTFT}
-            belowLabel={`TFT Available :  ${(_balance / 100000000).toFixed(4)}`}
+            belowLabel={`TFT Available : `}
             rightButtonText="Max"
+            balance={ (_balance / 100000000).toFixed(4)}
+            disable={_balance==0}
+ 
+
           />
         </div>
         <br />
@@ -142,12 +157,14 @@ const FairInvestment = () => {
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;12</div> */}
         </div>
         <div className="m0 df jcsb aic">
-        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : TFT*quarterlySTaking} TFT</span>
+        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : TFT*quarterlySTaking} BUSD</span>
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;05</div> */}
         </div>
         <br />
         <div className="invest-approve-btn-wrapper">
-          <button className="invest-approve-btn" onClick={Stake}>
+          <button 
+          disabled={_balance==0}
+          className="invest-approve-btn" onClick={Stake}>
             <span>
               {Number(_TFTAllowance / 100000000) >= TFT ? "Stake" : "Approve"}
             </span>

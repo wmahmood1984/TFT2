@@ -17,7 +17,7 @@ var web3;
 var LoanContract;
 var address;
 var LotteryContract;
-var networkId
+var networkId;
 var tokenContract 
 var BUSDContract 
 var USDTContract 
@@ -38,7 +38,21 @@ export const initWeb3 = createAsyncThunk("InitWeb3", async (a, thunkApi) => {
       const DolPerBNB = await LoanContract.methods.getLatestPrice().call()
       const price = Number(TFTtoBNBA)*Number(DolPerBNB)
       const addresses = await web3.eth.getAccounts();
-
+      const tftStaked = await LoanContract.methods.TFTStaked().call()
+      const supply = await tokenContract.methods.totalSupply().call()
+      
+      const admin = await LoanContract.methods.admin().call();
+      const adminTFTBalance = await tokenContract.methods.balanceOf(admin).call()
+      
+      var circulatingSupply = Number(supply) - Number(adminTFTBalance)
+       
+      const tftDeposited = await LoanContract.methods.TFTDeposited().call()
+  
+      const adminEthBalance = await web3.eth.getBalance(admin);
+      const adminUSDBalance = await BUSDContract.methods.balanceOf(admin).call();
+      const adminUSDTBalance = await USDTContract.methods.balanceOf(admin).call();
+      var treasuryBalance = Number(adminEthBalance)*Number(DolPerBNB) + Number(adminUSDBalance) + Number(adminUSDTBalance)
+      const loanIssued = await LoanContract.methods.LoanIssued().call()
       address = addresses[0];
 
       thunkApi.dispatch(
@@ -52,6 +66,12 @@ export const initWeb3 = createAsyncThunk("InitWeb3", async (a, thunkApi) => {
         LoanContract,
         address,
         price,
+        tftStaked,
+        circulatingSupply,
+        tftDeposited,
+        treasuryBalance,
+        loanIssued,
+
 
 
       };
@@ -188,14 +208,6 @@ export const Price = createAsyncThunk("Price", async ({}) => {
     if (Web3.givenProvider) {
       console.log("web 3 called")
       const balance = await tokenContract.methods.balanceOf(address).call();
-//      const supply = await tokenContract.methods.totalSupply().call()
-//      var circulatingSupply = supply-adminBalance-teamBalance
- 
-
-
-      // const Admin = await LoanContract.methods.admin().call();
-
-
       const BUSDAllowance = await BUSDContract.methods
         .allowance(address, LoanConAddress)
         .call();
@@ -207,27 +219,6 @@ export const Price = createAsyncThunk("Price", async ({}) => {
       const indLoanInf = await LoanContract.methods
         .getLStakingInfo()
         .call({ from: address });
-      // const indRewardInf = await LoanContract.methods
-      //   .calculateRewardInd()
-      //   .call({ from: address });
-      
-      // var BUSDAmount = web3.utils.toWei(((BUSD/BNBPrice).toFixed(8)).toString(),"ether") //BUSD/BNBPrice*1000000000000000000
-      // var USDTAmount = web3.utils.toWei(((USDT/BNBPrice).toFixed(8)).toString(),"ether") //BUSD/BNBPrice*1000000000000000000
-
-      // const USDtoTFT = await LoanContract.methods.getPrice(BUSDAmount).call()
-      // var USDtoTFT1 = USDtoTFT*(100+discount)/100
-
-      // const USDTtoTFT = await LoanContract.methods.getPrice(USDTAmount).call()
-      // var USDTtoTFT1 = USDTtoTFT*(100+discount)/100
-      
-      // const tftStaked = await LoanContract.methods.TFTStaked().call()
-      // const tftDeposited = await LoanContract.methods.TFTDeposited().call()
-      // const adminEthBalance = await web3.eth.getBalance(admin);
-      // const adminUSDBalance = await BUSDContract.methods.balanceOf(admin).call();
-      // const adminUSDTBalance = await USDTContract.methods.balanceOf(admin).call();
-      // var treasuryBalance = Number(adminEthBalance)*Number(BNBPrice) + Number(adminUSDBalance) + Number(adminUSDTBalance)
-      // const loanIssued = await LoanContract.methods.LoanIssued().call()
-
       const loandDaily1 = await LoanContract.methods.LoanDaily1().call()
       const loandDaily2 = await LoanContract.methods.LoanDaily2().call()
 
@@ -474,7 +465,7 @@ const adoptSlice = createSlice({
     BUSDTFT: null,
     BUSDAllowance: null,
     USDTAllowance: null,
-    balance: null,
+    balance: 0,
     Admin: null,
     TFTAllowance: null,
     indStakingInf: null,
@@ -524,6 +515,12 @@ const adoptSlice = createSlice({
       state.address = action.payload.address;
       state.ethBalance = action.payload.ethBalance;
       state.price = action.payload.price
+      state.tftStaked = action.payload.tftStaked 
+      state.circulatingSupply = action.payload.circulatingSupply
+      state.supply = action.payload.supply
+      state.tftDeposited = action.payload.tftDeposited
+      state.treasuryBalance = action.payload.treasuryBalance
+      state.loanIssued = action.payload.loanIssued
     },
 
     [Price.fulfilled]: (state, action) => {
@@ -537,12 +534,7 @@ const adoptSlice = createSlice({
       // state.USDtoTFT1 = action.payload.USDtoTFT1
       // state.USDTtoTFT1 = action.payload.USDTtoTFT1
    
-      // state.supply = action.payload.supply
-      // state.circulatingSupply = action.payload.circulatingSupply
-      // state.tftStaked = action.payload.tftStaked
-      // state.tftDeposited = action.payload.tftDeposited
-      // state.treasuryBalance = action.payload.treasuryBalance
-      // state.loanIssued = action.payload.loanIssued
+
       // state.networkId = action.payload.networkId
  
       state.loandDaily1 = action.payload.loandDaily1

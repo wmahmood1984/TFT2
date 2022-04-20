@@ -3,8 +3,8 @@ import CustomInput from "../../../../../../../../Components/customInput";
 import TftConversionReadOnlyInput from "../../../../../../../../Components/tftConversionReadOnlyInput";
 import "./bondDiscount.css";
 
-const BondDiscount = ({ headingIcon, currency,onCurrencyChange,value,balance,TFTValue,BuyFunction,discount,LivePrice,allowance }) => {
-
+const BondDiscount = ({disable, headingIcon, currency,onCurrencyChange,value,balance,TFTValue,BuyFunction,discount,LivePrice,allowance }) => {
+  console.log("allowance in bonddiscount",allowance)
   return (
     <div className="bondDiscount-wraooer">
       <h4 className="bondDiscount-heading">
@@ -29,6 +29,8 @@ const BondDiscount = ({ headingIcon, currency,onCurrencyChange,value,balance,TFT
           belowLabel={`${currency} Available`}
           rightButtonText="Max"
           balance={balance}
+          disable={disable}
+
         />
 
         <br />
@@ -39,6 +41,7 @@ const BondDiscount = ({ headingIcon, currency,onCurrencyChange,value,balance,TFT
           </div>
           <div className="right">
             <button className="buyButton"
+            disabled={disable}
             onClick={BuyFunction}
             >
               <span>{allowance ? "Buy tft" : "Approve"}</span>

@@ -96,7 +96,7 @@ const OneFor10X = () => {
      
      });
 
-     
+     console.log("balance",_balance)
 
 
 
@@ -266,11 +266,13 @@ function Status(){
             <td className="td2-border-right">
               <input 
               onChange={(e)=>{setZero(Number(e.target.value))}}
+              value={zero}
               type="number" />
             </td>
             <td>5</td>
             <td>
               <input 
+              value={five}
               onChange={(e)=>{setFive(Number(e.target.value))}}
               type="number" />
             </td>
@@ -279,12 +281,14 @@ function Status(){
             <td>1</td>
             <td className="td2-border-right">
               <input 
+              value={one}
               onChange={(e)=>{setOne(Number(e.target.value))}}
               type="number" />
             </td>
             <td>6</td>
             <td>
               <input 
+              value={six}
               onChange={(e)=>{setSix(Number(e.target.value))}}
               type="number" />
             </td>
@@ -293,47 +297,55 @@ function Status(){
             <td>2</td>
             <td className="td2-border-right">
               <input 
+              value={two}
               onChange={(e)=>{setTwo(Number(e.target.value))}}
               type="number" />
             </td>
             <td>7</td>
             <td>
               <input 
+              value={seven}
               onChange={(e)=>{setSeven(Number(e.target.value))}}
               type="number" />
             </td>
           </tr>
           <tr>
             <td>3</td>
+   
             <td className="td2-border-right">
               <input 
+              value={three}
               onChange={(e)=>{setThree(Number(e.target.value))}}
               type="number" />
             </td>
             <td>8</td>
             <td>
               <input 
+              value={eight}
               onChange={(e)=>{setEight(Number(e.target.value))}}
               type="number" />
             </td>
           </tr>
           <tr>
             <td>4</td>
+
             <td className="td2-border-right">
               <input 
+              value={four}
               onChange={(e)=>{setFour(Number(e.target.value))}}
               type="number" />
             </td>
             <td>9</td>
             <td>
               <input 
+              value={nine}
               onChange={(e)=>{setNine(Number(e.target.value))}}
               type="number" />
             </td>
           </tr>
         </table>
         <p className="tbl-bottom-p">
-          <span>NUMBER OF TICKETS: {zero+one+two+three+four+five+six+seven+eight+nine}</span>
+          <span>NUMBER OF TICKETS: {zero+one+two+three+four+five+six+seven+eight+nine} </span>
         </p>
         <div className="buyTickets-wrapper">
           <CustomInput2
@@ -345,6 +357,7 @@ function Status(){
             rightButtonText="Buy Tickets"
             rightFunction={BuyLottery}
             allowance={Number(_TFTAllowance)>=10000000*(zero+one+two+three+four+five+six+seven+eight+nine)}
+            disable={_balance==0}
           />
         </div>
       </div>

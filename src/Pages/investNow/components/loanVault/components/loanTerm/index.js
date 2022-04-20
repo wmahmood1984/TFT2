@@ -16,7 +16,7 @@ const LoanTerm = ({
   setValue2,
   EOT
 }) => {
-
+console.log("disable in loand",disable)
   return (
     <div className="loanTerm-main-wrapper">
       <div className="term-title-wrapper">
@@ -44,11 +44,13 @@ const LoanTerm = ({
           enterLable={`Deposit TFT`}
           placeholder={`TFT AMOUNT`}
           value={value}
+          disable={disable}
           OnChange={(e)=>{
 
             setValue(e);setValue2(e)}}
-          belowLabel={`TFT Available ${TFTAvailable}`}
+          belowLabel={`TFT Available `}
           rightButtonText="Max"
+          balance={TFTAvailable}
         />
       </div>
       <div className="receiveBusd-wrapper">
@@ -63,7 +65,7 @@ const LoanTerm = ({
           onClick={stakeFunction}
           className="deposit-Approve-btn"
         >
-          <span>{allowance ? "Stake" : "Approve"}</span>
+          <span>{allowance ? "Deposit" : "Approve"}</span>
         </button>
       </div>
     </div>

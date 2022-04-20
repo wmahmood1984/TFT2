@@ -11,10 +11,11 @@ const CustomInput = ({
   OnChange,
   balance,
   rightFunction,
-  allowance
+  allowance,
+  disable
 }) => {
   const [maxClicked,setMaxClicked] = useState(false)
-  console.log("allowance in function",allowance)
+  console.log("allowance in function",disable)
   return (
     <div className="form-group mb-0">
       <label className="sr-only" htmlFor="inlineFormInputGroupUsername">
@@ -33,13 +34,14 @@ const CustomInput = ({
           className="form-control"
           id="inlineFormInputGroupUsername"
           //   placeholder="BUSD AMOUNT"
+          disabled={disable}
           placeholder={placeholder}
           onChange={(e)=>{setMaxClicked(false); OnChange(e.target.value)}}
           value={maxClicked? balance :  value}
         />
-        <button className="max-btn" onClick=
-        
-        {()=>{rightFunction()}}>
+        <button className="max-btn" 
+        disabled={disable}
+        onClick={()=>{rightFunction()}}>
           
           <span>{allowance ? "Buy Tickets" :  "APPROVE"}</span>
         </button>

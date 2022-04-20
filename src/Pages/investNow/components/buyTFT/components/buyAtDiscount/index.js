@@ -91,7 +91,7 @@ const BuyAtDiscount = () => {
     dispatch(BuyTFTComp({ BNB : lBNB , BUSD : lBUSD, USDT : lUSDT }));
   }, [BNB, BUSD, toggle, USDT]);
 
-  console.log("BUSD allowance ", _USDTAllowance);
+  console.log("BUSD allowance ", _BUSDAllowance);
 
 
   async function Invest() {
@@ -135,6 +135,7 @@ const BuyAtDiscount = () => {
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={Number(_BUSDAllowance / 1000000000000000000) >= BUSD}
+          disable={_BUSDbalance==0}
         />
         <BondDiscount
           headingIcon={bnbIcon}
@@ -149,6 +150,7 @@ const BuyAtDiscount = () => {
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={true}
+          disable={BNBBalance==0}
         />
         <BondDiscount
           headingIcon={bnbIcon}
@@ -161,6 +163,7 @@ const BuyAtDiscount = () => {
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={Number(_USDTAllowance / 1000000000000000000) >= USDT}
+          disable={_USDTbalance==0}
         />
       </>
     </div>

@@ -4,7 +4,7 @@ import "./investment.css";
 const Investment = ({ index, invested, price, monthly,quarterly,daily, dailyTime,monthlyTime,quarterlyTime,claim ,withdraw}) => {
   return (
     <>
-      <h5 className="df jcsb">INVESTMENT{index+1}</h5>
+      <h5 className="df jcsb">INVESTMENT{Number(index)+1}</h5>
       <h6 className="df jcsb mt30">
         <span>TFT Invested: {invested}</span> <span>TFT Price:{price}</span>
       </h6>

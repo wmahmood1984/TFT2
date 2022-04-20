@@ -11,11 +11,15 @@ const Dashboard = ({ handleBuyAtDiscountClick, handleBuyAtMarketClick }) => {
    return state.adoptReducer.circulatingSupply
   });
 
+
+
   const tftStakedDeposited = useSelector((state) => {
-      return (((Number(state.adoptReducer.tftStaked))+(Number(state.adoptReducer.tftDeposited))).toFixed(0)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+   
+      return ((Number(state.adoptReducer.tftStaked)+Number(state.adoptReducer.tftDeposited))/100000000000000).toFixed(4)
   });
 
   const treasuryBalance = useSelector((state) => {
+
     return  ((Number(state.adoptReducer.treasuryBalance)/1000000000000000000).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
   });
 
@@ -25,7 +29,7 @@ const Dashboard = ({ handleBuyAtDiscountClick, handleBuyAtMarketClick }) => {
 
 
   const TFTDollarValue = useSelector((state) => {
-    return state.adoptReducer.TFTDollarValue;
+    return state.adoptReducer.price;
   });
   
 
@@ -87,7 +91,7 @@ const Dashboard = ({ handleBuyAtDiscountClick, handleBuyAtMarketClick }) => {
           <div className="stock-middle">
             <StockBox text="TFT Price" value={(Number(TFTDollarValue)/1000000000000000000).toFixed(4)} />
           </div>
-          <StockBox text="Market Cap -  Million" value={(((Number(circulatingSupply)/1000000000000000000*Number(TFTDollarValue)/100000000000000)).toFixed(0)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} />
+          <StockBox text="Market Cap -  Million" value={(((Number(circulatingSupply)/1000000000000000000*Number(TFTDollarValue)/100000000)).toFixed(0)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} />
         </div>
       </div>
     </div>

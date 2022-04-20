@@ -123,7 +123,7 @@ const LoanVault = () => {
       TFTAvailable={(_balance / 100000000).toFixed(2)}
       stakeFunction={Stake30}
       allowance={TFT30==undefined || Number(_TFTAllowance / 100000000) >= TFT30}
-      disable={_indStakingInf && _indStakingInf[0].dollarGiven > 0}
+      disable={_balance==0}
       dollar={TFT30 &&  TFTDollarValue ? 
         (TFTDollarValue/2000000000000000000).toFixed(4) : 0 
       }
@@ -167,7 +167,7 @@ const LoanVault = () => {
       TFTAvailable={(_balance / 100000000).toFixed(2)}
       stakeFunction={Stake45}
       allowance={TFT45==undefined ||Number(_TFTAllowance / 100000000) >= TFT45}
-      disable={_indStakingInf && _indStakingInf[1].dollarGiven > 0}
+      disable={_balance==0}
       dollar={TFT45 &&  TFTDollarValue ? 
         (TFTDollarValue/2000000000000000000).toFixed(4) : 0 
       }
