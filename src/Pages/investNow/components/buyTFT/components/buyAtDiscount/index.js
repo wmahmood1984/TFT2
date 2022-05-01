@@ -130,7 +130,7 @@ const BuyAtDiscount = () => {
           onCurrencyChange={setBUSD}
           value={BUSD}
           balance={(_BUSDbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(Number(USDtoTFT1) / 100000000).toFixed(4)}
+          TFTValue={(Number(USDtoTFT1) * (1+(_discount/100)) / 100000000).toFixed(4)}
           BuyFunction={Invest}
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
@@ -144,7 +144,7 @@ const BuyAtDiscount = () => {
           value={BNB}
           balance={(BNBBalance / 1000000000000000000).toFixed(2)}
           TFTValue={(
-            BNBtoTFT/100000000
+            BNBtoTFT/100000000 * (1+(_discount/100))
           ).toFixed(2)}
           BuyFunction={Invest}
           discount={_discount}
@@ -159,7 +159,7 @@ const BuyAtDiscount = () => {
           value={USDT}
           BuyFunction={Invest}
           balance={(_USDTbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(Number(USDTtoTFT1) / 100000000).toFixed(4)}
+          TFTValue={(Number(USDTtoTFT1) * (1+(_discount/100)) / 100000000).toFixed(4)}
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={Number(_USDTAllowance / 1000000000000000000) >= USDT}

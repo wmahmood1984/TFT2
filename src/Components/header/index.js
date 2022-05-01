@@ -6,7 +6,7 @@ import pic from "../../Assets/Capture.png";
 import { Link, useParams } from "react-router-dom";
 import "./header.css";
 import { useSelector, useDispatch } from "react-redux";
-import { Price } from "../../state/ui";
+import { initWeb3, Price } from "../../state/ui";
 import { chainId, tokenAddress } from "../../config";
 import Web3 from "web3";
 const Header = ({
@@ -16,9 +16,9 @@ const Header = ({
 }) => {
   const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     dispatch(Price({BNB:0,BUSD:0,USDT:0}));
-// }, []);
+  useEffect(() => {
+  dispatch(initWeb3());
+}, []);
 
   const address = useSelector((state) => {
    return state.adoptReducer.address
@@ -76,7 +76,7 @@ const Header = ({
         }
       }
     }
-    dispatch(Price({BNB:0,BUSD:0,USDT:0}));
+    dispatch(initWeb3());
   try {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
  
@@ -121,6 +121,8 @@ const Header = ({
       console.log(error);
     }
   };
+
+  window.ethereum.on("accountsChanged",(e,r)=>{window.location.reload()})
 
   return (
     <header className="sticky-top">

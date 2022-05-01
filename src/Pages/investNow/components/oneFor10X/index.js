@@ -19,6 +19,7 @@ const OneFor10X = () => {
   const [seven,setSeven] = useState(0);
   const [eight,setEight] = useState(0);
   const [nine,setNine] = useState(0);
+  const [tempNumArray,setTempNumArray] = useState([])
 
 
 
@@ -46,13 +47,22 @@ const OneFor10X = () => {
      });
 
      const _TFTAllowance = useSelector((state)=>{
-      console.log("allowance", state.adoptReducer.LotteryAllowance)
+
       return  Number(state.adoptReducer.LotteryAllowance); 
 
       
        });
 
-         
+      
+       
+
+  const numberArray = useSelector((state)=>{
+ 
+  return  state.adoptReducer.numberArray; 
+  
+  });
+
+
   const gameCounter = useSelector((state)=>{
 
     return  state.adoptReducer.gameCounter; 
@@ -96,7 +106,7 @@ const OneFor10X = () => {
      
      });
 
-     console.log("balance",_balance)
+
 
 
 
@@ -114,57 +124,86 @@ const OneFor10X = () => {
 
      
   
+function getIndex (){
+  var Index = 0;  
+  for(var p = 0 ; p < 10 ; p++){
+     if(numberArray[p]<numberArray[Index]){
+        Index = p;
+       }
+    }
+  }
 
  
-     
+
 
 
   function BuyLottery() {
-   
+   var Index = 0 
     var array = []
+    var indexArray = numberArray && numberArray.map(item=>Number(item))
+ 
 
     for(var i =0; i < zero; i++){
       array.push([gameCounter,0,address,10000000,0])
+      indexArray[0] +=1
     }
 
     for(var i =0; i < one; i++){
       array.push([gameCounter,1,address,10000000,0])
+      indexArray[1] +=1
     }
 
     for(var i =0; i < two; i++){
       array.push([gameCounter,2,address,10000000,0])
+      indexArray[2] +=1
     }
 
     for(var i =0; i < three; i++){
       array.push([gameCounter,3,address,10000000,0])
+      indexArray[3] +=1
     }
 
     for(var i =0; i < four; i++){
       array.push([gameCounter,4,address,10000000,0])
+      indexArray[4] +=1
     }
 
     for(var i =0; i < five; i++){
       array.push([gameCounter,5,address,10000000,0])
+      indexArray[5] +=1
     }
 
     for(var i =0; i < six; i++){
       array.push([gameCounter,6,address,10000000,0])
+      indexArray[6] +=1
     }
 
     for(var i =0; i < seven; i++){
       array.push([gameCounter,7,address,10000000,0])
+      indexArray[7] +=1;
     }
 
     for(var i =0; i < eight; i++){
       array.push([gameCounter,8,address,10000000,0])
+      indexArray[8] +=1;
     }
 
     for(var i =0; i < nine; i++){
       array.push([gameCounter,9,address,10000000,0])
+      indexArray[9] +=1;
     }
 
+    for(var p = 0 ; p < 10 ; p++){
+      if(indexArray[p]<indexArray[Index]){
+         Index = p;
+        }
+     }    
+
+    console.log("Number", indexArray)
+    console.log("Index", Index)
+
       if( Number(_TFTAllowance)>=10000000*array.length){
-          dispatch(BuyLotterya({array}))
+          dispatch(BuyLotterya({array,Index}))
           setZero(0)
           setOne(0)
           setTwo(0)
@@ -206,9 +245,9 @@ const OneFor10X = () => {
       if(Number(v.number)==9){_nine.push(v)}
     })
 
-var NewTime = gameDetails && Number(gameDetails[gameDetails.length-1].time)+(60*60*4)
+var NewTime = gameDetails && gameDetails.length!=0?  Number(gameDetails[gameDetails.length-1].time)+(60*60*4) : (new Date().getTime()/1000) + (60*60*4);
 
-console.log("time",NewTime)
+
 
 function Status(){
   var winnNumber = []
@@ -266,47 +305,47 @@ function Status(){
             <td className="td2-border-right">
               <input 
               onChange={(e)=>{setZero(Number(e.target.value))}}
-              value={zero}
-              type="number" />
+              value={zero ==0 ? undefined : zero}
+              type="value" />
             </td>
             <td>5</td>
             <td>
               <input 
-              value={five}
+               value={five ==0 ? undefined : five}
               onChange={(e)=>{setFive(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
           </tr>
           <tr>
             <td>1</td>
             <td className="td2-border-right">
               <input 
-              value={one}
+              value={one ==0 ? undefined : one}
               onChange={(e)=>{setOne(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
             <td>6</td>
             <td>
               <input 
-              value={six}
+              value={six ==0 ? undefined : six}
               onChange={(e)=>{setSix(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
           </tr>
           <tr>
             <td>2</td>
             <td className="td2-border-right">
               <input 
-              value={two}
+              value={two ==0 ? undefined : two}
               onChange={(e)=>{setTwo(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
             <td>7</td>
             <td>
               <input 
-              value={seven}
+              value={seven ==0 ? undefined : seven}
               onChange={(e)=>{setSeven(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
           </tr>
           <tr>
@@ -314,16 +353,16 @@ function Status(){
    
             <td className="td2-border-right">
               <input 
-              value={three}
+              value={three ==0 ? undefined : three}
               onChange={(e)=>{setThree(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
             <td>8</td>
             <td>
               <input 
-              value={eight}
+              value={eight ==0 ? undefined : eight}
               onChange={(e)=>{setEight(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
           </tr>
           <tr>
@@ -331,16 +370,16 @@ function Status(){
 
             <td className="td2-border-right">
               <input 
-              value={four}
+              value={four ==0 ? undefined : four}
               onChange={(e)=>{setFour(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
             <td>9</td>
             <td>
               <input 
-              value={nine}
+              value={nine ==0 ? undefined : nine}
               onChange={(e)=>{setNine(Number(e.target.value))}}
-              type="number" />
+              type="value" />
             </td>
           </tr>
         </table>

@@ -1,11 +1,11 @@
 import React, { useEffect,useState } from 'react'
 
 
-export default function DailyTimer(props) {
+export default function DailyTimer() {
 
     const [seconds, setSeconds] = useState(60);
 
-    const stakeTime = Number(props.time);
+    const stakeTime = Number(1000000000000);
     var currentTimeinSeconds = new Date().getTime() / 1000
     var differenceTimeinSeconds = Math.trunc(stakeTime - currentTimeinSeconds)
 
@@ -31,7 +31,7 @@ export default function DailyTimer(props) {
       }, [ seconds]);
 
 
-
+console.log("data",DaysRemaining)
     return (
 
             <div>

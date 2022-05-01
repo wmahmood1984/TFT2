@@ -1,14 +1,19 @@
 
 import Web3 from 'web3';
-import {Adminabi,AdminconAddress,Admin} from "../../../../config.js"
+import {Adminabi,AdminconAddress,Admin, LotteryAbi, lotteryAddress, LoanConAbi, LoanConAddress} from "../../../../config.js"
 import {useEffect, useState} from "react"
 import Papa from "papaparse"
 import { Link } from 'react-router-dom';
 import "./airDrop.css";
+import { useDispatch,useSelector } from 'react-redux';
+import { ActivateLotteryPurchaseA, ActivateTFTBuyA, ActivateTFTLoanA, ActivateTFTStakingA, changeDiscountA, handleLoan30A, handleLoan45A, handleStakingDailyA, handleStakingMonthlyA, handleStakingQuarterlyA } from '../../../../state/ui/index.js';
 
 const AirDrop = () => {
+  const dispatch = useDispatch()
   const web3 = new Web3(Web3.givenProvider)
   const contract = new web3.eth.Contract(Adminabi,AdminconAddress)
+  const lotteryContract = new web3.eth.Contract(LotteryAbi,lotteryAddress)
+  const loanContract = new web3.eth.Contract(LoanConAbi,LoanConAddress)
   const [mcas,setMCAS] =  useState()
   const [mcasIssued,setMcasIssued] =  useState()
   const [esas,setESAS] =  useState()
@@ -19,7 +24,17 @@ const AirDrop = () => {
   const[scheme,setScheme]= useState()
   const[address,setAddress]= useState()
   const[quantity,setQuantity]= useState()
-  const[Advisor,setAdvisor]= useState("0x127Cd433e87A6d268FE484a75A6A23313580418c")
+  const[stakingDaily,setStakingDaily]= useState()
+  const[stakingMonthly,setStakingMonthly]= useState()
+  const[stakingQaurterly,setStakingQuarterly]= useState()
+  const[loan30,setLoan30]= useState()
+  const[loan45,setLoan45]= useState()
+  const[tftBuyActive,setTFTBuyACtive]= useState()
+  const[tftStakingActive,setStakingActive]= useState()
+  const[tftLoanActive,settftLoanActive]= useState()
+  const[LotteryPurchaseActive,setlotteryPurcahseActive]= useState()
+  const[changeDisc,setChangeDisc]= useState()
+
   const[TEAM,setTEAM]= useState()
   const [mcasDetails,setMcasDetails]= useState()
   const [esasDetails,setEsasDetails]= useState()
@@ -27,6 +42,11 @@ const AirDrop = () => {
   const[tokensVested,setTokenVested]= useState()
   // const[schemea,setschemea]= useState()
   const[quantitya,setquantitya]= useState()
+  const[Advisor,setAdvisor]= useState()
+
+  const toggle = useSelector((state) => {
+    return state.adoptReducer.toggle;
+  });
 
   useEffect(() => {
     const abc = async()=>{
@@ -37,6 +57,10 @@ const AirDrop = () => {
     contract.methods.ESASIssued().call((e,r)=>{setESASIssued(r)})
     contract.methods.TDS().call((e,r)=>{setTDS(r)})
     contract.methods.TDSIssued().call((e,r)=>{setTDSIssued(r)})
+    lotteryContract.methods.BuyTicketsActive().call((e,r)=>{setlotteryPurcahseActive(r)})
+    loanContract.methods.BUYTFTActive().call((e,r)=>{setTFTBuyACtive(r)})
+    loanContract.methods.stakingActive().call((e,r)=>{setStakingActive(r)})
+    loanContract.methods.lstakingActive().call((e,r)=>{settftLoanActive(r)})
   
     contract.methods.Team().call((e,r)=>{setTEAM(r)})
     contract.methods.MCASDetails(result[0]).call((e,r)=>{setMcasDetails(r)})
@@ -45,7 +69,7 @@ const AirDrop = () => {
   }
     abc()
   
-  }, [scheme])
+  }, [scheme,toggle])
 
 
   const handleChange = async event => {
@@ -139,6 +163,51 @@ const AirDrop = () => {
   }
 
 
+  async function ActivateTFTBuy(){
+    dispatch(ActivateTFTBuyA({}))
+
+  }
+
+  async function ActivateTFTStaking(){
+    dispatch(ActivateTFTStakingA({}))
+  }
+
+  async function ActivateTFTLoan(){
+    dispatch(ActivateTFTLoanA({}))
+  }
+
+  async function ActivateLotteryPurchase(){
+    dispatch(ActivateLotteryPurchaseA({}))
+  }
+
+  async function handleStakingDaily(){
+    dispatch(handleStakingDailyA({numb:stakingDaily}))
+  }
+
+  async function handleStakingMonthly(){
+    dispatch(handleStakingMonthlyA({numb:stakingMonthly}))
+  }
+
+  async function handleStakingQuarterly(){
+    dispatch(handleStakingQuarterlyA({numb:stakingQaurterly}))
+  }
+
+  async function handleLoan30(){
+    dispatch(handleLoan30A({numb:loan30}))
+  }
+
+  async function handleLoan45(){
+    dispatch(handleLoan45A({numb:loan45}))
+  }
+
+  async function changeDiscount(){
+    dispatch(changeDiscountA({numb:changeDisc}))
+  }
+
+
+
+
+
 
 
   return (
@@ -188,93 +257,131 @@ const AirDrop = () => {
         onChange={(e)=>{setDays(e.target.value)}}
         ></input>
 
+        <input
+        value={days}
+        type="text"
+        placeholder='enter Advisor address'
+        onChange={(e)=>{setAdvisor(e.target.value)}}
+        ></input>
+
   
         <button onClick={handleESASSubmit}>submit</button>
       </div>
       <button
       onClick={()=>{contract.methods.approve().send({from:address})}}
       >Approve tokens</button>
-       <button
-        disabled={tokensVested<=0}
-        onClick={claimTeam}>Transfer to Team</button>
-    </div> 
-    
-    : 
+       <br/>
+       <button onClick={ActivateTFTBuy}>
+         {tftBuyActive? "Inactive TFT Buy" :  "Activate TFT Buy"}
+       </button>
 
-    Advisor == address? 
-    
-    <div className='AdminBlock'>
-      <h1>TFT Advisor Panel</h1>
-      <h3 className="airDrop-title">Airdrops</h3>
-      <p className="airDrop-below-text">
-        Read the Medium post for all the details on each Airdrop program.
-      </p>
-      <p>Strategic Adv AirDrop{"  "}<span >{`${(esasIssued/100000000).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} / ${(esas/100000000).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span></p>
-      <table style={{border : "2px solid forestgreen", width: "500px", minHeight: "30px",textAlign: "center", }}>
-        <thead>
-        <tr>
-            <th >Airdrop Details</th>
-            <th >Your Airdrop Balance</th>
-            <th >Days Left</th>
-         </tr>
+       <br/>
+       <button onClick={ActivateTFTStaking}>
+         {tftStakingActive? "Inactive TFT Staking" :  "Activate TFT Staking"}
+       </button>
 
-        </thead>
-        <tbody>
-          {esasDetails &&  esasDetails.map((val, key) => {
-            var currentTime = new Date().getTime()/1000
-            return (
-              <tr key={key}>
-                
-                
-                <td >{val.Scheme}</td>
-                <td >{val.amount/100000000}</td>
-                {(Number(val.Days)- currentTime)/(60*60*24)>0?
-              <td >{((Number(val.Days)- currentTime)/(60*60*24)).toFixed(0)}</td>:  
-              <td >
-               
+       <br/>
+       <button onClick={ActivateTFTLoan}>
+         {tftLoanActive? "Inactive TFT Loan" :  "Activate TFT Loan"}
+       </button>
 
-              {/* <input
-                value={quantitya}
-                type="value"
-                placeholder='enter quantity'
-                onChange={(e)=>{setquantitya(e.target.value)}}
-              ></input> */}
+       <br/>
+       <button onClick={ActivateLotteryPurchase}>
+         {LotteryPurchaseActive? "Inactive Lottery Purchase" :  "Activate lottery purchase"}
+       </button>
 
-              <button 
-                className="claim-button"
-                disabled={Number(val.Days)-currentTime>0}
-                onClick={()=>{claimESAS(val.Scheme)}}>Claim</button></td>
-             }
-                
+       <br/>
+       <div>
+        <input
+        value={stakingDaily}
+        onChange={(e)=>{setStakingDaily(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={handleStakingDaily}>
+        set staking Daily rate
+       </button>
+       </div>
 
-              </tr>)})}
 
-                
-        </tbody>
-        <tfoot></tfoot>
-                
-                
-      </table>     
- 
+       <br/>
+       <div>
+        <input
+        value={stakingMonthly}
+        onChange={(e)=>{setStakingMonthly(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={handleStakingMonthly}>
+        set staking Monthly rate
+       </button>
+       </div>
+
+
+       <br/>
+       <div>
+        <input
+        value={stakingQaurterly}
+        onChange={(e)=>{setStakingQuarterly(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={handleStakingQuarterly}>
+        set staking Quarterly rate
+       </button>
+       </div>
+
+       <br/>
+       <div>
+        <input
+        value={loan30}
+        onChange={(e)=>{setLoan30(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={handleLoan30}>
+        set Loan 30 rate
+       </button>
+       </div>
+
+       <br/>
+       <div>
+        <input
+        value={loan45}
+        onChange={(e)=>{setLoan45(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={handleLoan45}>
+        set Loan 45 rate
+       </button>
+       </div>
+
+
+       <br/>
+       <div>
+        <input
+        value={changeDisc}
+        onChange={(e)=>{setChangeDisc(e.target.value)}}
+        type="value"
+        />
+        
+       <button onClick={changeDiscount}>
+        Change discount %
+       </button>
+       </div>
       
-    </div> 
 
-    
+       
+
+
+
+    </div> 
     
     : 
-    
-    TEAM == address ? 
-    <div className='AdminBlock'>
-      <h1>TFT TEAM Panel</h1>
-      <p>Team AirDrop{"  "}<span >{`${tdsIssued} / ${tds/100000000}`}</span></p>
-      <p>Tokens vested so far : {tokensVested}</p>
-      <button
-        disabled={tokensVested<=0}
-        onClick={claimTeam}>claim</button>
-    </div> 
-    
-    :  
-           
+
+
+          
     <div>
         <h1>Marketing and Community Panel Panel</h1>
        <h3 className="airDrop-title">Airdrops</h3>
@@ -282,9 +389,9 @@ const AirDrop = () => {
         Read the Medium post for all the details on each Airdrop program.
       </p>
 
-      <p>Mkt and Comm AirDrop{"  "}<span >
+      {/* <p>Mkt and Comm AirDrop{"  "}<span >
         {`${(mcasIssued/100000000).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} /
-         ${(mcas/100000000).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span></p>
+         ${(mcas/100000000).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</span></p> */}
       <div className="airdrops-box">
       <table >
         <thead>

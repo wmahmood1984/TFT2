@@ -149,15 +149,15 @@ const FairInvestment = () => {
         </div>
         <br />
         <div className="m0 df jcsb aic mb5">
-          <span>Daily Returns ({`${dailyStaking/100}`}%): {TFT==undefined? 0 : TFT*dailyStaking/100} TFT</span>
+          <span>Daily Returns ({`${dailyStaking/100}`}%): {TFT==undefined? 0 : TFT*dailyStaking/10000} TFT</span>
           {/* <div className="customOrangeBtn">CLAIM ALL</div> */}
         </div>
         <div className="m0 df jcsb aic mb5">
-        <span>Monthly Bonus ({`${monthStaking}`}%): {TFT==undefined? 0 : TFT*monthStaking} TFT</span>
+        <span>Monthly Bonus ({`${monthStaking}`}%): {TFT==undefined? 0 : TFT*monthStaking/100} TFT</span>
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;12</div> */}
         </div>
         <div className="m0 df jcsb aic">
-        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : TFT*quarterlySTaking} BUSD</span>
+        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : (TFT * Number(TFTDollarValue) /1000000000000000000* quarterlySTaking/100).toFixed(2)} BUSD</span>
           {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;05</div> */}
         </div>
         <br />

@@ -16,7 +16,7 @@ const LoanInvestment = ({
   disable,
   time
 }) => {
-  console.log("allowance in vault",allowance)
+
   return (
     <div className="loanTerm-main-wrapper">
       <div className="term-title-wrapper">

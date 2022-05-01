@@ -15,7 +15,7 @@ const CustomInput = ({
   disable
 }) => {
   const [maxClicked,setMaxClicked] = useState(false)
-  console.log("allowance in function",disable)
+ 
   return (
     <div className="form-group mb-0">
       <label className="sr-only" htmlFor="inlineFormInputGroupUsername">

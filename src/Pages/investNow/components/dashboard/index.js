@@ -34,8 +34,10 @@ const Dashboard = ({ handleBuyAtDiscountClick, handleBuyAtMarketClick }) => {
   
 
   useEffect(() => {
-      dispatch(initWeb3());
+  //    dispatch(initWeb3());
   }, []);
+
+  console.log("price 2",TFTDollarValue)
 
   return (
     <div className="dashboard-wrapper">

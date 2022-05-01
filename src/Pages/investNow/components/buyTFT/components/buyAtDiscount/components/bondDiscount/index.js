@@ -4,7 +4,7 @@ import TftConversionReadOnlyInput from "../../../../../../../../Components/tftCo
 import "./bondDiscount.css";
 
 const BondDiscount = ({disable, headingIcon, currency,onCurrencyChange,value,balance,TFTValue,BuyFunction,discount,LivePrice,allowance }) => {
-  console.log("allowance in bonddiscount",allowance)
+ console.log("tft value",TFTValue)
   return (
     <div className="bondDiscount-wraooer">
       <h4 className="bondDiscount-heading">

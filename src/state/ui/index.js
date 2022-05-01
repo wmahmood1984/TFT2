@@ -54,7 +54,7 @@ export const initWeb3 = createAsyncThunk("InitWeb3", async (a, thunkApi) => {
       var treasuryBalance = Number(adminEthBalance)*Number(DolPerBNB) + Number(adminUSDBalance) + Number(adminUSDTBalance)
       const loanIssued = await LoanContract.methods.LoanIssued().call()
       address = addresses[0];
-
+      console.log("addresses",addresses)
       thunkApi.dispatch(
         balance({
           contract: LoanContract,
@@ -123,15 +123,19 @@ export const Lottery = createAsyncThunk(
   "Lottery",
   async ({  }) => {
     try {
+      const lWeb3 = new Web3(Web3.givenProvider)
+      const lAddress = await lWeb3.eth.getAccounts()
 
-      const LotteryAllowance = await tokenContract.methods.allowance(address,lotteryAddress).call()
+      const LotteryAllowance = await tokenContract.methods.allowance(lAddress[0],lotteryAddress).call()
       const gameCounter = await LotteryContract.methods.gameCounter().call()
-      const _lottCurrDetails = await LotteryContract.methods.getDetailsCurrent().call({from:address})
+      const _lottCurrDetails = await LotteryContract.methods.getDetailsCurrent().call({from:lAddress[0]})
       const gameDetails = await LotteryContract.methods.getGamesDetails().call()
       const prevDetails = await LotteryContract.methods.previousGameDetails().call()
+      const numberArray = await LotteryContract.methods.getNumberArray().call()
+      const balance = await tokenContract.methods.balanceOf(lAddress[0]).call()
       
 
-      return { LotteryAllowance,gameCounter,_lottCurrDetails,gameDetails,prevDetails };
+      return { LotteryAllowance,gameCounter,_lottCurrDetails,gameDetails,prevDetails,numberArray,balance };
     } catch (error) {
       console.log("Error in Lottery", error);
     }
@@ -142,6 +146,7 @@ export const BuyTFTComp = createAsyncThunk(
   "BuyTFTComp",
   async ({ BNB, BUSD, USDT }) => {
     try {
+
       const addresses = await web3.eth.getAccounts();
       const address = addresses[0]
       const discount = await LoanContract.methods.Discount().call();
@@ -427,7 +432,7 @@ async ({quantity})=>{
 
 
 export const BuyLotterya = createAsyncThunk("BuyLotterya",
-async ({array})=>{
+async ({array,Index})=>{
 
 
     try {
@@ -438,13 +443,209 @@ async ({array})=>{
         console.log("tx1",array)
 
 
-  const result = await LotteryContract.methods.bulkBuy(array).send({from:address })
+  const result = await LotteryContract.methods.bulkBuy(array,Index).send({from:address })
   // .on(
   // 	"confirmation",(e,r)=>{window.location.reload()}
   // )
 
     } catch (error) {
         console.log("Error in BuyLotterya Function",error)
+    }
+}
+)
+
+
+export const ActivateTFTBuyA = createAsyncThunk("ActivateTFTBuyA",
+async ({})=>{
+
+
+    try {
+      const result = await LoanContract.methods.setTFTBuyACtive().send({from:address})
+
+
+    } catch (error) {
+        console.log("Error in ActivateTFTBuyA Function",error)
+    }
+}
+)
+
+export const ActivateTFTStakingA = createAsyncThunk("ActivateTFTStaking",
+async ({})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.setStakingActive().send({from:address})
+ 
+
+    } catch (error) {
+        console.log("Error in ActivateTFTStaking Function",error)
+    }
+}
+)
+
+export const ActivateTFTLoanA = createAsyncThunk("ActivateTFTLoan",
+async ({})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.setLstakingActive().send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in ActivateTFTLoan Function",error)
+    }
+}
+)
+
+export const ActivateLotteryPurchaseA = createAsyncThunk("ActivateLotteryPurchaseA",
+async ({})=>{
+
+
+    try {
+
+
+
+
+  const result = await LotteryContract.methods.setBuyTicketsActive().send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in ActivateLotteryPurchaseA Function",error)
+    }
+}
+)
+
+export const handleDiscountA = createAsyncThunk("handleDiscountA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changeDiscount(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleDiscountA Function",error)
+    }
+}
+)
+
+export const handleStakingDailyA = createAsyncThunk("handleStakingDailyA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+      const result = await LoanContract.methods.changestakingDaily(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleStakingDailyA Function",error)
+    }
+}
+)
+
+export const handleStakingMonthlyA = createAsyncThunk("handleStakingMonthly",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changestakingMonthly(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleStakingMonthly Function",error)
+    }
+}
+)
+
+export const handleStakingQuarterlyA = createAsyncThunk("handleStakingQuarterly",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changestakingQuarterly(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleStakingQuarterly Function",error)
+    }
+}
+)
+
+export const handleLoan30A = createAsyncThunk("handleLoan30",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changeLoanDaily1(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleLoan30 Function",error)
+    }
+}
+)
+
+export const handleLoan45A = createAsyncThunk("handleLoan45",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changeLoanDaily2(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in handleLoan45 Function",error)
+    }
+}
+)
+
+
+export const changeDiscountA = createAsyncThunk("changeDiscountA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.changeDiscount(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in changeDiscountA Function",error)
     }
 }
 )
@@ -497,6 +698,7 @@ const adoptSlice = createSlice({
     loandDaily2 :  null,
     TFTtoDollar : null,
     BNBtoTFT: null,
+    numberArray: null,
   },
   reducers: {
     toggle: (state, actions) => {
@@ -529,15 +731,7 @@ const adoptSlice = createSlice({
        state.TFTAllowance = action.payload.TFTAllowance;
        state.indLoanInf = action.payload.indLoanInf;
 
-      // state.BNBBalance = action.payload.BNBBalance
-   
-      // state.USDtoTFT1 = action.payload.USDtoTFT1
-      // state.USDTtoTFT1 = action.payload.USDTtoTFT1
-   
-
-      // state.networkId = action.payload.networkId
- 
-      state.loandDaily1 = action.payload.loandDaily1
+     state.loandDaily1 = action.payload.loandDaily1
       state.loandDaily2 = action.payload.loandDaily2
     },
 
@@ -573,6 +767,8 @@ const adoptSlice = createSlice({
       state._lottCurrDetails = action.payload._lottCurrDetails
       state.gameDetails = action.payload.gameDetails
       state.prevDetails = action.payload.prevDetails
+      state.numberArray = action.payload.numberArray
+      state.balance = action.payload.balance
     },
 
     [BUSDApprove.pending]: (state, action) => {
@@ -687,16 +883,115 @@ const adoptSlice = createSlice({
 
   },
 
-  [BuyLotterya.pending] : (state,action)=>{
+  [ActivateTFTBuyA.pending] : (state,action)=>{
       state.toggle = !state.toggle;
       state.error = null;
   },
-  [BuyLotterya.fulfilled] : (state,action)=>{
+  [ActivateTFTBuyA.fulfilled] : (state,action)=>{
 
       state.toggle = !state.toggle;
       state.error = action.payload;
 
   },
+
+  [ActivateTFTStakingA.pending] : (state,action)=>{
+    state.toggle = !state.toggle;
+    state.error = null;
+},
+[ActivateTFTStakingA.fulfilled] : (state,action)=>{
+
+    state.toggle = !state.toggle;
+    state.error = action.payload;
+
+},
+
+[ActivateTFTLoanA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[ActivateTFTLoanA.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[ActivateLotteryPurchaseA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[ActivateLotteryPurchaseA.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[handleStakingDailyA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[handleStakingDailyA.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[handleStakingMonthlyA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[handleStakingMonthlyA.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[handleStakingQuarterlyA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[handleStakingQuarterlyA.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[handleLoan30A.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[handleLoan30A.fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[handleLoan45A.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[handleLoan45A .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[changeDiscountA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[changeDiscountA .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
 
     //
   },
