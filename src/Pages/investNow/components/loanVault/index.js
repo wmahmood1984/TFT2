@@ -115,7 +115,7 @@ const LoanVault = () => {
         {_indStakingInf&&  _indStakingInf[0].quantity==0? 
       <LoanTerm
       headingText="30 Days Term"
-      interestPaidPercentageValue="0.1"
+      interestPaidPercentageValue={loandDaily1/10}
       busdLoanAvailablePercentageValue="50"
       value={TFT30}
       setValue={setTFT30}
@@ -132,7 +132,7 @@ const LoanVault = () => {
     : 
     <LoanInvestment
           headingText="30 Days Term"
-          interestPaidPercentageValue="0.2"
+          interestPaidPercentageValue={loandDaily1/10}
           busdLoanAvailablePercentageValue="50"
           time={_indStakingInf &&
             Number(_indStakingInf[0].timeOfInvestment)+ (60*60*24*30)}
@@ -159,7 +159,7 @@ const LoanVault = () => {
       {_indStakingInf&&  _indStakingInf[1].quantity==0?
       <LoanTerm
       headingText="45 Days Term"
-      interestPaidPercentageValue="0.2"
+      interestPaidPercentageValue={loandDaily2/10}
       busdLoanAvailablePercentageValue="50"
       value={TFT45}
       setValue={setTFT45}
@@ -177,7 +177,7 @@ const LoanVault = () => {
     
     <LoanInvestment
           headingText="45 Days Term"
-          interestPaidPercentageValue="0.2"
+          interestPaidPercentageValue={loandDaily2/10}
           busdLoanAvailablePercentageValue="50"
           time={_indStakingInf &&
             Number(_indStakingInf[0].timeOfInvestment) + (60*60*24*45)}

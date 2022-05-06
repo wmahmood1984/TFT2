@@ -258,7 +258,7 @@ const AirDrop = () => {
         ></input>
 
         <input
-        value={days}
+        value={Advisor}
         type="text"
         placeholder='enter Advisor address'
         onChange={(e)=>{setAdvisor(e.target.value)}}
