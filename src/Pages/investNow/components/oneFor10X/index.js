@@ -245,7 +245,7 @@ function getIndex (){
       if(Number(v.number)==9){_nine.push(v)}
     })
 
-var NewTime = gameDetails && gameDetails.length!=0?  Number(gameDetails[gameDetails.length-1].time)+(60*60*4) : (new Date().getTime()/1000) + (60*60*4);
+var NewTime = gameDetails && gameDetails.length!=0?  Number(gameDetails[gameDetails.length-1].time)+(120) : (new Date().getTime()/1000) + (120);
 
 
 
