@@ -1,23 +1,39 @@
+.buyTft-h{
+  color: #2F5D8E;  
+  font-style: bold;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 8%;
+  margin-top: 50px;
+  font-weight: 700;
+}
+.buyTft-h span{
+  border-bottom: 2px solid #2F5D8E;
+}
 /* buy-tft-wrapper */
 .buy-tft-wrapper {
   border: 1px solid #ccc;
-  background: #ececec;
+  background: #FFFFFF;
   width: 70%;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 28px;
   border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  padding-bottom: 50px;
+  margin-bottom: 100px;
+  padding-bottom: 30px;
 }
 .buy-tft-heading {
-  margin: auto;
-  margin-top: 50px;
-  text-align: left;
-  width: 80%;
-  padding-left: 30px;
+  margin: auto;  
+  text-align: left;    
+  background: #2F5D8E;
+  color: #FFFFFF;
+  font-size: 26px;
+  font-weight: 700;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding-left: 30px;    
 }
 /* buy-tft-table */
 .buy-tft-table {

@@ -1,14 +1,30 @@
 /* invesNowContentBox */
 .invesNowContentBox{
-    border: 1px solid #ccc;
-  background: #ececec;
+  border: 1px solid #ccc;  
+  background: #FFFFFF;
   width: 70%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 30px;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  padding: 30px;
+  -o-border-radius: 10px;  
+}
+.fz20{
+  font-size: 20px;
+}
+.m0{
+  margin: 0;
+}
+.pl30{
+  padding-left: 30px;
+}
+.pr30{
+  padding-right: 30px;
+}
+.dreturn{
+  border: 1px solid #E4E4E4;
+  padding: 10px 30px;
+  font-size: 20px;
 }

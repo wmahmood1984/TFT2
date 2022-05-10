@@ -1,65 +1,70 @@
 /* loanTerm-main-wrapper */
 .loanTerm-main-wrapper{
     border: 1px solid #ccc;
-    width: 400px;    
+    width: 450px;    
     border-radius: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
+    background: #FFFFFF;
 }
 /* term-title-wrapper */
 .term-title-wrapper{        
     border-bottom: 1px solid #ccc;
-    background: #ECECEC;
+    background: #2F5D8E;
+    color: #fff;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    height: 40px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 26px;
+    font-weight: 700;
 }
 /* interest-box-wrapper */
 .interest-box-wrapper{
     display: flex;
-    justify-content: center;    
+    justify-content: space-between;    
     margin: auto;
-    margin-top: 30px;    
+    margin-top: 10px;   
 }
 /* inerest-box */
-.inerest-box{
-    border: 1px solid #ccc;
-    background: #ECECEC;
-    width: 40%;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;           
+.d-interest{            
+    font-size: 14px;
+    margin: 10px;
 }
-.inerest-box p{
+.d-interest p{
 margin-bottom: 0;
+display: flex;
+align-items: center;
 }
-
-.interest-box-wrapper .right{
-    margin-left: 20px;
+.d-interest p img{
+    width: 20px;
+    margin-right: 10px;
 }
 /* interest-input-wrapper */
 .interest-input-wrapper{
-    padding-top: 20px;
-    width: calc(80% + 20px);
+    padding-top: 10px;
+    width: calc(100% - 20px);
     margin: auto;
 }
 /* receiveBusd-wrapper */
 .receiveBusd-wrapper{
     padding-top: 10px;
     text-align: left;
-    width: calc(80% + 20px);
+    width: calc(100%);
     margin: auto;
+}
+.receiveBusd-wrapper p{
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #E4E4E4;
+    display: flex;
+    justify-content: space-between;
 }
 /* depositApprove-btn-wrapper */
 .depositApprove-btn-wrapper{
     padding-top: 10px;    
-    width: calc(80% + 20px);
+    width: calc(100% - 20px);
     margin: auto;
     display: flex;
     justify-content: center;
@@ -72,4 +77,5 @@ margin-bottom: 0;
     align-items: center;
     height: 40px;
     width: 150px;
+    border-radius: 10px;
 }

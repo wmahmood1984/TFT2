@@ -2,6 +2,22 @@
 .airDrop-title{
     margin-top: 100px;    
 }
+.airdrop-title{
+    background: #2F5D8E;
+    color: #fff;
+    font-size: 26px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;    
+    border-top-right-radius: 10px;    
+}
+.marketing-title{
+    font-size: 34px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
 /* airDrop-below-text */
 .airDrop-below-text{
     margin-bottom: 30px;
@@ -16,9 +32,12 @@
 .airdrops-box table{
     width: 100%;
     margin: auto;   
-    /* border-collapse: collapse;      */
-    border-collapse:separate;
-    border-spacing:0 20px;
+    background: #fff;    
+    padding: 0;
+}
+.airdrop-table-header{
+    background: #EFEFEF;    
+    height: 40px;
 }
 /* claim-button */
 .claim-button{

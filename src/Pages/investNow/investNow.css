@@ -1,7 +1,7 @@
 /* investnow-content */
-.investnow-content {
-  height: calc(100vh - 40px);
+.investnow-content {  
   overflow: hidden;
+  overflow-y: hidden;
 }
 .df {
   display: flex;

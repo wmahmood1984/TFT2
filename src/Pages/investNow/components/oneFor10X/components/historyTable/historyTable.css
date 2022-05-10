@@ -1,6 +1,6 @@
 /* historyTable-main-wrapper */
 .historyTable-main-wrapper{
-    border: 1px solid #ccc;
+    border: 1px solid #D9D9D9;
     width: 50%;
     margin: auto;
     margin-top: 20px;
@@ -13,22 +13,27 @@
 .history-table{
     /* border: 1px solid #ccc; */  
     width: 100%;   
-    border-bottom: 1px solid #ccc;   
+    border-bottom: 1px solid #D9D9D9;
+    background: #fff; 
+    box-shadow: #2F5D8E26 
 }
+.history-table-header{
+    background: #2F5D8E;
+    color: #fff;
+    font-size: 20px;
+    height: 50px;    
+}
+tr:first-child td:first-child { border-top-left-radius: 10px; }
+tr:first-child td:last-child { border-top-right-radius: 10px; }
 /* pagination-wrapper */
 .pagination-wrapper{
-    /* border: 1px solid #ccc; */
-    /* width: 50%;
-    margin: auto; */
     display: flex;
-    justify-content: space-between;
-    /* border-bottom: 1px solid #ccc; */
-    /* border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; */
-}
-.prev-next-btn{    
-    width: 100px; 
-    padding: 5px 0;
+    justify-content: space-between;    
+    height: 50px;
+    align-items: center;
+    background: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .disable-btn{
     background: lightgray;
@@ -40,26 +45,39 @@
 /* page-numbers-wrapper */
 .page-numbers-wrapper{
     display: flex;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-bottom: none;
+    justify-content: center;    
+    background: #fff;
 }
 /* page-number */
 .page-number{
-    border: 1px solid #ccc;    
     border-bottom: none;
-    width: 35px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-left: none;
     border-top: none;
+    background: #2F5D8E;
+    color: #fff;
+    margin-left: 10px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+.prev-next-btn{
+    display: flex;
+    align-items: center;
 }
 .prev-btn{
     border-bottom-left-radius: 5px;
+    padding-left: 10px;
 }
 .next-btn{
     border-bottom-right-radius: 5px;
+    padding-right: 10px;
 }
 .bdln{
     border-left: none;

@@ -1,15 +1,51 @@
+.fair-investment-w{
+    padding-bottom: 30px;
+}
+.investnow-inner{
+    margin: 30px;
+    margin-bottom: 10px;
+}
+.investnow-heading{
+    background: #2F5D8E;
+    color: #FFFFFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 50px;
+    font-size: 26px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* fair-investment-uper-text */
+.fair-investment-uper-text{
+    border: 1px solid #5290E41C;
+    width: 90%;
+    margin: auto;
+    background: rgba(82, 144, 228, 0.11);
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 26px;
+    line-height: 40px;
+    font-weight: 500;
+}
 /* investNow-heading */
 .investNow-heading{
     color: #D55E2D;
     text-decoration: underline;
 }
 /* invest-approve-btn */
+.invest-approve-btn-wrapper{
+    margin-bottom: 30px;
+}
 .invest-approve-btn{
     background: #D55E2D;
     color: #fff;    
     padding: 7px 0;
     width: 150px;
     display: inline-block;
+    border-radius: 10px;
+    height: 40px;
 }
 .invest-approve-btn span{
     font-size: 18px;

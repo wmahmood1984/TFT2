@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import optionHover from "../../../../Assets/optionHover.png";
 import "./sideBar.css";
 import { tokenAddress } from "../../../../config";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,6 +23,9 @@ const SideBar = ({
   handleBuyAtDiscountClick,
   handleBuyAtMarketClick,
 }) => {
+  const [buyTftDropdown, setBuyTftDropdown] = useState(false);
+  const [fairGameDropdown, setFairGameDropdown] = useState(false);
+  const [opTop, setOpTop] = useState(0);
   const handleDashboardClick = () => {
     setDashboard(true);
     setBuyTft(false);
@@ -31,6 +35,9 @@ const SideBar = ({
     setLoanVault(false);
     setOneFor10X(false);
     setAirDrop(false);
+    setBuyTftDropdown(false);
+    setFairGameDropdown(false);
+    setOpTop(0);
   };
   const handleBuyTftClick = () => {
     setDashboard(false);
@@ -41,6 +48,9 @@ const SideBar = ({
     setLoanVault(false);
     setOneFor10X(false);
     setAirDrop(false);
+    setBuyTftDropdown((prev) => !prev);
+    setFairGameDropdown(false);
+    setOpTop(45);
   };
   const handleFairInvestmentClick = () => {
     setDashboard(false);
@@ -51,6 +61,9 @@ const SideBar = ({
     setLoanVault(false);
     setOneFor10X(false);
     setAirDrop(false);
+    setBuyTftDropdown(false);
+    setFairGameDropdown(false);
+    setOpTop(45 * 2 - 5);
   };
   const handleLoanVaultClick = () => {
     setDashboard(false);
@@ -61,6 +74,9 @@ const SideBar = ({
     setLoanVault(true);
     setOneFor10X(false);
     setAirDrop(false);
+    setBuyTftDropdown(false);
+    setFairGameDropdown(false);
+    setOpTop(45 * 3 - 5);
   };
   const handleOneFor10XClick = () => {
     setDashboard(false);
@@ -71,6 +87,9 @@ const SideBar = ({
     setLoanVault(false);
     setOneFor10X(true);
     setAirDrop(false);
+    setBuyTftDropdown(false);
+    setFairGameDropdown((prev) => !prev);
+    setOpTop(45 * 4 - 10);
   };
   const handleAirDropClick = () => {
     setDashboard(false);
@@ -81,6 +100,9 @@ const SideBar = ({
     setLoanVault(false);
     setOneFor10X(false);
     setAirDrop(true);
+    setBuyTftDropdown(false);
+    setFairGameDropdown(false);
+    setOpTop(45 * 5 - 12);
   };
   const dispatch = useDispatch();
   const setTokn = async () => {
@@ -117,20 +139,28 @@ const SideBar = ({
     return state.adoptReducer.price;
   });
 
-  console.log("price",_price)
-
   return (
     <div className="sidebar-main-wrapper">
-      {/* <div className="sidebar-logo-wrapper">
-        <img src={footerLogo} alt="footerLogo" />
-      </div> */}
       <div className="sidebar-links-wrapper">
-        <ul>
+        <ul style={{ paddingTop: "45px" }}>
+          <img
+            className="optionHover"
+            style={{
+              width: "98%",
+              position: "absolute",
+              top: opTop,
+              right: 0,
+              zIndex: -1,
+            }}
+            src={optionHover}
+            alt="optionHover"
+          />
           <li
             style={
               dashboard
                 ? {
                     fontWeight: 600,
+                    color: "#2F5D8E",
                   }
                 : null
             }
@@ -138,62 +168,105 @@ const SideBar = ({
           >
             <i className="ri-dashboard-fill"></i> Dashboard
           </li>
-          <li>
-            <i className="ri-secure-payment-fill"></i>{" "}
+          <li
+            onClick={() => handleBuyTftClick()}
+            style={{ justifyContent: "space-between" }}
+          >
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <span
+                style={
+                  buyTft
+                    ? {
+                        fontWeight: 600,
+                        color: "#2F5D8E",
+                        display: "flex",
+                        alignItems: "center",
+                      }
+                    : { display: "flex", alignItems: "center" }
+                }
+              >
+                <i className="ri-secure-payment-fill"></i> Buy TFT
+              </span>
+            </span>
             <span
-              onClick={() => handleBuyTftClick()}
+              className="mycaret"
               style={
-                buyTft
+                buyTftDropdown
                   ? {
-                      fontWeight: 600,
+                      backgroundColor: "#2F5D8E",
                     }
                   : null
               }
             >
-              Buy TFT
+              <i
+                className="fal fa-angle-down"
+                style={
+                  buyTftDropdown
+                    ? {
+                        marginLeft: 5,
+                        transform: "rotate(180deg)",
+                        marginTop: "-8px",
+                        display: "inline-block",
+                        position: "relative",
+                      }
+                    : { marginLeft: 5 }
+                }
+              ></i>
             </span>
-            <ul className="sub-nav">
-              <li
-                onClick={() => handleBuyAtDiscountClick()}
-                style={
-                  buyAtDiscount
-                    ? {
-                        fontWeight: 600,
-                      }
-                    : null
-                }
-              >
-                Buy At Discount
-              </li>
-              <li
-                onClick={() => handleBuyAtMarketClick()}
-                style={
-                  buyAtMarket
-                    ? {
-                        fontWeight: 600,
-                      }
-                    : null
-                }
-              >
-                Buy At Market
-              </li>
-              <li
-                onClick={() => {
-                  setTokn();
-                }}
-              >
-                {/* <button> */}
-                Add TFT to Wallet
-                {/* </button> */}
-              </li>
-            </ul>
           </li>
+          <ul
+            className="sub-nav"
+            style={
+              !buyTftDropdown
+                ? {
+                    display: "none",
+                  }
+                : null
+            }
+          >
+            <li
+              onClick={() => handleBuyAtDiscountClick()}
+              style={
+                buyAtDiscount
+                  ? {
+                      fontWeight: 600,
+                      color: "#2F5D8E",
+                    }
+                  : null
+              }
+            >
+              Buy At Discount
+            </li>
+            <li
+              onClick={() => handleBuyAtMarketClick()}
+              style={
+                buyAtMarket
+                  ? {
+                      fontWeight: 600,
+                      color: "#2F5D8E",
+                    }
+                  : null
+              }
+            >
+              Buy At Market
+            </li>
+            <li
+              onClick={() => {
+                setTokn();
+              }}
+            >
+              {/* <button> */}
+              Add TFT to Wallet
+              {/* </button> */}
+            </li>
+          </ul>
           <li
             onClick={() => handleFairInvestmentClick()}
             style={
               fairInvestment
                 ? {
                     fontWeight: 600,
+                    color: "#2F5D8E",
                   }
                 : null
             }
@@ -206,36 +279,88 @@ const SideBar = ({
               loanVault
                 ? {
                     fontWeight: 600,
+                    color: "#2F5D8E",
                   }
                 : null
             }
           >
             <i className="ri-money-cny-box-line"></i> The Fair Loan
           </li>
-          <li>
-            <i className="ri-money-cny-circle-fill"></i> The Fair Game
-            <ul className="sub-nav">
-              <li
-                onClick={() => handleOneFor10XClick()}
+          <li
+            onClick={() => handleOneFor10XClick()}
+            style={{ justifyContent: "space-between", alignItems: "center" }}
+          >
+            <span
+              style={
+                oneFor10X
+                  ? {
+                      fontWeight: 600,
+                      color: "#2F5D8E",
+                      display: "flex",
+                      alignItems: "center",
+                    }
+                  : { display: "flex", alignItems: "center" }
+              }
+            >
+              <i className="ri-money-cny-circle-fill"></i> The Fair Game
+            </span>
+            <span
+              className="mycaret"
+              style={
+                fairGameDropdown
+                  ? {
+                      backgroundColor: "#2F5D8E",
+                    }
+                  : null
+              }
+            >
+              <i
+                className="fal fa-angle-down"
                 style={
-                  oneFor10X
+                  fairGameDropdown
                     ? {
-                        fontWeight: 600,
+                        marginLeft: 5,
+                        transform: "rotate(180deg)",
+                        marginTop: "-8px",
+                        display: "inline-block",
+                        position: "relative",
                       }
-                    : null
+                    : { marginLeft: 5 }
                 }
-              >
-                One For 10X
-              </li>
-              <li>NFT Battle - coming soon</li>
-            </ul>
+              ></i>
+            </span>
           </li>
+          <ul
+            className="sub-nav"
+            style={
+              !fairGameDropdown
+                ? {
+                    display: "none",
+                  }
+                : null
+            }
+          >
+            <li
+              style={
+                oneFor10X
+                  ? {
+                      fontWeight: 600,
+                      color: "#2F5D8E",
+                    }
+                  : null
+              }
+            >
+              One For 10X
+            </li>
+            <li>NFT Battle - coming soon</li>
+          </ul>
           <li
             onClick={() => handleAirDropClick()}
             style={
               airDrop
                 ? {
                     fontWeight: 600,
+                    color: "#2F5D8E",
                   }
                 : null
             }
@@ -255,7 +380,9 @@ const SideBar = ({
           <li>
             <i className="ri-price-tag-2-line"></i> TFT Price
             <br />
-            <span style={{ fontSize: "14px", marginLeft: "35px" }}>${(_price/1000000000000000000).toFixed(4)}</span>
+            <span style={{ fontSize: "14px", marginLeft: "35px" }}>
+              ${(_price / 1000000000000000000).toFixed(4)}
+            </span>
           </li>
         </ul>
       </div>

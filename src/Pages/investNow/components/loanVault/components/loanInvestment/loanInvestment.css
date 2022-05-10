@@ -1,7 +1,7 @@
 /* loanTerm-main-wrapper */
 .loanTerm-main-wrapper{
     border: 1px solid #ccc;
-    width: 400px;    
+    width: 450px;    
     border-radius: 20px;
     padding-bottom: 30px;
 }
@@ -76,13 +76,19 @@ margin-bottom: 0;
 /* linearTimer-wrapper */
 .linearTimer-wrapper{ 
     padding-top: 20px;   
-    width: calc(80% + 20px);
+    width: calc(100% - 40px);
     margin: auto;
 }
 /* tftDeposited-wrapper */
-.tftDeposited-wrapper{    
-    padding-top: 20px;
+.tftDeposited-wrapper{        
     text-align: left;
-    width: calc(80% + 20px);
+    width: calc(100%);    
     margin: auto;
+}
+.tftDeposited-wrapper p{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    border: 1px solid #E4E4E4;
+    padding: 10px 20px;
 }

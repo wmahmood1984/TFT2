@@ -1,6 +1,6 @@
 import React from "react";
 
-const TftConversionReadOnlyInput = ({value}) => {
+const TftConversionReadOnlyInput = ({ value }) => {
   return (
     <div className="form-group">
       <label className="sr-only" htmlFor="inlineFormInputGroupUsername">
@@ -8,10 +8,15 @@ const TftConversionReadOnlyInput = ({value}) => {
       </label>
       <div className="input-group">
         <div className="input-group-prepend">
-          <div className="input-group-text">TFT Coversion</div>
+          <div
+            className="input-group-text"
+            style={{ border: "1px solid #2F5D8E" }}
+          >
+            TFT Coversion
+          </div>
         </div>
         <input
-          style={{ backgroundColor: "#FFFFFF" }}
+          style={{ backgroundColor: "#EFEFEF" }}
           type="value"
           className="form-control"
           id="inlineFormInputGroupUsername"

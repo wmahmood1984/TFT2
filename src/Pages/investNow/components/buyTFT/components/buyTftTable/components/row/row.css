@@ -1,5 +1,6 @@
 /* buy-tft-table-row */
-.buy-tft-table-row {    
+.buy-tft-table-row td{    
+  font-size: 20px;
 }
 /* bnbIcon */
 .bnbIcon {
@@ -7,10 +8,15 @@
 }
 /* table-buyNow-btn */
 .table-buyNow-btn {
-  background: #d45e2c;
+  background: #D45E2C;
   color: #fff;
   border: none;
   outline: none;
   padding: 10px 30px;
   cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+.ml20{
+  margin-left: 20px;
 }

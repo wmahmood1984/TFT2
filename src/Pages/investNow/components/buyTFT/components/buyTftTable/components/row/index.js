@@ -10,12 +10,20 @@ const Row = ({
 }) => {
   return (
     <tr className="buy-tft-table-row">
-      <td>
+      {/* <td>
         <span className="bnbIcon-wrapper">
-          <img className="bnbIcon" src={icon} alt="bnbIcon" />
+          
         </span>
+      </td> */}
+      <td>
+        <img
+          className="bnbIcon"
+          src={icon}
+          alt="bnbIcon"
+          style={{ width: "30px" }}
+        />
+        <span className="ml20">{currency}</span>
       </td>
-      <td>{currency}</td>
       <td>{discount}</td>
       <td>{tftPrice}</td>
       <td>

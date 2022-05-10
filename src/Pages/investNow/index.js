@@ -60,27 +60,27 @@ const InvestNow = () => {
         handleBuyAtMarketClick={handleBuyAtMarketClick}
       />
       {/* SideBar */}
-      <div className="investnow-content df">
-        <SideBar
-          dashboard={dashboard}
-          buyTft={buyTft}
-          buyAtDiscount={buyAtDiscount}
-          buyAtMarket={buyAtMarket}
-          fairInvestment={fairInvestment}
-          loanVault={loanVault}
-          oneFor10X={oneFor10X}
-          airDrop={airDrop}
-          setDashboard={setDashboard}
-          setBuyTft={setBuyTft}
-          setBuyAtDiscount={setBuyAtDiscount}
-          setBuyAtMarket={setBuyAtMarket}
-          setFairInvestment={setFairInvestment}
-          setLoanVault={setLoanVault}
-          setOneFor10X={setOneFor10X}
-          setAirDrop={setAirDrop}
-          handleBuyAtDiscountClick={handleBuyAtDiscountClick}
-          handleBuyAtMarketClick={handleBuyAtMarketClick}
-        />
+      <SideBar
+        dashboard={dashboard}
+        buyTft={buyTft}
+        buyAtDiscount={buyAtDiscount}
+        buyAtMarket={buyAtMarket}
+        fairInvestment={fairInvestment}
+        loanVault={loanVault}
+        oneFor10X={oneFor10X}
+        airDrop={airDrop}
+        setDashboard={setDashboard}
+        setBuyTft={setBuyTft}
+        setBuyAtDiscount={setBuyAtDiscount}
+        setBuyAtMarket={setBuyAtMarket}
+        setFairInvestment={setFairInvestment}
+        setLoanVault={setLoanVault}
+        setOneFor10X={setOneFor10X}
+        setAirDrop={setAirDrop}
+        handleBuyAtDiscountClick={handleBuyAtDiscountClick}
+        handleBuyAtMarketClick={handleBuyAtMarketClick}
+      />
+      <div className="investnow-content">
         <ContentArea
           dashboard={dashboard}
           buyTft={buyTft}
@@ -94,7 +94,6 @@ const InvestNow = () => {
           handleBuyAtMarketClick={handleBuyAtMarketClick}
         />
       </div>
-      <Footer />
     </>
   );
 };

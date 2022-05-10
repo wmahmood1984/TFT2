@@ -3,13 +3,12 @@ import "./header.css";
 
 const Header = () => {
   return (
-    <thead>
+    <thead className="table-header">
       <tr>
-        <th></th>
-        <th>Currency</th>
-        <th>Discount</th>
-        <th>TFT Price</th>
-        <th></th>
+        <th>CURRENCY</th>
+        <th>DISCOUNT</th>
+        <th>TFT PRICE</th>
+        <th>ACTIONS</th>
       </tr>
     </thead>
   );

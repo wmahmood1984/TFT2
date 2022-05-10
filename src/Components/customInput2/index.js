@@ -12,10 +12,10 @@ const CustomInput = ({
   balance,
   rightFunction,
   allowance,
-  disable
+  disable,
 }) => {
-  const [maxClicked,setMaxClicked] = useState(false)
- 
+  const [maxClicked, setMaxClicked] = useState(false);
+
   return (
     <div className="form-group mb-0">
       <label className="sr-only" htmlFor="inlineFormInputGroupUsername">
@@ -24,7 +24,10 @@ const CustomInput = ({
       </label>
       <div className="input-group">
         <div className="input-group-prepend">
-          <div className="input-group-text">
+          <div
+            className="input-group-text"
+            style={{ border: "1px solid #2F5D8E" }}
+          >
             {/* Enter BUSD */}
             {enterLable}
           </div>
@@ -36,14 +39,20 @@ const CustomInput = ({
           //   placeholder="BUSD AMOUNT"
           disabled={disable}
           placeholder={placeholder}
-          onChange={(e)=>{setMaxClicked(false); OnChange(e.target.value)}}
-          value={maxClicked? balance :  value}
+          onChange={(e) => {
+            setMaxClicked(false);
+            OnChange(e.target.value);
+          }}
+          value={maxClicked ? balance : value}
         />
-        <button className="max-btn" 
-        disabled={disable}
-        onClick={()=>{rightFunction()}}>
-          
-          <span>{allowance ? "Buy Tickets" :  "APPROVE"}</span>
+        <button
+          className="max-btn"
+          disabled={disable}
+          onClick={() => {
+            rightFunction();
+          }}
+        >
+          <span>{allowance ? "Buy Tickets" : "APPROVE"}</span>
         </button>
       </div>
       <p
@@ -52,7 +61,8 @@ const CustomInput = ({
         style={{ textAlign: "left" }}
       >
         {/* BUSD Available <span className="text-orange">0</span> */}
-        {belowLabel} <span className="text-orange">{balance}</span>
+        <span style={{ color: "#2F5D8E" }}>{belowLabel}</span>{" "}
+        <span className="text-orange">{balance}</span>
       </p>
     </div>
   );

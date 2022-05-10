@@ -1,8 +1,8 @@
 /* sidebar-main-wrapper */
 .sidebar-main-wrapper {
-  width: 25%;
-  height: calc(100vh - 40px);
-  overflow-y: scroll;
+  width: 20%;
+  height: calc(100vh - 40px);  
+  position: fixed;
 }
 /* sidebar-logo-wrapper */
 .sidebar-logo-wrapper {
@@ -17,31 +17,63 @@
 .sidebar-links-wrapper ul {
   margin: 0;
   padding: 0;
+  position: relative;
 }
 .sidebar-links-wrapper ul li {
   padding: 10px;
   cursor: pointer;
   text-align: left;
   padding-left: 35px;
+  display: flex;
   align-items: center;
+  color: #777777;
 }
 .sidebar-links-wrapper ul li i {
   font-size: 20px;
   margin-right: 10px;
 }
-.sidebar-links-wrapper ul li:hover {
-  background: #ececec;
-  border: 1px solid #ececec;
+.sidebar-links-wrapper ul li:hover {    
+  /* background-image: url(../../../../Assets/optionHover.png); */
+  /* background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  /* border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background: #E3F0FF;
+  margin-left: 10px; */
 }
 /* sub-nav */
 .sub-nav {
   padding: 0;
   margin: 0;
   margin-top: 10px !important;
+  padding-left: 10px !important;
+  margin-left: 40px !important;
+  border-left: 1px solid #000;
 }
 .sub-nav li {
   padding: 0 !important;
   margin: 0 !important;
   padding-left: 34px !important;
   font-size: 14px;
+}
+.optionHover{
+  transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+.mycaret{
+  background: #777777;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;  
+  color: white;
+  margin-right: 10px;
+  float: right;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;  
 }

@@ -1,3 +1,10 @@
+.header-main-wrapper{
+    background: #fff;
+    border-bottom: 0.5px solid #2F5D8E;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
 /* buyTft-dropdown */
 .buyTft-dropdown{    
     width: 110px;    
@@ -16,20 +23,24 @@
 }
 /* connect-button-in-topNav */
 .connect-button-in-topNav{
-    border: 1px solid #ccc;
-    border-radius: 30px;    
+    border: 1px solid #2F5D8C;
+    border-radius: 10px;
     width: 140px;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
     margin-right: 10px;
-    height: 30px;
+    height: 40px;
     cursor: pointer;
-    background: #2F5D8C;
-    color: #fff;
+    background: #fff;
+    color: #2F5D8C;
     position: relative;
     margin-bottom: 2px;
     cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .social-media-container{

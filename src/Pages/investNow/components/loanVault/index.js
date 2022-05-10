@@ -22,19 +22,16 @@ const LoanVault = () => {
     return state.adoptReducer.toggle;
   });
 
-
   const TFTDollarValue = useSelector((state) => {
     return state.adoptReducer.TFTDollarValue;
   });
 
   useEffect(() => {
-    dispatch(Price({})); 
-  }, [toggle,TFTDollarValue]);
+    dispatch(Price({}));
+  }, [toggle, TFTDollarValue]);
 
-  async function dispatchPrice(TFT){
- 
-
-    dispatch(TFTtoDollar({  TFT }));
+  async function dispatchPrice(TFT) {
+    dispatch(TFTtoDollar({ TFT }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }
 
@@ -57,8 +54,6 @@ const LoanVault = () => {
   const loandDaily1 = useSelector((state) => {
     return state.adoptReducer.loandDaily1;
   });
-
-  
 
   //var _indStakingInf = _indStakingInf && _indStakingInf.filter(item=>item.quantity>0)
 
@@ -111,101 +106,114 @@ const LoanVault = () => {
   var currentTime = new Date().getTime() / 1000;
   return (
     <div className="loanVault-main-wrapper">
+      <div className="loanVault-above-text">
+        The Fair Loan is the worlds first interest paying loan. We pay you
+        interest when you to take a loan from us. No credit checks, no lock-ins,
+        no liquidation, it is that simple.
+      </div>
       <div className="loanTerm-wrapper">
-        {_indStakingInf&&  _indStakingInf[0].quantity==0? 
-      <LoanTerm
-      headingText="30 Days Term"
-      interestPaidPercentageValue={loandDaily1/10}
-      busdLoanAvailablePercentageValue="50"
-      value={TFT30}
-      setValue={setTFT30}
-      setValue2={dispatchPrice}
-      TFTAvailable={(_balance / 100000000).toFixed(2)}
-      stakeFunction={Stake30}
-      allowance={TFT30==undefined || Number(_TFTAllowance / 100000000) >= TFT30}
-      disable={_balance==0}
-      dollar={TFT30 &&  TFTDollarValue ? 
-        (TFTDollarValue/2000000000000000000).toFixed(4) : 0 
-      }
-      EOT={TFT30? loandDaily1/1000*TFT30*30 :0}
-    />
-    : 
-    <LoanInvestment
-          headingText="30 Days Term"
-          interestPaidPercentageValue={loandDaily1/10}
-          busdLoanAvailablePercentageValue="50"
-          time={_indStakingInf &&
-            Number(_indStakingInf[0].timeOfInvestment)+ (60*60*24*30)}
-          tft={
-            _indStakingInf &&
-            (_indStakingInf[0].quantity / 100000000).toFixed(2)
-          }
-          daily={
-            _indStakingInf && (_indStakingInf[0].daily / 100000000).toFixed(2)
-          }
-          dollar={
-            _indStakingInf &&
-            (_indStakingInf[0].dollarGiven / 1000000000000000000).toFixed(2)
-          }
-          withdraw={Unstake30}
-          index={_indStakingInf && _indStakingInf[0].stakingId}
-          allowance={
-            _indStakingInf &&
-            Number(_BUSDAllowance) >= Number(_indStakingInf[0].dollarGiven)
-          }
-          disable={_indStakingInf && _indStakingInf[0].dollarGiven == 0}
-        />
-      }
-      {_indStakingInf&&  _indStakingInf[1].quantity==0?
-      <LoanTerm
-      headingText="45 Days Term"
-      interestPaidPercentageValue={loandDaily2/10}
-      busdLoanAvailablePercentageValue="50"
-      value={TFT45}
-      setValue={setTFT45}
-      setValue2={dispatchPrice}
-      TFTAvailable={(_balance / 100000000).toFixed(2)}
-      stakeFunction={Stake45}
-      allowance={TFT45==undefined ||Number(_TFTAllowance / 100000000) >= TFT45}
-      disable={_balance==0}
-      dollar={TFT45 &&  TFTDollarValue ? 
-        (TFTDollarValue/2000000000000000000).toFixed(4) : 0 
-      }
-      EOT={TFT45? loandDaily2/1000*TFT45*45:0}
-      
-    /> : 
-    
-    <LoanInvestment
-          headingText="45 Days Term"
-          interestPaidPercentageValue={loandDaily2/10}
-          busdLoanAvailablePercentageValue="50"
-          time={_indStakingInf &&
-            Number(_indStakingInf[0].timeOfInvestment) + (60*60*24*45)}
-          tft={
-            _indStakingInf &&
-            (_indStakingInf[1].quantity / 100000000).toFixed(2)
-          }
-          daily={
-            _indStakingInf && (_indStakingInf[1].daily / 100000000).toFixed(2)
-          }
-          dollar={
-            _indStakingInf &&
-            (_indStakingInf[1].dollarGiven / 1000000000000000000).toFixed(2)
-          }
-          withdraw={Unstake45}
-          index={_indStakingInf && _indStakingInf[1].stakingId}
-          allowance={
-            _indStakingInf &&
-            Number(_BUSDAllowance) >= Number(_indStakingInf[1].dollarGiven)
-          }
-          disable={_indStakingInf && _indStakingInf[1].dollarGiven == 0}
-        />}  
-        
+        {_indStakingInf && _indStakingInf[0].quantity == 0 ? (
+          <LoanTerm
+            headingText="30 Days Term"
+            interestPaidPercentageValue={loandDaily1 / 10}
+            busdLoanAvailablePercentageValue="50"
+            value={TFT30}
+            setValue={setTFT30}
+            setValue2={dispatchPrice}
+            TFTAvailable={(_balance / 100000000).toFixed(2)}
+            stakeFunction={Stake30}
+            allowance={
+              TFT30 == undefined || Number(_TFTAllowance / 100000000) >= TFT30
+            }
+            disable={_balance == 0}
+            dollar={
+              TFT30 && TFTDollarValue
+                ? (TFTDollarValue / 2000000000000000000).toFixed(4)
+                : 0
+            }
+            EOT={TFT30 ? (loandDaily1 / 1000) * TFT30 * 30 : 0}
+          />
+        ) : (
+          <LoanInvestment
+            headingText="30 Days Term"
+            interestPaidPercentageValue={loandDaily1 / 10}
+            busdLoanAvailablePercentageValue="50"
+            time={
+              _indStakingInf &&
+              Number(_indStakingInf[0].timeOfInvestment) + 60 * 60 * 24 * 30
+            }
+            tft={
+              _indStakingInf &&
+              (_indStakingInf[0].quantity / 100000000).toFixed(2)
+            }
+            daily={
+              _indStakingInf && (_indStakingInf[0].daily / 100000000).toFixed(2)
+            }
+            dollar={
+              _indStakingInf &&
+              (_indStakingInf[0].dollarGiven / 1000000000000000000).toFixed(2)
+            }
+            withdraw={Unstake30}
+            index={_indStakingInf && _indStakingInf[0].stakingId}
+            allowance={
+              _indStakingInf &&
+              Number(_BUSDAllowance) >= Number(_indStakingInf[0].dollarGiven)
+            }
+            disable={_indStakingInf && _indStakingInf[0].dollarGiven == 0}
+          />
+        )}
+        {_indStakingInf && _indStakingInf[1].quantity == 0 ? (
+          <LoanTerm
+            headingText="45 Days Term"
+            interestPaidPercentageValue={loandDaily2 / 10}
+            busdLoanAvailablePercentageValue="50"
+            value={TFT45}
+            setValue={setTFT45}
+            setValue2={dispatchPrice}
+            TFTAvailable={(_balance / 100000000).toFixed(2)}
+            stakeFunction={Stake45}
+            allowance={
+              TFT45 == undefined || Number(_TFTAllowance / 100000000) >= TFT45
+            }
+            disable={_balance == 0}
+            dollar={
+              TFT45 && TFTDollarValue
+                ? (TFTDollarValue / 2000000000000000000).toFixed(4)
+                : 0
+            }
+            EOT={TFT45 ? (loandDaily2 / 1000) * TFT45 * 45 : 0}
+          />
+        ) : (
+          <LoanInvestment
+            headingText="45 Days Term"
+            interestPaidPercentageValue={loandDaily2 / 10}
+            busdLoanAvailablePercentageValue="50"
+            time={
+              _indStakingInf &&
+              Number(_indStakingInf[0].timeOfInvestment) + 60 * 60 * 24 * 45
+            }
+            tft={
+              _indStakingInf &&
+              (_indStakingInf[1].quantity / 100000000).toFixed(2)
+            }
+            daily={
+              _indStakingInf && (_indStakingInf[1].daily / 100000000).toFixed(2)
+            }
+            dollar={
+              _indStakingInf &&
+              (_indStakingInf[1].dollarGiven / 1000000000000000000).toFixed(2)
+            }
+            withdraw={Unstake45}
+            index={_indStakingInf && _indStakingInf[1].stakingId}
+            allowance={
+              _indStakingInf &&
+              Number(_BUSDAllowance) >= Number(_indStakingInf[1].dollarGiven)
+            }
+            disable={_indStakingInf && _indStakingInf[1].dollarGiven == 0}
+          />
+        )}
       </div>
-      <div className="loanInvestment-wrapper">
-    
-        
-      </div>
+      <div className="loanInvestment-wrapper"></div>
     </div>
   );
 };

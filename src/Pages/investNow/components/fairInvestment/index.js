@@ -27,7 +27,7 @@ const FairInvestment = () => {
   });
 
   useEffect(() => {
-    dispatch(stakingComp({ }));
+    dispatch(stakingComp({}));
   }, [toggle]);
 
   const _balance = useSelector((state) => {
@@ -37,7 +37,6 @@ const FairInvestment = () => {
   const _circulatingSupply = useSelector((state) => {
     return state.adoptReducer.circulatingSupply;
   });
-
 
   const tftStaked = useSelector((state) => {
     return state.adoptReducer.tftStaked;
@@ -67,8 +66,6 @@ const FairInvestment = () => {
       initialValue
     ) / 100000000;
 
-
-
   const dailyStaking = useSelector((state) => {
     return Number(state.adoptReducer.dailyStaking);
   });
@@ -80,9 +77,6 @@ const FairInvestment = () => {
   const quarterlySTaking = useSelector((state) => {
     return Number(state.adoptReducer.quarterlySTaking);
   });
-
-
-
 
   console.log("reward", filteredInfo);
 
@@ -107,7 +101,7 @@ const FairInvestment = () => {
     dispatch(bulkclaimA({ id: idsArray }));
   }
 
-  console.log("list", );
+  console.log("list");
 
   window.ethereum.on("accountsChanged", (e, r) => {
     window.location.reload();
@@ -118,53 +112,89 @@ const FairInvestment = () => {
 
   var currentTime = new Date().getTime() / 1000;
 
-  console.log("price", TFTDollarValue)
+  console.log("price", TFTDollarValue);
 
   return (
-    <>
+    <div className="fair-investment-w">
+      <div className="fair-investment-uper-text">
+        The Fair Investment is a long-term play and is where TFT holders benefit
+        the most. As a TFT Stakeholder you earn constant rewards and earnings
+        from all projects under The Fair Trust umbrella. The longer you stake
+        the more the rewards.
+      </div>
       <InvesNowContentBox>
-        <h5 className="df jcsb">
-          <span>
-            TFT Price: ${(TFTDollarValue / 1000000000000000000).toFixed(4)}
-          </span>{" "}
-          <span>TFT Stake Holders:{((Number(tftStaked)/Number(_circulatingSupply)*100)).toFixed(8)}%</span>
-        </h5>
-        <div className="investNow-btn-wrapper">
-          <h4 className="investNow-heading mt30">INVEST NOW</h4>
+        <div className="investnow-heading">INVEST NOW</div>
+        <div className="investnow-inner">
+          <div className="df jcsb fz20 m0">
+            <span>
+              TFT Stake Holders:&nbsp;
+              <span style={{ color: "#D45E2C" }}>
+                {(
+                  (Number(tftStaked) / Number(_circulatingSupply)) *
+                  100
+                ).toFixed(8)}
+                %
+              </span>
+            </span>
+            <span>
+              TFT Price:&nbsp;
+              <span style={{ color: "#D45E2C" }}>
+                ${(TFTDollarValue / 1000000000000000000).toFixed(4)}
+              </span>
+            </span>
+          </div>
+          <div className="mt30">
+            <CustomInput
+              lable="BUSD"
+              enterLable={`Enter TFT`}
+              placeholder={`TFT AMOUNT`}
+              value={TFT}
+              OnChange={setTFT}
+              belowLabel={`TFT Available : `}
+              rightButtonText="Max"
+              balance={(_balance / 100000000).toFixed(4)}
+              disable={_balance == 0}
+            />
+          </div>
         </div>
-        <div className="mt30">
-          <CustomInput
-            lable="BUSD"
-            enterLable={`Enter TFT`}
-            placeholder={`TFT AMOUNT`}
-            value={TFT}
-            OnChange={setTFT}
-            belowLabel={`TFT Available : `}
-            rightButtonText="Max"
-            balance={ (_balance / 100000000).toFixed(4)}
-            disable={_balance==0}
- 
-
-          />
+        <div
+          className="m0 df jcsb aic mb5 dreturn"
+          style={{ background: "#FBFBFB" }}
+        >
+          <span>Daily Returns ({`${dailyStaking / 100}`}%): </span>
+          <span style={{ color: "#D45E2C" }}>
+            {TFT == undefined ? 0 : (TFT * dailyStaking) / 10000} TFT
+          </span>
         </div>
-        <br />
-        <div className="m0 df jcsb aic mb5">
-          <span>Daily Returns ({`${dailyStaking/100}`}%): {TFT==undefined? 0 : TFT*dailyStaking/10000} TFT</span>
-          {/* <div className="customOrangeBtn">CLAIM ALL</div> */}
+        <div className="m0 df jcsb aic mb5 dreturn">
+          <span>Monthly Bonus ({`${monthStaking}`}%): </span>
+          <span style={{ color: "#D45E2C" }}>
+            {TFT == undefined ? 0 : (TFT * monthStaking) / 100} TFT
+          </span>
         </div>
-        <div className="m0 df jcsb aic mb5">
-        <span>Monthly Bonus ({`${monthStaking}`}%): {TFT==undefined? 0 : TFT*monthStaking/100} TFT</span>
-          {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;12</div> */}
-        </div>
-        <div className="m0 df jcsb aic">
-        <span>Quarterly Dividend ({`${quarterlySTaking}`}%): {TFT==undefined? 0 : (TFT * Number(TFTDollarValue) /1000000000000000000* quarterlySTaking/100).toFixed(2)} BUSD</span>
-          {/* <div className="appOrangeColor">DAYS LEFT:&nbsp;05</div> */}
+        <div
+          className="m0 df jcsb aic dreturn"
+          style={{ background: "#FBFBFB" }}
+        >
+          <span>Quarterly Dividend ({`${quarterlySTaking}`}%): </span>
+          <span style={{ color: "#D45E2C" }}>
+            {TFT == undefined
+              ? 0
+              : (
+                  (((TFT * Number(TFTDollarValue)) / 1000000000000000000) *
+                    quarterlySTaking) /
+                  100
+                ).toFixed(2)}{" "}
+            BUSD
+          </span>
         </div>
         <br />
         <div className="invest-approve-btn-wrapper">
-          <button 
-          disabled={_balance==0}
-          className="invest-approve-btn" onClick={Stake}>
+          <button
+            disabled={_balance == 0}
+            className="invest-approve-btn"
+            onClick={Stake}
+          >
             <span>
               {Number(_TFTAllowance / 100000000) >= TFT ? "Stake" : "Approve"}
             </span>
@@ -196,7 +226,9 @@ const FairInvestment = () => {
                 invested={val.quantity / 100000000}
                 price={(TFTDollarValue / 1000000000000000000).toFixed(4)}
                 monthly={(Number(val.monthly) / 100000000).toFixed(0)}
-                quarterly={(Number(val.quarterly) / 1000000000000000000).toFixed(0)}
+                quarterly={(
+                  Number(val.quarterly) / 1000000000000000000
+                ).toFixed(0)}
                 daily={(Number(val.daily) / 100000000).toFixed(0)}
                 dailyTime={(
                   (Number(val.timeOfInvestment) + 60 * 60 * 24 - currentTime) /
@@ -229,7 +261,7 @@ const FairInvestment = () => {
       <InvesNowContentBox>
         <Investment index={3} />
       </InvesNowContentBox> */}
-    </>
+    </div>
   );
 };
 

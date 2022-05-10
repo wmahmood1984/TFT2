@@ -14,9 +14,8 @@ const LoanInvestment = ({
   index,
   allowance,
   disable,
-  time
+  time,
 }) => {
-
   return (
     <div className="loanTerm-main-wrapper">
       <div className="term-title-wrapper">
@@ -24,13 +23,15 @@ const LoanInvestment = ({
         <h5>{headingText}</h5>
       </div>
       <div className="linearTimer-wrapper">
-        <LinearTimer time={time}/>
+        <LinearTimer time={time} />
       </div>
       <div className="tftDeposited-wrapper">
-        <p>
-          TFT Deposited: {tft} TFT
-          <br />
-          0.1% Daily Investment Earned: {daily} TFT
+        <div style={{ padding: "10px 20px" }}>
+          TFT Deposited: <span className="orange-color">{tft} TFT</span>
+        </div>
+        <p style={{ background: "#FBFBFB" }}>
+          0.1% Daily Investment Earned:{" "}
+          <span className="orange-color">{daily} TFT</span>
         </p>
         <p>
           To Withdraw TFT, Repay BUSD Loan:{" "}
@@ -38,11 +39,14 @@ const LoanInvestment = ({
         </p>
       </div>
       <div className="depositApprove-btn-wrapper">
-        <button 
-        disabled={disable}
-        onClick={()=>{withdraw(index,dollar)}}
-        className="deposit-Approve-btn">
-          <span>{allowance? "CONFIRM": "REPAY"}</span>
+        <button
+          disabled={disable}
+          onClick={() => {
+            withdraw(index, dollar);
+          }}
+          className="deposit-Approve-btn"
+        >
+          <span>{allowance ? "CONFIRM" : "REPAY"}</span>
         </button>
       </div>
     </div>

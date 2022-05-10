@@ -1,9 +1,25 @@
 /* loanVault-main-wrapper */
 .loanVault-main-wrapper{
-    width: 85%;
+    width: 90%;
     margin: auto;    
-    margin-top: 50px;
+    margin-top: 20px;
     /* border: 1px solid #000; */
+}
+.loanVault-above-text{
+    border: 1px solid #5290E41C;
+    width: 100%;
+    margin: auto;
+    background: rgba(82, 144, 228, 0.11);
+    box-shadow: #5290E41C;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 26px;
+    line-height: 40px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 /* loanTerm-wrapper */
 .loanTerm-wrapper{

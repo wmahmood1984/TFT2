@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./buyAtDiscount.css";
 import bnbIcon from "../../../../../../Assets/bnbIcon.png";
+import busdIcon from "../../../../../../Assets/busdIcon.png";
+import usdtIcon from "../../../../../../Assets/usdtIcon.png";
 import BondDiscount from "./components/bondDiscount";
 import { useSelector, useDispatch } from "react-redux";
 import { BUSDAddress, USDTAddress } from "../../../../../../config";
@@ -29,7 +31,6 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.price;
   });
 
-
   const _balance = useSelector((state) => {
     return state.adoptReducer.balance;
   });
@@ -45,8 +46,6 @@ const BuyAtDiscount = () => {
   const _BUSDAllowance = useSelector((state) => {
     return state.adoptReducer.BUSDAllowance;
   });
-
-
 
   const _USDTAllowance = useSelector((state) => {
     return state.adoptReducer.USDTAllowance;
@@ -72,9 +71,9 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.USDTtoTFT1;
   });
 
-  const BNBtoTFT = useSelector((state)=>{
-    return state.adoptReducer.BNBtoTFT
-  })
+  const BNBtoTFT = useSelector((state) => {
+    return state.adoptReducer.BNBtoTFT;
+  });
 
   window.ethereum.on("accountsChanged", (e, r) => {
     window.location.reload();
@@ -83,23 +82,21 @@ const BuyAtDiscount = () => {
     window.location.reload();
   });
 
-
   useEffect(() => {
-    var lBNB = BNB ? BNB : 0
-    var lBUSD = BUSD ? BUSD : 0
-    var lUSDT = USDT ? USDT : 0
-    dispatch(BuyTFTComp({ BNB : lBNB , BUSD : lBUSD, USDT : lUSDT }));
+    var lBNB = BNB ? BNB : 0;
+    var lBUSD = BUSD ? BUSD : 0;
+    var lUSDT = USDT ? USDT : 0;
+    dispatch(BuyTFTComp({ BNB: lBNB, BUSD: lBUSD, USDT: lUSDT }));
   }, [BNB, BUSD, toggle, USDT]);
 
   console.log("BUSD allowance ", _BUSDAllowance);
-
 
   async function Invest() {
     if (BNB > 0) {
       dispatch(Buy({ quantity: 0, value: BNB, usdCon: BUSDAddress }));
       setBNB(0);
     } else if (BUSD > 0) {
-      if (_BUSDAllowance/100000000000000000 >= BUSD) {
+      if (_BUSDAllowance / 100000000000000000 >= BUSD) {
         console.log("Investment busd called");
         dispatch(Buy({ quantity: BUSD, value: BNB, usdCon: BUSDAddress }));
         setBUSD(0);
@@ -107,7 +104,7 @@ const BuyAtDiscount = () => {
         dispatch(BUSDApprove({ quantity: BUSD }));
       }
     } else {
-      if (_USDTAllowance/1000000000000000000 >= USDT) {
+      if (_USDTAllowance / 1000000000000000000 >= USDT) {
         console.log("Investment USDT Called");
         dispatch(Buy({ quantity: USDT, value: BNB, usdCon: USDTAddress }));
         setUSDT(0);
@@ -125,17 +122,20 @@ const BuyAtDiscount = () => {
     <div className="buyAtDiscount-wrapper">
       <>
         <BondDiscount
-          headingIcon={bnbIcon}
+          headingIcon={busdIcon}
           currency="BUSD"
           onCurrencyChange={setBUSD}
           value={BUSD}
           balance={(_BUSDbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(Number(USDtoTFT1) * (1+(_discount/100)) / 100000000).toFixed(4)}
+          TFTValue={(
+            (Number(USDtoTFT1) * (1 + _discount / 100)) /
+            100000000
+          ).toFixed(4)}
           BuyFunction={Invest}
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={Number(_BUSDAllowance / 1000000000000000000) >= BUSD}
-          disable={_BUSDbalance==0}
+          disable={_BUSDbalance == 0}
         />
         <BondDiscount
           headingIcon={bnbIcon}
@@ -143,27 +143,28 @@ const BuyAtDiscount = () => {
           onCurrencyChange={setBNB}
           value={BNB}
           balance={(BNBBalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(
-            BNBtoTFT/100000000 * (1+(_discount/100))
-          ).toFixed(2)}
+          TFTValue={((BNBtoTFT / 100000000) * (1 + _discount / 100)).toFixed(2)}
           BuyFunction={Invest}
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={true}
-          disable={BNBBalance==0}
+          disable={BNBBalance == 0}
         />
         <BondDiscount
-          headingIcon={bnbIcon}
+          headingIcon={usdtIcon}
           currency="USDT"
           onCurrencyChange={setUSDT}
           value={USDT}
           BuyFunction={Invest}
           balance={(_USDTbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(Number(USDTtoTFT1) * (1+(_discount/100)) / 100000000).toFixed(4)}
+          TFTValue={(
+            (Number(USDTtoTFT1) * (1 + _discount / 100)) /
+            100000000
+          ).toFixed(4)}
           discount={_discount}
           LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
           allowance={Number(_USDTAllowance / 1000000000000000000) >= USDT}
-          disable={_USDTbalance==0}
+          disable={_USDTbalance == 0}
         />
       </>
     </div>
