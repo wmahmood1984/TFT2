@@ -88,8 +88,8 @@ const Dashboard = ({ handleBuyAtDiscountClick, handleBuyAtMarketClick }) => {
       <div className="stockBoxWrapper">
         <div className="stockBoxWrapper-row">
           <StockBox
-            text="Current Circulating Supply - Million"
-            value={(circulatingSupply / 100000000000000)
+            text="Current Circulating Supply - '000"
+            value={(circulatingSupply / 100000000000)
               .toFixed(0)
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}

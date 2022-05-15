@@ -22,14 +22,14 @@ const BuyAtDiscount = () => {
   const [BNB, setBNB] = useState(0);
   const [BUSD, setBUSD] = useState(0);
   const [USDT, setUSDT] = useState(0);
+
+
   const _discount = useSelector((state) => {
     return state.adoptReducer.discount;
   });
   const [Disc, setDisc] = useState(0);
 
-  const _price = useSelector((state) => {
-    return state.adoptReducer.price;
-  });
+
 
   const _balance = useSelector((state) => {
     return state.adoptReducer.balance;
@@ -59,7 +59,7 @@ const BuyAtDiscount = () => {
     return state.adoptReducer.BNBBalance;
   });
 
-  const TFTDollarValue = useSelector((state) => {
+  const _Price = useSelector((state) => {
     return state.adoptReducer.price;
   });
 
@@ -73,6 +73,10 @@ const BuyAtDiscount = () => {
 
   const BNBtoTFT = useSelector((state) => {
     return state.adoptReducer.BNBtoTFT;
+  });
+
+  const _discountUSD = useSelector((state) => {
+    return state.adoptReducer.discountUSD;
   });
 
   window.ethereum.on("accountsChanged", (e, r) => {
@@ -89,7 +93,7 @@ const BuyAtDiscount = () => {
     dispatch(BuyTFTComp({ BNB: lBNB, BUSD: lBUSD, USDT: lUSDT }));
   }, [BNB, BUSD, toggle, USDT]);
 
-  console.log("BUSD allowance ", _BUSDAllowance);
+  
 
   async function Invest() {
     if (BNB > 0) {
@@ -98,7 +102,7 @@ const BuyAtDiscount = () => {
     } else if (BUSD > 0) {
       if (_BUSDAllowance / 100000000000000000 >= BUSD) {
         console.log("Investment busd called");
-        dispatch(Buy({ quantity: BUSD, value: BNB, usdCon: BUSDAddress }));
+        dispatch(Buy({ quantity: BUSD, value: 0, usdCon: BUSDAddress }));
         setBUSD(0);
       } else {
         dispatch(BUSDApprove({ quantity: BUSD }));
@@ -106,7 +110,7 @@ const BuyAtDiscount = () => {
     } else {
       if (_USDTAllowance / 1000000000000000000 >= USDT) {
         console.log("Investment USDT Called");
-        dispatch(Buy({ quantity: USDT, value: BNB, usdCon: USDTAddress }));
+        dispatch(Buy({ quantity: USDT, value: 0, usdCon: USDTAddress }));
         setUSDT(0);
       } else {
         dispatch(USDTApprove({ quantity: USDT }));
@@ -118,6 +122,8 @@ const BuyAtDiscount = () => {
     setDisc(0);
     dispatch(DiscChange({ Disc }));
   }
+
+  console.log("BUSD allowance ", USDtoTFT1);
   return (
     <div className="buyAtDiscount-wrapper">
       <>
@@ -127,13 +133,11 @@ const BuyAtDiscount = () => {
           onCurrencyChange={setBUSD}
           value={BUSD}
           balance={(_BUSDbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(
-            (Number(USDtoTFT1) * (1 + _discount / 100)) /
-            100000000
-          ).toFixed(4)}
+          Conversion={(USDtoTFT1/100000000* (1+(_discountUSD/100))).toFixed(0)}
+          DiscountedPrice={(Number(_Price) / 1000000000000000000 * (1-(_discountUSD/100))).toFixed(5)}
           BuyFunction={Invest}
-          discount={_discount}
-          LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
+          discount={_discountUSD}
+          LivePrice={(_Price / 1000000000000000000).toFixed(5)}
           allowance={Number(_BUSDAllowance / 1000000000000000000) >= BUSD}
           disable={_BUSDbalance == 0}
         />
@@ -142,11 +146,12 @@ const BuyAtDiscount = () => {
           currency="BNB"
           onCurrencyChange={setBNB}
           value={BNB}
+          Conversion={(BNBtoTFT/100000000* (1+(_discount/100))).toFixed(0)}
           balance={(BNBBalance / 1000000000000000000).toFixed(2)}
-          TFTValue={((BNBtoTFT / 100000000) * (1 + _discount / 100)).toFixed(2)}
+          DiscountedPrice={(Number(_Price) / 1000000000000000000 * (1-(_discount/100))).toFixed(5)}
           BuyFunction={Invest}
           discount={_discount}
-          LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
+          LivePrice={(_Price / 1000000000000000000).toFixed(5)}
           allowance={true}
           disable={BNBBalance == 0}
         />
@@ -155,14 +160,12 @@ const BuyAtDiscount = () => {
           currency="USDT"
           onCurrencyChange={setUSDT}
           value={USDT}
+          Conversion={(USDTtoTFT1/100000000* (1+(_discountUSD/100))).toFixed(0)}
           BuyFunction={Invest}
           balance={(_USDTbalance / 1000000000000000000).toFixed(2)}
-          TFTValue={(
-            (Number(USDTtoTFT1) * (1 + _discount / 100)) /
-            100000000
-          ).toFixed(4)}
-          discount={_discount}
-          LivePrice={(TFTDollarValue / 1000000000000000000).toFixed(4)}
+          DiscountedPrice={(Number(_Price) / 1000000000000000000 * (1-(_discountUSD/100))).toFixed(5)}
+          discount={_discountUSD}
+          LivePrice={(_Price / 1000000000000000000).toFixed(5)}
           allowance={Number(_USDTAllowance / 1000000000000000000) >= USDT}
           disable={_USDTbalance == 0}
         />
