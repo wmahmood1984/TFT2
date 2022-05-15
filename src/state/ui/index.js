@@ -39,6 +39,7 @@ export const initWeb3 = createAsyncThunk("InitWeb3", async (a, thunkApi) => {
       const price = Number(TFTtoBNBA)*Number(DolPerBNB)
       const addresses = await web3.eth.getAccounts();
       const tftStaked = await LoanContract.methods.TFTStaked().call()
+      console.log("tft staked",tftStaked)
       const supply = await tokenContract.methods.totalSupply().call()
       
       const admin = await LoanContract.methods.admin().call();
@@ -150,21 +151,22 @@ export const BuyTFTComp = createAsyncThunk(
       const addresses = await web3.eth.getAccounts();
       const address = addresses[0]
       const discount = await LoanContract.methods.Discount().call();
+      const discountUSD = await LoanContract.methods.usdDiscount().call();
       const BUSDbalance = await BUSDContract.methods.balanceOf(address).call();
       const USDTbalance = await USDTContract.methods.balanceOf(address).call();
-      const BUSDAllowance = await BUSDContract.methods
-      
-      .allowance(address, LoanConAddress)
+      const BUSDAllowance = await BUSDContract.methods.allowance(address, LoanConAddress)
       .call();
+      console.log("discount usd",discountUSD)
       const USDTAllowance = await USDTContract.methods
         .allowance(address, LoanConAddress)
          .call();
       var USDperBNB = await LoanContract.methods.getLatestPrice().call()
-      var BNBsofUSD = (BUSD/USDperBNB).toFixed(10)
+
+      var BNBsofUSD = (BUSD/USDperBNB).toFixed(18)
       var BUSDtoTFT = await LoanContract.methods.getPrice(
         web3.utils.toWei(BNBsofUSD.toString(),"ether")
         ).call() 
-      var BNBsofUSDT = (USDT/USDperBNB).toFixed(10)  
+      var BNBsofUSDT = (USDT/USDperBNB).toFixed(18)  
       var USDTtoTFT = await LoanContract.methods.getPrice(
         web3.utils.toWei(BNBsofUSDT.toString(),"ether")
         ).call()
@@ -176,9 +178,9 @@ export const BuyTFTComp = createAsyncThunk(
           web3.utils.toWei(BNB.toString(),"ether")
         ).call()
         const BNBBalance = await web3.eth.getBalance(address)
-          console.log("addr",BNBBalance)
+          console.log("USD per BNB",USDTtoTFT)
 
-      return { BUSDbalance, USDTbalance,discount,BUSDtoTFT,USDTtoTFT,price,BNBtoTFT ,BNBBalance,BUSDAllowance,USDTAllowance};
+      return {discountUSD, BUSDbalance, USDTbalance,discount,BUSDtoTFT,USDTtoTFT,price,BNBtoTFT ,BNBBalance,BUSDAllowance,USDTAllowance};
     } catch (error) {
       console.log("Error in BuyTFTComp", error);
     }
@@ -699,6 +701,7 @@ const adoptSlice = createSlice({
     TFTtoDollar : null,
     BNBtoTFT: null,
     numberArray: null,
+    discountUSD: null,
   },
   reducers: {
     toggle: (state, actions) => {
@@ -740,6 +743,7 @@ const adoptSlice = createSlice({
     },
 
     [BuyTFTComp.fulfilled] : (state,action) => {
+
       state.discount = action.payload.discount;
       state.BUSDbalance = action.payload.BUSDbalance
       state.USDTbalance = action.payload.USDTbalance
@@ -750,6 +754,7 @@ const adoptSlice = createSlice({
       state.BNBBalance = action.payload.BNBBalance
       state.BUSDAllowance = action.payload.BUSDAllowance
       state.USDTAllowance = action.payload.USDTAllowance
+      state.discountUSD = action.payload.discountUSD
     },
 
     [stakingComp.fulfilled] : (state,action) => {

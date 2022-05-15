@@ -112,7 +112,7 @@ const FairInvestment = () => {
 
   var currentTime = new Date().getTime() / 1000;
 
-  console.log("price", TFTDollarValue);
+  console.log("price", _circulatingSupply);
 
   return (
     <div className="fair-investment-w">
@@ -139,7 +139,7 @@ const FairInvestment = () => {
             <span>
               TFT Price:&nbsp;
               <span style={{ color: "#D45E2C" }}>
-                ${(TFTDollarValue / 1000000000000000000).toFixed(4)}
+                ${(TFTDollarValue / 1000000000000000000).toFixed(5)}
               </span>
             </span>
           </div>
@@ -184,7 +184,7 @@ const FairInvestment = () => {
                   (((TFT * Number(TFTDollarValue)) / 1000000000000000000) *
                     quarterlySTaking) /
                   100
-                ).toFixed(2)}{" "}
+                ).toFixed(3)}{" "}
             BUSD
           </span>
         </div>
@@ -236,7 +236,7 @@ const FairInvestment = () => {
                 ).toFixed(0)}
                 monthlyTime={(
                   (Number(val.timeOfInvestment) +
-                    60 * 60 * 24 * 30 -
+                    (60 * 60 * 24 * 30 *0 ) -
                     currentTime) /
                   (60 * 60 * 24)
                 ).toFixed(0)}

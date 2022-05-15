@@ -11,13 +11,14 @@ const BondDiscount = ({
   onCurrencyChange,
   value,
   balance,
-  TFTValue,
+  DiscountedPrice,
   BuyFunction,
   discount,
   LivePrice,
   allowance,
+  Conversion
 }) => {
-  console.log("tft value", TFTValue);
+  console.log("tft value", DiscountedPrice);
   return (
     <div className="bondDiscount-wraooer">
       <div className="bondDiscount-heading">
@@ -26,7 +27,7 @@ const BondDiscount = ({
           &nbsp;&nbsp;
           {currency}
         </span>
-        <span>Discount on TFT: 5%</span>
+        <span>Discount on TFT: {discount}%</span>
       </div>
       <div className="bondDiscount-inner-wrapper">
         <div className="bondDiscountOnTFT1">
@@ -36,7 +37,7 @@ const BondDiscount = ({
           </span>{" "}
           <span>
             TFT Discounted Price:{" "}
-            <span style={{ color: "#D45E2C" }}>${LivePrice}</span>
+            <span style={{ color: "#D45E2C" }}>${DiscountedPrice}</span>
           </span>
         </div>
 
@@ -60,7 +61,7 @@ const BondDiscount = ({
           {/* Tft Conversion Start */}
           <div className="tft-conversion-wrapper">
             <div className="left">
-              <TftConversionReadOnlyInput value={TFTValue} />
+              <TftConversionReadOnlyInput value={Conversion} />
             </div>
             {/* <div className="right">
               
