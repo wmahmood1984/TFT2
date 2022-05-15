@@ -4,15 +4,14 @@
 }
 /* dashboard-top-text */
 .dashboard-top-text {
-  margin: 20px;
-  font-size: 18px;
+  margin: 20px;  
   border-radius: 20px;
   text-align: center;
   background: rgba(82, 144, 228, 0.11);
   border: 1px solid #5290E41C;
   color: #2F5D8E;
-  font-size: 26px;
-  line-height: 37px;
+  font-size: 18px;
+  /* line-height: 37px; */
   font-weight: 500;
   padding: 10px 20px;
   -webkit-border-radius: 20px;
@@ -54,7 +53,7 @@
 }
 /* stockBoxWrapper */
 .stockBoxWrapper {
-  width: 80%;
+  /* width: 80%; */
   margin: auto;
   margin-top: 20px;
 }
