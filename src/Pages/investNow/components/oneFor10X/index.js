@@ -269,10 +269,36 @@ const OneFor10X = () => {
   return (
     <div className="theFairWin-main-wrapper">
       <div className="theFairWin-section-wrapper">
-        <h5>One For 10X</h5>
+        <div className="uper-text">
+          The game is simple. Each game is run for 12 hours. Participants pick a
+          number from 0-9. At the end of each 12 hrs, the number picked the
+          least wins. 1 in 10 chance of winning.
+        </div>
+        <div className="you-win">YOU WIN, YOU GET 10X</div>
+        <div className="know-more">
+          To know more <span>Click here</span>
+        </div>
+        <div className="timetonextPlay">Time to next play</div>
+        <div className="nextplay-time-w">
+          <div className="item">
+            <div className="digit">15</div>
+            <div className="text">Hours</div>
+          </div>
+          <div className="colon">:</div>
+          <div className="item">
+            <div className="digit">15</div>
+            <div className="text">Minutes</div>
+          </div>
+          <div className="colon">:</div>
+          <div className="item">
+            <div className="digit">15</div>
+            <div className="text">Seconds</div>
+          </div>
+        </div>
+        {/* <h5>One For 10X</h5>
         <p>Pick a Number From 0-9, the least bet wins. </p>
         <h5>IF YOU WIN, YOU GET 10X</h5>
-        <p>Cost per Ticket: 0.1 TFT</p>
+        <p>Cost per Ticket: 0.1 TFT</p> */}
         <p className="tbl-top-p">
           <span>Draw Number: {gameCounter}</span>
           <span>
@@ -413,6 +439,246 @@ const OneFor10X = () => {
             </td>
           </tr>
         </table>
+        <p className="tbl-bottom-p">
+          <div style={{ paddingTop: "10px" }}>
+            NUMBER OF TICKETS:{" "}
+            <span style={{ color: "#D45E2C" }}>
+              {zero +
+                one +
+                two +
+                three +
+                four +
+                five +
+                six +
+                seven +
+                eight +
+                nine}
+            </span>
+          </div>
+          <div style={{ marginTop: "10px" }}>
+            <CustomInput2
+              lable="BUSD"
+              enterLable={`Total TFT`}
+              placeholder={`TFT AMOUNT`}
+              value={(
+                (zero +
+                  one +
+                  two +
+                  three +
+                  four +
+                  five +
+                  six +
+                  seven +
+                  eight +
+                  nine) *
+                0.1
+              ).toFixed(1)}
+              belowLabel={`TFT Available In Wallet ${(
+                Number(_balance) / 100000000
+              ).toFixed(2)}`}
+              rightButtonText="Buy Tickets"
+              rightFunction={BuyLottery}
+              allowance={
+                Number(_TFTAllowance) >=
+                10000000 *
+                  (zero +
+                    one +
+                    two +
+                    three +
+                    four +
+                    five +
+                    six +
+                    seven +
+                    eight +
+                    nine)
+              }
+              disable={_balance == 0}
+            />
+          </div>
+        </p>
+        {/* new */}
+        <br></br>
+        <p className="tbl-top-p">
+          <span>Draw Number: {gameCounter}</span>
+          <span>
+            Date:
+            {new Date(NewTime * 1000).getDate()}-
+            {new Date(NewTime * 1000).getMonth() + 1}-
+            {new Date(NewTime * 1000).getFullYear()}
+          </span>
+          <span>
+            Time:
+            {new Date(NewTime * 1000).getHours()}:
+            {new Date(NewTime * 1000).getMinutes()}:
+            {new Date(NewTime * 1000).getSeconds()}
+          </span>
+        </p>
+        <div className="buyTickets-table">
+          {/* <div className="tblheader1">
+            <div className="t-header">Number</div>
+            <div className="t-header">No. Of Tickets</div>
+            <div className="t-header">Number</div>
+            <div className="t-header">No. of Tickets</div>
+          </div> */}
+          <div className="ticket-table-w">
+            <div className="ticket-table">
+              <div className="header">
+                <div className="t-header-n">Number</div>
+                <div className="t-header-t">No. Of Tickets</div>
+              </div>
+              <div className="body">
+                <div className="body-r">
+                  <div className="n">0</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r rowbg">
+                  <div className="n">1</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r">
+                  <div className="n">2</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r rowbg">
+                  <div className="n">3</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r">
+                  <div className="n">4</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="ticket-table">
+              <div className="header">
+                <div className="t-header-n">Number</div>
+                <div className="t-header-t">No. Of Tickets</div>
+              </div>
+              <div className="body">
+                <div className="body-r">
+                  <div className="n">5</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r rowbg">
+                  <div className="n">6</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r">
+                  <div className="n">7</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r rowbg">
+                  <div className="n">8</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+                <div className="body-r">
+                  <div className="n">9</div>
+                  <div className="t">
+                    <span>
+                      {" "}
+                      <i className="fal fa-minus"></i>{" "}
+                    </span>
+                    &nbsp; 0 &nbsp;
+                    <span>
+                      {" "}
+                      <i className="ri-add-line"></i>{" "}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <p className="tbl-bottom-p">
           <div style={{ paddingTop: "10px" }}>
             NUMBER OF TICKETS:{" "}

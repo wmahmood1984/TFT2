@@ -16,7 +16,8 @@ const BondDiscount = ({
   discount,
   LivePrice,
   allowance,
-  Conversion
+  Conversion,
+  handleBack,
 }) => {
   console.log("tft value", DiscountedPrice);
   return (
@@ -68,7 +69,7 @@ const BondDiscount = ({
             </div> */}
           </div>
           <div className="back-buytft-w">
-            <button className="back" disabled={disable} onClick={BuyFunction}>
+            <button className="back" onClick={() => handleBack()}>
               <span>Back</span>
             </button>
             <button className="buy" disabled={disable} onClick={BuyFunction}>

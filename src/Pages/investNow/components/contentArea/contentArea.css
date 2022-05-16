@@ -1,24 +1,22 @@
 /* contentArea-wrapper */
-.contentArea-wrapper {
-  width: calc(100% - 20%);  
-  padding-top: 10px;  
-  margin-left: 20%;  
-  position: relative;
-  min-height: calc(100vh - 60px)!important;
+.contentArea-wrapper {    
+  padding-top: 10px;   
+  position: relative;  
+  min-height: calc(100vh - 40px)!important;    
 }
 .contentAreaLeftCircle{
   position: absolute;
   left: 0px;
   top: 0;
   z-index: -1;  
-  width: 50%;
+  width: 40%;
 }
 .contentAreaRightCircle{
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: -1;  
-  width: 50%;
+  width: 40%;
 }
 .blue-lyaer{
   position: absolute;

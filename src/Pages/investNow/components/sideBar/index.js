@@ -1,5 +1,20 @@
 import React, { useState } from "react";
 import optionHover from "../../../../Assets/optionHover.png";
+import greyDashboard from "../../../../Assets/greyDashboard.png";
+import blueDashboard from "../../../../Assets/blueDashboard.png";
+import greywallet from "../../../../Assets/greywallet.png";
+import bluewallet from "../../../../Assets/bluewallet.png";
+import greyFairInvest from "../../../../Assets/greyFairInvest.png";
+import blueFairInvest from "../../../../Assets/blueFairInvest.png";
+import blueFairLoan from "../../../../Assets/blueFairLoan.png";
+import greyFairLoan from "../../../../Assets/greyFairLoan.png";
+import blueFairPlay from "../../../../Assets/blueFairPlay.png";
+import greyFairPlay from "../../../../Assets/greyFairPlay.png";
+import greyAirDrop from "../../../../Assets/greyAirDrop.png";
+import blueAirDrop from "../../../../Assets/blueAirDrop.png";
+import greyComunityVote from "../../../../Assets/greyComunityVote.png";
+import greyChart from "../../../../Assets/greyChart.png";
+import bluePrice from "../../../../Assets/price.png";
 import "./sideBar.css";
 import { tokenAddress } from "../../../../config";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,7 +40,7 @@ const SideBar = ({
 }) => {
   const [buyTftDropdown, setBuyTftDropdown] = useState(false);
   const [fairGameDropdown, setFairGameDropdown] = useState(false);
-  const [opTop, setOpTop] = useState(0);
+  const [opTop, setOpTop] = useState(5);
   const handleDashboardClick = () => {
     setDashboard(true);
     setBuyTft(false);
@@ -37,12 +52,12 @@ const SideBar = ({
     setAirDrop(false);
     setBuyTftDropdown(false);
     setFairGameDropdown(false);
-    setOpTop(0);
+    setOpTop(5);
   };
   const handleBuyTftClick = () => {
     setDashboard(false);
     setBuyTft(true);
-    setBuyAtDiscount(false);
+    setBuyAtDiscount(true);
     setBuyAtMarket(false);
     setFairInvestment(false);
     setLoanVault(false);
@@ -50,7 +65,7 @@ const SideBar = ({
     setAirDrop(false);
     setBuyTftDropdown((prev) => !prev);
     setFairGameDropdown(false);
-    setOpTop(45);
+    setOpTop(55);
   };
   const handleFairInvestmentClick = () => {
     setDashboard(false);
@@ -63,7 +78,7 @@ const SideBar = ({
     setAirDrop(false);
     setBuyTftDropdown(false);
     setFairGameDropdown(false);
-    setOpTop(45 * 2 - 5);
+    setOpTop(45 * 2 + 17);
   };
   const handleLoanVaultClick = () => {
     setDashboard(false);
@@ -76,7 +91,7 @@ const SideBar = ({
     setAirDrop(false);
     setBuyTftDropdown(false);
     setFairGameDropdown(false);
-    setOpTop(45 * 3 - 5);
+    setOpTop(45 * 3 + 25);
   };
   const handleOneFor10XClick = () => {
     setDashboard(false);
@@ -89,7 +104,7 @@ const SideBar = ({
     setAirDrop(false);
     setBuyTftDropdown(false);
     setFairGameDropdown((prev) => !prev);
-    setOpTop(45 * 4 - 10);
+    setOpTop(45 * 4 + 35);
   };
   const handleAirDropClick = () => {
     setDashboard(false);
@@ -102,7 +117,7 @@ const SideBar = ({
     setAirDrop(true);
     setBuyTftDropdown(false);
     setFairGameDropdown(false);
-    setOpTop(45 * 5 - 12);
+    setOpTop(45 * 5 + 40);
   };
   const dispatch = useDispatch();
   const setTokn = async () => {
@@ -166,7 +181,12 @@ const SideBar = ({
             }
             onClick={() => handleDashboardClick()}
           >
-            <i className="ri-dashboard-fill"></i> Dashboard
+            {/* <i className="ri-dashboard-fill"></i> */}
+            <img
+              src={dashboard ? blueDashboard : greyDashboard}
+              alt="greywallet"
+            />
+            &nbsp; Dashboard
           </li>
           <li
             onClick={() => handleBuyTftClick()}
@@ -175,7 +195,7 @@ const SideBar = ({
             <span style={{ display: "flex", alignItems: "center" }}>
               <span
                 style={
-                  buyTft
+                  buyAtDiscount
                     ? {
                         fontWeight: 600,
                         color: "#2F5D8E",
@@ -185,7 +205,12 @@ const SideBar = ({
                     : { display: "flex", alignItems: "center" }
                 }
               >
-                <i className="ri-secure-payment-fill"></i> Buy TFT
+                {/* <i className="ri-secure-payment-fill"></i> */}
+                <img
+                  src={buyAtDiscount ? bluewallet : greywallet}
+                  alt="greywallet"
+                />
+                &nbsp; Buy TFT
               </span>
             </span>
             <span
@@ -271,7 +296,12 @@ const SideBar = ({
                 : null
             }
           >
-            <i className="ri-money-cny-circle-fill"></i> The Fair Investment
+            {/* <i className="ri-money-cny-circle-fill"></i> */}
+            <img
+              src={fairInvestment ? blueFairInvest : greyFairInvest}
+              alt="greywallet"
+            />
+            &nbsp; The Fair Investment
           </li>
           <li
             onClick={() => handleLoanVaultClick()}
@@ -284,7 +314,12 @@ const SideBar = ({
                 : null
             }
           >
-            <i className="ri-money-cny-box-line"></i> The Fair Loan
+            {/* <i className="ri-money-cny-box-line"></i> */}
+            <img
+              src={loanVault ? blueFairLoan : greyFairLoan}
+              alt="greywallet"
+            />
+            &nbsp; The Fair Loan
           </li>
           <li
             onClick={() => handleOneFor10XClick()}
@@ -302,7 +337,12 @@ const SideBar = ({
                   : { display: "flex", alignItems: "center" }
               }
             >
-              <i className="ri-money-cny-circle-fill"></i> The Fair Game
+              {/* <i className="ri-money-cny-circle-fill"></i> */}
+              <img
+                src={oneFor10X ? blueFairPlay : greyFairPlay}
+                alt="greywallet"
+              />
+              &nbsp; The Fair Game
             </span>
             <span
               className="mycaret"
@@ -365,20 +405,31 @@ const SideBar = ({
                 : null
             }
           >
-            <i className="ri-chat-poll-line"></i>Airdrop
+            {/* <i className="ri-chat-poll-line"></i> */}
+            <img src={airDrop ? blueAirDrop : greyAirDrop} alt="greywallet" />
+            &nbsp; Airdrop
           </li>
-          <li>
-            <i className="ri-community-line"></i> Community Vote
-            <br />
-            <span style={{ fontSize: "14px", marginLeft: "35px" }}>
-              coming soon
+          <li style={{ alignItems: "start" }}>
+            {/* <i className="ri-community-line"></i> */}
+            <img src={greyComunityVote} alt="greywallet" />
+            &nbsp;
+            <span>
+              Community Vote
+              <br />
+              <span style={{ fontSize: "14px", marginLeft: "35px" }}>
+                coming soon
+              </span>
             </span>
           </li>
           <li>
-            <i className="ri-bar-chart-grouped-line"></i> Chart
+            {/* <i className="ri-bar-chart-grouped-line"></i> */}
+            <img src={greyChart} alt="greywallet" />
+            &nbsp; Chart
           </li>
           <li>
-            <i className="ri-price-tag-2-line"></i> TFT Price
+            {/* <i className="ri-price-tag-2-line"></i> */}
+            <img src={bluePrice} alt="greywallet" />
+            &nbsp; TFT Price
             <br />
             <span style={{ fontSize: "14px", marginLeft: "35px" }}>
               ${(_price / 1000000000000000000).toFixed(4)}

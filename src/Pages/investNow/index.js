@@ -60,28 +60,8 @@ const InvestNow = () => {
         handleBuyAtMarketClick={handleBuyAtMarketClick}
       />
       {/* SideBar */}
-      <SideBar
-        dashboard={dashboard}
-        buyTft={buyTft}
-        buyAtDiscount={buyAtDiscount}
-        buyAtMarket={buyAtMarket}
-        fairInvestment={fairInvestment}
-        loanVault={loanVault}
-        oneFor10X={oneFor10X}
-        airDrop={airDrop}
-        setDashboard={setDashboard}
-        setBuyTft={setBuyTft}
-        setBuyAtDiscount={setBuyAtDiscount}
-        setBuyAtMarket={setBuyAtMarket}
-        setFairInvestment={setFairInvestment}
-        setLoanVault={setLoanVault}
-        setOneFor10X={setOneFor10X}
-        setAirDrop={setAirDrop}
-        handleBuyAtDiscountClick={handleBuyAtDiscountClick}
-        handleBuyAtMarketClick={handleBuyAtMarketClick}
-      />
-      <div className="investnow-content">
-        <ContentArea
+      <div className="df">
+        <SideBar
           dashboard={dashboard}
           buyTft={buyTft}
           buyAtDiscount={buyAtDiscount}
@@ -90,10 +70,33 @@ const InvestNow = () => {
           loanVault={loanVault}
           oneFor10X={oneFor10X}
           airDrop={airDrop}
+          setDashboard={setDashboard}
+          setBuyTft={setBuyTft}
+          setBuyAtDiscount={setBuyAtDiscount}
+          setBuyAtMarket={setBuyAtMarket}
+          setFairInvestment={setFairInvestment}
+          setLoanVault={setLoanVault}
+          setOneFor10X={setOneFor10X}
+          setAirDrop={setAirDrop}
           handleBuyAtDiscountClick={handleBuyAtDiscountClick}
           handleBuyAtMarketClick={handleBuyAtMarketClick}
         />
+        <div className="investnow-content">
+          <ContentArea
+            dashboard={dashboard}
+            buyTft={buyTft}
+            buyAtDiscount={buyAtDiscount}
+            buyAtMarket={buyAtMarket}
+            fairInvestment={fairInvestment}
+            loanVault={loanVault}
+            oneFor10X={oneFor10X}
+            airDrop={airDrop}
+            handleBuyAtDiscountClick={handleBuyAtDiscountClick}
+            handleBuyAtMarketClick={handleBuyAtMarketClick}
+          />
+        </div>
       </div>
+      <Footer />
     </>
   );
 };

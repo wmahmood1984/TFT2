@@ -55,10 +55,12 @@ const ContentArea = ({
           handleBuyAtMarketClick={handleBuyAtMarketClick}
         />
       ) : null}
-      {buyTft ? (
+      {false ? (
         <BuyTFT handleBuyAtDiscountClick={handleBuyAtDiscountClick} />
       ) : null}
-      {buyAtDiscount ? <BuyAtDiscount /> : null}
+      {buyAtDiscount ? (
+        <BuyAtDiscount handleBuyAtDiscountClick={handleBuyAtDiscountClick} />
+      ) : null}
       {buyAtMarket ? (
         <iframe
           src="https://pancakeswap.finance/swap?outputCurrency=0x8E39816e67Fa39C768c0a6CB2E4B2E99A2813B6f"
@@ -71,7 +73,7 @@ const ContentArea = ({
       {oneFor10X ? <OneFor10X /> : null}
       {airDrop ? <AirDrop /> : null}
       {toggle ? <Loader /> : null}
-      <Footer1 />
+      {/* <Footer1 /> */}
     </div>
   );
 };

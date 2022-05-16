@@ -1,7 +1,6 @@
 /* investnow-content */
 .investnow-content {  
-  overflow: hidden;
-  overflow-y: hidden;
+  width: calc(100vw - 20%);    
 }
 .df {
   display: flex;

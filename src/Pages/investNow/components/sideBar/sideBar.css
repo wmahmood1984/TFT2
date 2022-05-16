@@ -2,7 +2,7 @@
 .sidebar-main-wrapper {
   width: 20%;
   height: calc(100vh - 40px);  
-  position: fixed;
+  /* position: fixed; */
 }
 /* sidebar-logo-wrapper */
 .sidebar-logo-wrapper {
@@ -26,7 +26,9 @@
   padding-left: 35px;
   display: flex;
   align-items: center;
-  color: #777777;
+  color: #777777;  
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 .sidebar-links-wrapper ul li i {
   font-size: 20px;
