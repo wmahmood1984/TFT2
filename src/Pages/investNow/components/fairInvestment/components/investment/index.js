@@ -1,7 +1,8 @@
 import React from "react";
 import "./investment.css";
 
-const Investment = ({ index, invested, price, monthly,quarterly,daily, dailyTime,monthlyTime,quarterlyTime,claim ,withdraw}) => {
+const Investment = ({ReInvest, index, invested, price, monthly,quarterly,daily, dailyTime,monthlyTime,quarterlyTime,claim ,withdraw, dailyClaim,monthlyClaim,quarterlyClaim}) => {
+  console.log("monthly time",monthlyTime)
   return (
     <>
       <h5 className="df jcsb">INVESTMENT{Number(index)+1}</h5>
@@ -11,16 +12,16 @@ const Investment = ({ index, invested, price, monthly,quarterly,daily, dailyTime
       <div className="m0 df jcsb aic mb5">
         <span>Daily Returns (0.16%): {daily} TFT</span>
         <button  
-        onClick={()=>{claim(index)}}
-        className="customOrangeBtn">CLAIM ALL</button>
+        onClick={()=>{dailyClaim(index)}}
+        className="customOrangeBtn">CLAIM DAILY</button>
       </div>
       <div className="m0 df jcsb aic mb5">
         <span>Monthly Bonus (5%): {monthly} TFT</span>
         {monthlyTime>0 ? 
         <div className="appOrangeColor">DAYS LEFT:&nbsp;{monthlyTime}</div>:
         <button  
-        onClick={()=>{claim(index)}}
-        className="customOrangeBtn">CLAIM ALL</button>}
+        onClick={()=>{monthlyClaim(index)}}
+        className="customOrangeBtn">CLAIM MONTHLY</button>}
 
       </div>
       <div className="m0 df jcsb aic">
@@ -28,14 +29,28 @@ const Investment = ({ index, invested, price, monthly,quarterly,daily, dailyTime
         {quarterlyTime>0 ? 
         <div className="appOrangeColor">DAYS LEFT:&nbsp;{quarterlyTime}</div>:
         <button  
+        onClick={()=>{quarterlyClaim(index)}}
+        className="customOrangeBtn">CLAIM QUARTERLY</button>}
+      </div>
+      <div className="mt20">
+        <button 
         onClick={()=>{claim(index)}}
-        className="customOrangeBtn">CLAIM ALL</button>}
+        className="withdraw-btn">
+          <span>CLAIM ALL</span>
+        </button>
       </div>
       <div className="mt20">
         <button 
         onClick={()=>{withdraw(index)}}
         className="withdraw-btn">
           <span>WITHDRAW INVESTMENT</span>
+        </button>
+      </div>
+      <div className="mt20">
+        <button 
+        onClick={()=>{ReInvest(index)}}
+        className="withdraw-btn">
+          <span>CLAIM & REINVEST</span>
         </button>
       </div>
     </>

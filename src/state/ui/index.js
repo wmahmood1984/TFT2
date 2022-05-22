@@ -374,6 +374,19 @@ export const UnStakinga = createAsyncThunk("Staking", async ({ id }) => {
   }
 });
 
+export const ReInvestmentA = createAsyncThunk("ReInvestmentA", async ({ id }) => {
+  try {
+    const result = await LoanContract.methods
+      .claimAndInvestBack(id)
+      .send({ from: address });
+    // .on(
+    // 	"confirmation",(e,r)=>{window.location.reload()}
+    // )
+  } catch (error) {
+    console.log("Error in ReInvestmentA Function", error);
+  }
+});
+
 export const LUnStakinga = createAsyncThunk("LUnStakinga", async ({ id,Scheme }) => {
   try {
     const result = await LoanContract.methods
@@ -652,6 +665,64 @@ async ({numb})=>{
 }
 )
 
+
+export const dailyClaimA = createAsyncThunk("dailyClaimA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.claimRewardDaily(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in dailyClaimA Function",error)
+    }
+}
+)
+
+export const monthlyClaimA = createAsyncThunk("monthlyClaimA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.claimRewardMonthly(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in monthlyClaimA Function",error)
+    }
+}
+)
+
+export const quarterlyClaimA = createAsyncThunk("quarterlyClaimA",
+async ({numb})=>{
+
+
+    try {
+
+
+
+
+  const result = await LoanContract.methods.claimRewardQuarterly(numb).send({from:address })
+ 
+
+    } catch (error) {
+        console.log("Error in quarterlyClaimA Function",error)
+    }
+}
+)
+
+
+
+
 const adoptSlice = createSlice({
   name: "AdopSlice",
   initialState: {
@@ -715,6 +786,10 @@ const adoptSlice = createSlice({
     },
   },
   extraReducers: {
+    [initWeb3.pending]: (state, action) => {
+      state.toggle = !state.toggle;
+    },
+
     [initWeb3.fulfilled]: (state, action) => {
       state.web3 = action.payload.web3;
       state.address = action.payload.address;
@@ -726,7 +801,10 @@ const adoptSlice = createSlice({
       state.tftDeposited = action.payload.tftDeposited
       state.treasuryBalance = action.payload.treasuryBalance
       state.loanIssued = action.payload.loanIssued
+      state.toggle = !state.toggle;
     },
+
+
 
     [Price.fulfilled]: (state, action) => {
        state.BUSDAllowance = action.payload.BUSDAllowance;
@@ -757,6 +835,10 @@ const adoptSlice = createSlice({
       state.discountUSD = action.payload.discountUSD
     },
 
+    // [stakingComp.pending] : (state,action) => {
+    //   state.toggle = !state.toggle; 
+    // },
+
     [stakingComp.fulfilled] : (state,action) => {
       state.balance = action.payload.balance
       state.TFTAllowance = action.payload.TFTAllowance
@@ -764,6 +846,7 @@ const adoptSlice = createSlice({
       state.monthStaking = action.payload.monthStaking
       state.quarterlySTaking= action.payload.quarterlySTaking
       state.indStakingInf = action.payload.indStakingInf
+   //   state.toggle = !state.toggle;
     },
 
     [Lottery.fulfilled] : (state,action) => {
@@ -992,6 +1075,51 @@ const adoptSlice = createSlice({
   state.error = null;
 },
 [changeDiscountA .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+
+[ReInvestmentA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[ReInvestmentA .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[dailyClaimA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[dailyClaimA .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[monthlyClaimA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[monthlyClaimA .fulfilled] : (state,action)=>{
+
+  state.toggle = !state.toggle;
+  state.error = action.payload;
+
+},
+
+[quarterlyClaimA.pending] : (state,action)=>{
+  state.toggle = !state.toggle;
+  state.error = null;
+},
+[quarterlyClaimA .fulfilled] : (state,action)=>{
 
   state.toggle = !state.toggle;
   state.error = action.payload;

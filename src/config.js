@@ -665,6 +665,363 @@ export const Admin = "0xdD65C7f79547Cb50e429df366A0fab903642192F"//"0xF2DD862a08
 
 export const LoanConAbi = [
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "BUSD",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "BUSDBNBPair",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "BUYTFTActive",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "Discount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_qty",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_stype",
+				"type": "uint256"
+			}
+		],
+		"name": "LStaking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "stype",
+				"type": "uint256"
+			}
+		],
+		"name": "LUnStaking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "LcalculateReward",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "dailyReward",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "scheme",
+				"type": "uint256"
+			}
+		],
+		"name": "LclaimReward",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "LoanDaily1",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "LoanDaily2",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "LoanIssued",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "LstakingArray",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "stakingId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "stype",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "investor",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "quantity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timeOfInvestment",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "daily",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dollarGiven",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dailyClaimed",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "dailyRate",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_qty",
+				"type": "uint256"
+			}
+		],
+		"name": "Staking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TFTBNBPair",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TFTDeposited",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TFTPair",
+		"outputs": [
+			{
+				"internalType": "contract IUniswapV2Pair",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TFTStaked",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "tft",
+				"type": "uint256"
+			}
+		],
+		"name": "TFTtoBNB",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "amountOut",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "TUSDT",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "USDPair",
+		"outputs": [
+			{
+				"internalType": "contract IUniswapV2Pair",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -680,6 +1037,85 @@ export const LoanConAbi = [
 		"name": "buyTFT",
 		"outputs": [],
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "calculateReward",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "dailyReward",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "MonthlyReward",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "QuarterlyReward",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_monthsSpent",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "calculateRewardInd",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "dailyReward",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "MonthlyReward",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "QuarterlyReward",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "daily",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "monthly",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quarterly",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct TFTLoan.returnStruct[]",
+				"name": "Array",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -781,7 +1217,7 @@ export const LoanConAbi = [
 				"type": "uint256"
 			}
 		],
-		"name": "claimReward",
+		"name": "claimAndInvestBack",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -792,182 +1228,27 @@ export const LoanConAbi = [
 				"internalType": "uint256",
 				"name": "_id",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "scheme",
-				"type": "uint256"
 			}
 		],
-		"name": "LclaimReward",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+		"name": "claimRewardAll",
+		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "_qty",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_stype",
-				"type": "uint256"
-			}
-		],
-		"name": "LStaking",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_id",
+				"name": "",
 				"type": "uint256"
 			},
 			{
 				"internalType": "uint256",
-				"name": "stype",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "LUnStaking",
-		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "arrayReceived",
-				"type": "uint256[]"
-			}
-		],
-		"name": "multipleClaim",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "ids",
-				"type": "uint256[]"
-			}
-		],
-		"name": "multiUnstaking",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "setLstakingActive",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "setStakingActive",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "setTFTBuyACtive",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_qty",
-				"type": "uint256"
-			}
-		],
-		"name": "Staking",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "unStaking",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "admin",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "BUSD",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "BUSDBNBPair",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "BUYTFTActive",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -978,75 +1259,35 @@ export const LoanConAbi = [
 				"type": "uint256"
 			}
 		],
-		"name": "calculateReward",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "dailyReward",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "MonthlyReward",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "QuarterlyReward",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_monthsSpent",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
+		"name": "claimRewardDaily",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "calculateRewardInd",
-		"outputs": [
+		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "dailyReward",
+				"name": "_id",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "MonthlyReward",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "QuarterlyReward",
-				"type": "uint256"
-			},
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "daily",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "monthly",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "quarterly",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct TFTLoan.returnStruct[]",
-				"name": "Array",
-				"type": "tuple[]"
 			}
 		],
-		"stateMutability": "view",
+		"name": "claimRewardMonthly",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_id",
+				"type": "uint256"
+			}
+		],
+		"name": "claimRewardQuarterly",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1068,32 +1309,6 @@ export const LoanConAbi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "Discount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getLatestPrice",
-		"outputs": [
-			{
-				"internalType": "int256",
-				"name": "",
-				"type": "int256"
 			}
 		],
 		"stateMutability": "view",
@@ -1272,6 +1487,19 @@ export const LoanConAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getLatestPrice",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -1444,64 +1672,6 @@ export const LoanConAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "LcalculateReward",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "dailyReward",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "LoanDaily1",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "LoanDaily2",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "LoanIssued",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "lstakingActive",
 		"outputs": [
@@ -1509,65 +1679,6 @@ export const LoanConAbi = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "LstakingArray",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "stakingId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "stype",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "investor",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "quantity",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "timeOfInvestment",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "daily",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dollarGiven",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dailyClaimed",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dailyRate",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -1600,6 +1711,32 @@ export const LoanConAbi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256[]",
+				"name": "ids",
+				"type": "uint256[]"
+			}
+		],
+		"name": "multiUnstaking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "arrayReceived",
+				"type": "uint256[]"
+			}
+		],
+		"name": "multipleClaim",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -1619,6 +1756,27 @@ export const LoanConAbi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "setLstakingActive",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "setStakingActive",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "setTFTBuyACtive",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1743,87 +1901,16 @@ export const LoanConAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "TFTBNBPair",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TFTDeposited",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TFTPair",
-		"outputs": [
-			{
-				"internalType": "contract IUniswapV2Pair",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TFTStaked",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "tft",
+				"name": "_id",
 				"type": "uint256"
 			}
 		],
-		"name": "TFTtoBNB",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "amountOut",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "TUSDT",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
+		"name": "unStaking",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1834,19 +1921,6 @@ export const LoanConAbi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "USDPair",
-		"outputs": [
-			{
-				"internalType": "contract IUniswapV2Pair",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -1942,7 +2016,7 @@ export const LoanConAbi = [
 	}
 ]
 
-export const LoanConAddress = "0x7aB1AF2A30e0A9e20Bc57924ca4Fc5335762326D"
+export const LoanConAddress = "0x1fb3ed0014F627E53990C02f2AB3e8B03c66dFEA"
 
 export const tokenAbi = [
 	{

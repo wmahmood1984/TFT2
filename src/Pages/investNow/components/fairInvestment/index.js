@@ -12,6 +12,10 @@ import {
   claimA,
   bulkclaimA,
   stakingComp,
+  ReInvestmentA,
+  dailyClaimA,
+  monthlyClaimA,
+  quarterlyClaimA,
 } from "../../../../state/ui";
 
 const FairInvestment = () => {
@@ -93,8 +97,25 @@ const FairInvestment = () => {
     dispatch(UnStakinga({ id }));
   }
 
+  function ReInvest(id) {
+    dispatch(ReInvestmentA({ id }));
+  }
+
   function handleClaim(id) {
     dispatch(claimA({ id }));
+  }
+
+
+  function dailyClaim(id) {
+    dispatch(dailyClaimA({ numb: id }));
+  }
+
+  function monthlyClaim(id) {
+    dispatch(monthlyClaimA({ numb: id }));
+  }
+
+  function quarterlyClaim(id) {
+    dispatch(quarterlyClaimA({ numb: id }));
   }
 
   function bulkClaim() {
@@ -112,7 +133,8 @@ const FairInvestment = () => {
 
   var currentTime = new Date().getTime() / 1000;
 
-  console.log("price", _circulatingSupply);
+
+  var day = 6
 
   return (
     <div className="fair-investment-w">
@@ -167,23 +189,23 @@ const FairInvestment = () => {
           </span>
         </div>
         <div className="m0 df jcsb aic mb5 dreturn">
-          <span>Monthly Bonus ({`${monthStaking}`}%): </span>
+          <span>Monthly Bonus ({`${monthStaking/ 100}`}%): </span>
           <span style={{ color: "#D45E2C" }}>
-            {TFT == undefined ? 0 : (TFT * monthStaking) / 100} TFT
+            {TFT == undefined ? 0 : (TFT * monthStaking) / 10000} TFT
           </span>
         </div>
         <div
           className="m0 df jcsb aic dreturn"
           style={{ background: "#FBFBFB" }}
         >
-          <span>Quarterly Dividend ({`${quarterlySTaking}`}%): </span>
+          <span>Quarterly Dividend ({`${quarterlySTaking/ 100}`}%): </span>
           <span style={{ color: "#D45E2C" }}>
             {TFT == undefined
               ? 0
               : (
                   (((TFT * Number(TFTDollarValue)) / 1000000000000000000) *
                     quarterlySTaking) /
-                  100
+                  10000
                 ).toFixed(3)}{" "}
             BUSD
           </span>
@@ -218,7 +240,7 @@ const FairInvestment = () => {
 
       {_indStakingInf &&
         filteredInfo.map((val, key) => {
-          console.log("daily", val.monthly);
+          console.log("daily", val);
           return (
             <InvesNowContentBox key={key}>
               <Investment
@@ -228,26 +250,31 @@ const FairInvestment = () => {
                 monthly={(Number(val.monthly) / 100000000).toFixed(0)}
                 quarterly={(
                   Number(val.quarterly) / 1000000000000000000
-                ).toFixed(0)}
+                ).toFixed(3)}
                 daily={(Number(val.daily) / 100000000).toFixed(0)}
                 dailyTime={(
-                  (Number(val.timeOfInvestment) + 60 * 60 * 24 - currentTime) /
-                  (60 * 60 * 24)
+                  (Number(val.timeOfInvestment) + day - currentTime) /
+                  (day)
                 ).toFixed(0)}
                 monthlyTime={(
-                  (Number(val.timeOfInvestment) +
-                    (60 * 60 * 24 * 30 *0 ) -
+                  ((Number(val.timeOfInvestment) +
+                    (day * 30 *(Number(val.monthsElapsed)+1) ) -
                     currentTime) /
-                  (60 * 60 * 24)
+                  (day))
                 ).toFixed(0)}
                 quarterlyTime={(
                   (Number(val.timeOfInvestment) +
-                    60 * 60 * 24 * 90 -
+                    (day * 90) -
                     currentTime) /
-                  (60 * 60 * 24)
+                  (day)
                 ).toFixed(0)}
                 claim={handleClaim}
+                dailyClaim={dailyClaim}
+                monthlyClaim={monthlyClaim}
+                quarterlyClaim={quarterlyClaim}
+                monthsSpent={val.monthsElapsed}
                 withdraw={Unstake}
+                ReInvest={ReInvest}
               />
             </InvesNowContentBox>
           );
